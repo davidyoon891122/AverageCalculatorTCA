@@ -11,6 +11,11 @@
 		492546B92C7030F100B86971 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546B82C7030F100B86971 /* ContentView.swift */; };
 		492546BB2C7030F300B86971 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 492546BA2C7030F300B86971 /* Assets.xcassets */; };
 		492546BE2C7030F300B86971 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 492546BD2C7030F300B86971 /* Preview Assets.xcassets */; };
+		492546C62C70316900B86971 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 492546C52C70316900B86971 /* ComposableArchitecture */; };
+		492546C82C70332400B86971 /* DisplayListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546C72C70332400B86971 /* DisplayListFeature.swift */; };
+		492546CA2C70342F00B86971 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546C92C70342F00B86971 /* ItemModel.swift */; };
+		492546CC2C70386E00B86971 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546CB2C70386E00B86971 /* UserDefaultsManager.swift */; };
+		492546CE2C70411F00B86971 /* Extension+Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546CD2C70411F00B86971 /* Extension+Float.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,10 @@
 		492546B82C7030F100B86971 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		492546BA2C7030F300B86971 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		492546BD2C7030F300B86971 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		492546C72C70332400B86971 /* DisplayListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayListFeature.swift; sourceTree = "<group>"; };
+		492546C92C70342F00B86971 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		492546CB2C70386E00B86971 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		492546CD2C70411F00B86971 /* Extension+Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Float.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				492546C62C70316900B86971 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +65,10 @@
 				492546B82C7030F100B86971 /* ContentView.swift */,
 				492546BA2C7030F300B86971 /* Assets.xcassets */,
 				492546BC2C7030F300B86971 /* Preview Content */,
+				492546C72C70332400B86971 /* DisplayListFeature.swift */,
+				492546C92C70342F00B86971 /* ItemModel.swift */,
+				492546CB2C70386E00B86971 /* UserDefaultsManager.swift */,
+				492546CD2C70411F00B86971 /* Extension+Float.swift */,
 			);
 			path = AveragePriceCalculator;
 			sourceTree = "<group>";
@@ -83,6 +97,9 @@
 			dependencies = (
 			);
 			name = AveragePriceCalculator;
+			packageProductDependencies = (
+				492546C52C70316900B86971 /* ComposableArchitecture */,
+			);
 			productName = AveragePriceCalculator;
 			productReference = 492546B32C7030F100B86971 /* AveragePriceCalculator.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +128,9 @@
 				Base,
 			);
 			mainGroup = 492546AA2C7030F100B86971;
+			packageReferences = (
+				492546C42C70316900B86971 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 492546B42C7030F100B86971 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +159,10 @@
 			files = (
 				492546B92C7030F100B86971 /* ContentView.swift in Sources */,
 				492546B72C7030F100B86971 /* AveragePriceCalculatorApp.swift in Sources */,
+				492546CE2C70411F00B86971 /* Extension+Float.swift in Sources */,
+				492546CA2C70342F00B86971 /* ItemModel.swift in Sources */,
+				492546C82C70332400B86971 /* DisplayListFeature.swift in Sources */,
+				492546CC2C70386E00B86971 /* UserDefaultsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +221,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -254,7 +278,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -280,6 +304,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +334,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,6 +370,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		492546C42C70316900B86971 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.13.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		492546C52C70316900B86971 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 492546C42C70316900B86971 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 492546AB2C7030F100B86971 /* Project object */;
 }
