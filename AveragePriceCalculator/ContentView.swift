@@ -6,19 +6,19 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct ContentView: View {
+
+    let store: StoreOf<DisplayListFeature>
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        DisplayListView(store: store)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(store: Store(initialState: DisplayListFeature.State()) {
+        DisplayListFeature()
+    })
 }

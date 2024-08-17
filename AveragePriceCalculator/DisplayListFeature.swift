@@ -57,24 +57,27 @@ struct DisplayListView: View {
     let store: StoreOf<DisplayListFeature>
 
     var body: some View {
-
-        VStack {
-            LazyVStack {
-                ForEach(store.items) { item in
-                    ItemView(item: item)
+        NavigationStack {
+            ScrollView {
+                VStack {
+                    LazyVStack {
+                        ForEach(store.items) { item in
+                            ItemView(item: item)
+                        }
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            // TODO: - Move to AddView
+                        }, label: {
+                            Image(systemName: "plus.circle")
+                        })
+                    }
                 }
             }
+            .navigationTitle(store.navigationTitle)
         }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(action: {
-                    // TODO: - Move to AddView
-                }, label: {
-                    Image(systemName: "plus.circle")
-                })
-            }
-        }
-        .navigationTitle(store.navigationTitle)
     }
 
 }

@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct AveragePriceCalculatorApp: App {
+
+    static let store = Store(initialState: DisplayListFeature.State()) {
+        DisplayListFeature()
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(store: AveragePriceCalculatorApp.store)
         }
     }
 }
