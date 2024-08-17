@@ -11,8 +11,8 @@ import ComposableArchitecture
 @main
 struct AveragePriceCalculatorApp: App {
 
-    static let store = Store(initialState: DisplayListFeature.State()) {
-        DisplayListFeature()
+    static let store = Store(initialState: AppFeature.State()) {
+        AppFeature()
     }
 
     var body: some Scene {

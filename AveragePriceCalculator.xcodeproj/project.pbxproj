@@ -16,6 +16,8 @@
 		492546CA2C70342F00B86971 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546C92C70342F00B86971 /* ItemModel.swift */; };
 		492546CC2C70386E00B86971 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546CB2C70386E00B86971 /* UserDefaultsManager.swift */; };
 		492546CE2C70411F00B86971 /* Extension+Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546CD2C70411F00B86971 /* Extension+Float.swift */; };
+		492546D42C704C1600B86971 /* SettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D32C704C1600B86971 /* SettingsFeature.swift */; };
+		492546D62C704DFB00B86971 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D52C704DFB00B86971 /* AppFeature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		492546C92C70342F00B86971 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		492546CB2C70386E00B86971 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		492546CD2C70411F00B86971 /* Extension+Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Float.swift"; sourceTree = "<group>"; };
+		492546D32C704C1600B86971 /* SettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeature.swift; sourceTree = "<group>"; };
+		492546D52C704DFB00B86971 /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +69,9 @@
 				492546B82C7030F100B86971 /* ContentView.swift */,
 				492546BA2C7030F300B86971 /* Assets.xcassets */,
 				492546BC2C7030F300B86971 /* Preview Content */,
-				492546C72C70332400B86971 /* DisplayListFeature.swift */,
-				492546C92C70342F00B86971 /* ItemModel.swift */,
-				492546CB2C70386E00B86971 /* UserDefaultsManager.swift */,
-				492546CD2C70411F00B86971 /* Extension+Float.swift */,
+				492546D22C704A6600B86971 /* Features */,
+				492546CF2C704A4E00B86971 /* Model */,
+				492546D02C704A5300B86971 /* Tools */,
 			);
 			path = AveragePriceCalculator;
 			sourceTree = "<group>";
@@ -79,6 +82,41 @@
 				492546BD2C7030F300B86971 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		492546CF2C704A4E00B86971 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				492546C92C70342F00B86971 /* ItemModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		492546D02C704A5300B86971 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				492546D12C704A5C00B86971 /* Extension */,
+				492546CB2C70386E00B86971 /* UserDefaultsManager.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		492546D12C704A5C00B86971 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				492546CD2C70411F00B86971 /* Extension+Float.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		492546D22C704A6600B86971 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				492546C72C70332400B86971 /* DisplayListFeature.swift */,
+				492546D32C704C1600B86971 /* SettingsFeature.swift */,
+				492546D52C704DFB00B86971 /* AppFeature.swift */,
+			);
+			path = Features;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +195,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				492546D62C704DFB00B86971 /* AppFeature.swift in Sources */,
 				492546B92C7030F100B86971 /* ContentView.swift in Sources */,
+				492546D42C704C1600B86971 /* SettingsFeature.swift in Sources */,
 				492546B72C7030F100B86971 /* AveragePriceCalculatorApp.swift in Sources */,
 				492546CE2C70411F00B86971 /* Extension+Float.swift in Sources */,
 				492546CA2C70342F00B86971 /* ItemModel.swift in Sources */,

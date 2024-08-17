@@ -11,7 +11,7 @@ import ComposableArchitecture
 struct DisplayListFeature {
 
     @ObservableState
-    struct State {
+    struct State: Equatable {
         var items: [ItemModel] = []
         var isLoading = false
         let navigationTitle = "Average Calculator"
@@ -35,14 +35,16 @@ struct DisplayListFeature {
                 return .none
             case .refresh:
                 state.isLoading = true
-                state.items = UserDefaultsManager().loadItems()
+                let items = UserDefaultsManager().loadItems()
 
-                return .none
+                return .send(.loadList(items))
             case .addButtonTapped:
                 return .none
             case .listElementTapped:
                 return .none
             case .loadList(let items):
+                state.items = items
+                state.isLoading = false
                 return .none
             }
         }
@@ -58,22 +60,30 @@ struct DisplayListView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack {
-                    LazyVStack {
-                        ForEach(store.items) { item in
-                            ItemView(item: item)
+            ZStack {
+                ScrollView {
+                    VStack {
+                        LazyVStack {
+                            ForEach(store.items) { item in
+                                ItemView(item: item)
+                            }
+                        }
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button(action: {
+                                store.send(.addButtonTapped)
+                            }, label: {
+                                Image(systemName: "plus.circle")
+                            })
                         }
                     }
                 }
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {
-                            // TODO: - Move to AddView
-                        }, label: {
-                            Image(systemName: "plus.circle")
-                        })
-                    }
+                .refreshable {
+                    store.send(.refresh)
+                }
+                if store.isLoading {
+                    ProgressView()
                 }
             }
             .navigationTitle(store.navigationTitle)

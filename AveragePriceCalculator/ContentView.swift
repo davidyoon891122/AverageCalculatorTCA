@@ -10,15 +10,25 @@ import ComposableArchitecture
 
 struct ContentView: View {
 
-    let store: StoreOf<DisplayListFeature>
+    let store: StoreOf<AppFeature>
 
     var body: some View {
-        DisplayListView(store: store)
+        TabView {
+            DisplayListView(store: store.scope(state: \.tab1, action: \.tab1))
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text("Display")
+                }
+
+            SettingsView(store: store.scope(state: \.tab2, action: \.tab2))
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
+        }
     }
 }
 
 #Preview {
-    ContentView(store: Store(initialState: DisplayListFeature.State()) {
-        DisplayListFeature()
-    })
+    ContentView(store: AveragePriceCalculatorApp.store)
 }
