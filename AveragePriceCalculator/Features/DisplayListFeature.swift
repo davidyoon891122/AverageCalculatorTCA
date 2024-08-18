@@ -12,6 +12,7 @@ struct DisplayListFeature {
 
     @ObservableState
     struct State: Equatable {
+        @Presents var addItem: AddItemFeature.State?
         var items: [ItemModel] = []
         var isLoading = false
         let navigationTitle = "Average Calculator"
@@ -21,6 +22,7 @@ struct DisplayListFeature {
         case viewAppear
         case refresh
         case addButtonTapped
+        case addItem(PresentationAction<AddItemFeature.Action>)
         case listElementTapped
         case loadList([ItemModel])
     }
@@ -39,6 +41,7 @@ struct DisplayListFeature {
 
                 return .send(.loadList(items))
             case .addButtonTapped:
+                state.addItem = AddItemFeature.State(item: .init(id: UUID(), name: "test", date: "2024-08-18", profitRage: 30.0, price: 82000000, quantity: 1))
                 return .none
             case .listElementTapped:
                 return .none
@@ -46,7 +49,12 @@ struct DisplayListFeature {
                 state.items = items
                 state.isLoading = false
                 return .none
+            case .addItem:
+                return .none
             }
+        }
+        .ifLet(\.$addItem, action: \.addItem) {
+            AddItemFeature()
         }
     }
 
@@ -56,37 +64,46 @@ import SwiftUI
 
 struct DisplayListView: View {
 
-    let store: StoreOf<DisplayListFeature>
+    @Perception.Bindable var store: StoreOf<DisplayListFeature>
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                ScrollView {
-                    VStack {
-                        LazyVStack {
-                            ForEach(store.items) { item in
-                                ItemView(item: item)
+        WithPerceptionTracking {
+            NavigationStack {
+                ZStack {
+                    ScrollView {
+                        VStack {
+                            LazyVStack {
+                                ForEach(store.items) { item in
+                                    ItemView(item: item)
+                                }
+                            }
+                        }
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button(action: {
+                                    store.send(.addButtonTapped)
+                                }, label: {
+                                    Image(systemName: "plus.circle")
+                                })
                             }
                         }
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button(action: {
-                                store.send(.addButtonTapped)
-                            }, label: {
-                                Image(systemName: "plus.circle")
-                            })
-                        }
+                    .refreshable {
+                        store.send(.refresh)
+                    }
+                    if store.isLoading {
+                        ProgressView()
                     }
                 }
-                .refreshable {
-                    store.send(.refresh)
+                .sheet(
+                    item: $store.scope(state:\.addItem, action: \.addItem)
+                ) { addItemStore in
+                    NavigationStack {
+                        AddItemView(store: addItemStore)
+                    }
                 }
-                if store.isLoading {
-                    ProgressView()
-                }
+                .navigationTitle(store.navigationTitle)
             }
-            .navigationTitle(store.navigationTitle)
         }
     }
 

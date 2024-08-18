@@ -28,6 +28,7 @@ struct AddItemFeature {
         case setFirstQuantity(String)
         case setSecondPrice(String)
         case setSecondQuantity(String)
+        case saveButtonTapped
     }
 
     var body: some ReducerOf<Self> {
@@ -48,6 +49,8 @@ struct AddItemFeature {
             case let .setSecondQuantity(secondQuantity):
                 state.secondQuantity = secondQuantity
                 return .none
+            case .saveButtonTapped:
+                return .none
             }
 
         }
@@ -61,59 +64,60 @@ struct AddItemView: View {
     @Perception.Bindable var store: StoreOf<AddItemFeature>
 
     var body: some View {
-        ScrollView {
+        WithPerceptionTracking {
+            ScrollView {
+                VStack {
+                    TextField("Name", text: $store.name.sending(\.setName))
+                        .padding()
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 4.0)
+                                .stroke(.gray)
+                        }
+                        .padding()
+                    VStack(alignment: .leading) {
+                        Text("First Purchase")
+                            .bold()
+                            .font(.system(size: 22.0))
 
-            VStack {
-                TextField("Name", text: $store.name.sending(\.setName))
-                    .padding()
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 4.0)
-                            .stroke(.gray)
+                        TextField("First Price", text: $store.firstPrice.sending(\.setFirstPrice))
+                            .padding()
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 4.0)
+                                    .stroke(.gray)
+                            }
+
+                        TextField("First Quantity", text: $store.firstQuantiy.sending(\.setFirstQuantity))
+                            .padding()
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 4.0)
+                                    .stroke(.gray)
+                            }
                     }
                     .padding()
-                VStack(alignment: .leading) {
-                    Text("First Purchase")
-                        .bold()
-                        .font(.system(size: 22.0))
+                    VStack(alignment: .leading) {
+                        Text("Second Purchase")
+                            .bold()
+                            .font(.system(size: 22.0))
 
-                    TextField("First Price", text: $store.firstPrice.sending(\.setFirstPrice))
-                        .padding()
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 4.0)
-                                .stroke(.gray)
-                        }
+                        TextField("Second Price", text: $store.secondPrice.sending(\.setSecondPrice))
+                            .padding()
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 4.0)
+                                    .stroke(.gray)
+                            }
 
-                    TextField("First Quantity", text: $store.firstQuantiy.sending(\.setFirstQuantity))
-                        .padding()
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 4.0)
-                                .stroke(.gray)
-                        }
+                        TextField("Second Quantity", text: $store.secondQuantity.sending(\.setSecondQuantity))
+                            .padding()
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 4.0)
+                                    .stroke(.gray)
+                            }
+                    }
+                    .padding()
                 }
-                .padding()
-                VStack(alignment: .leading) {
-                    Text("Second Purchase")
-                        .bold()
-                        .font(.system(size: 22.0))
-
-                    TextField("Second Price", text: $store.secondPrice.sending(\.setSecondPrice))
-                        .padding()
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 4.0)
-                                .stroke(.gray)
-                        }
-
-                    TextField("Second Quantity", text: $store.secondQuantity.sending(\.setSecondQuantity))
-                        .padding()
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 4.0)
-                                .stroke(.gray)
-                        }
-                }
-                .padding()
             }
+            .navigationTitle(store.navigationTitle)
         }
-        .navigationTitle(store.navigationTitle)
     }
 
 }
