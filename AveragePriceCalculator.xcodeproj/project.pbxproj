@@ -18,6 +18,8 @@
 		492546CE2C70411F00B86971 /* Extension+Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546CD2C70411F00B86971 /* Extension+Float.swift */; };
 		492546D42C704C1600B86971 /* SettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D32C704C1600B86971 /* SettingsFeature.swift */; };
 		492546D62C704DFB00B86971 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D52C704DFB00B86971 /* AppFeature.swift */; };
+		492546D82C71BFC100B86971 /* AddItemFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D72C71BFC100B86971 /* AddItemFeature.swift */; };
+		492546DA2C71C41A00B86971 /* AverageCalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D92C71C41A00B86971 /* AverageCalculatorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		492546CD2C70411F00B86971 /* Extension+Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Float.swift"; sourceTree = "<group>"; };
 		492546D32C704C1600B86971 /* SettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeature.swift; sourceTree = "<group>"; };
 		492546D52C704DFB00B86971 /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
+		492546D72C71BFC100B86971 /* AddItemFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemFeature.swift; sourceTree = "<group>"; };
+		492546D92C71C41A00B86971 /* AverageCalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageCalculatorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				492546C92C70342F00B86971 /* ItemModel.swift */,
+				492546D92C71C41A00B86971 /* AverageCalculatorModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 				492546C72C70332400B86971 /* DisplayListFeature.swift */,
 				492546D32C704C1600B86971 /* SettingsFeature.swift */,
 				492546D52C704DFB00B86971 /* AppFeature.swift */,
+				492546D72C71BFC100B86971 /* AddItemFeature.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -196,6 +202,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				492546D62C704DFB00B86971 /* AppFeature.swift in Sources */,
+				492546DA2C71C41A00B86971 /* AverageCalculatorModel.swift in Sources */,
+				492546D82C71BFC100B86971 /* AddItemFeature.swift in Sources */,
 				492546B92C7030F100B86971 /* ContentView.swift in Sources */,
 				492546D42C704C1600B86971 /* SettingsFeature.swift in Sources */,
 				492546B72C7030F100B86971 /* AveragePriceCalculatorApp.swift in Sources */,

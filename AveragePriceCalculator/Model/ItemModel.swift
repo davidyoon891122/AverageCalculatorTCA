@@ -10,7 +10,7 @@ import Foundation
 struct ItemModel: Codable, Identifiable, Equatable {
 
     let id: UUID
-    let name: String
+    var name: String
     let date: String
     let profitRage: Float
     let price: Float
