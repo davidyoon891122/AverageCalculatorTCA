@@ -12,17 +12,18 @@ struct ItemModel: Codable, Identifiable, Equatable {
     let id: UUID
     var name: String
     let date: String
-    let profitRage: Float
-    let price: Float
-    let quantity: Double
+    let firstPrice: Double
+    let firstQuantity: Double
+    let secondPrice: Double
+    let secondQuantity: Double
 
 }
 
 
 extension ItemModel {
 
-    var averagePrice: Float {
-        self.price * Float(self.quantity)
+    var averagePrice: Double {
+        ((self.firstPrice * self.firstQuantity) + (self.secondPrice * self.secondQuantity)) / (self.firstQuantity + self.secondQuantity)
     }
 
 }

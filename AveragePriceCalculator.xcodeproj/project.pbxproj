@@ -15,11 +15,12 @@
 		492546C82C70332400B86971 /* DisplayListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546C72C70332400B86971 /* DisplayListFeature.swift */; };
 		492546CA2C70342F00B86971 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546C92C70342F00B86971 /* ItemModel.swift */; };
 		492546CC2C70386E00B86971 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546CB2C70386E00B86971 /* UserDefaultsManager.swift */; };
-		492546CE2C70411F00B86971 /* Extension+Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546CD2C70411F00B86971 /* Extension+Float.swift */; };
+		492546CE2C70411F00B86971 /* Extension+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546CD2C70411F00B86971 /* Extension+Double.swift */; };
 		492546D42C704C1600B86971 /* SettingsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D32C704C1600B86971 /* SettingsFeature.swift */; };
 		492546D62C704DFB00B86971 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D52C704DFB00B86971 /* AppFeature.swift */; };
 		492546D82C71BFC100B86971 /* AddItemFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D72C71BFC100B86971 /* AddItemFeature.swift */; };
 		492546DA2C71C41A00B86971 /* AverageCalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D92C71C41A00B86971 /* AverageCalculatorModel.swift */; };
+		4946AAF92C797A0A008A86C4 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AAF82C797A0A008A86C4 /* Extension+Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,11 +32,12 @@
 		492546C72C70332400B86971 /* DisplayListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayListFeature.swift; sourceTree = "<group>"; };
 		492546C92C70342F00B86971 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		492546CB2C70386E00B86971 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
-		492546CD2C70411F00B86971 /* Extension+Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Float.swift"; sourceTree = "<group>"; };
+		492546CD2C70411F00B86971 /* Extension+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Double.swift"; sourceTree = "<group>"; };
 		492546D32C704C1600B86971 /* SettingsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeature.swift; sourceTree = "<group>"; };
 		492546D52C704DFB00B86971 /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
 		492546D72C71BFC100B86971 /* AddItemFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemFeature.swift; sourceTree = "<group>"; };
 		492546D92C71C41A00B86971 /* AverageCalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageCalculatorModel.swift; sourceTree = "<group>"; };
+		4946AAF82C797A0A008A86C4 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +111,8 @@
 		492546D12C704A5C00B86971 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				492546CD2C70411F00B86971 /* Extension+Float.swift */,
+				492546CD2C70411F00B86971 /* Extension+Double.swift */,
+				4946AAF82C797A0A008A86C4 /* Extension+Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -206,8 +209,9 @@
 				492546D82C71BFC100B86971 /* AddItemFeature.swift in Sources */,
 				492546B92C7030F100B86971 /* ContentView.swift in Sources */,
 				492546D42C704C1600B86971 /* SettingsFeature.swift in Sources */,
+				4946AAF92C797A0A008A86C4 /* Extension+Date.swift in Sources */,
 				492546B72C7030F100B86971 /* AveragePriceCalculatorApp.swift in Sources */,
-				492546CE2C70411F00B86971 /* Extension+Float.swift in Sources */,
+				492546CE2C70411F00B86971 /* Extension+Double.swift in Sources */,
 				492546CA2C70342F00B86971 /* ItemModel.swift in Sources */,
 				492546C82C70332400B86971 /* DisplayListFeature.swift in Sources */,
 				492546CC2C70386E00B86971 /* UserDefaultsManager.swift in Sources */,

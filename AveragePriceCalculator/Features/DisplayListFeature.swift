@@ -19,7 +19,7 @@ struct DisplayListFeature {
     }
 
     enum Action {
-        case viewAppear
+        case onAppear
         case refresh
         case addButtonTapped
         case addItem(PresentationAction<AddItemFeature.Action>)
@@ -30,18 +30,18 @@ struct DisplayListFeature {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-            case .viewAppear:
+            case .onAppear:
                 state.isLoading = true
-                state.items = UserDefaultsManager().loadItems()
+                let items = UserDefaultsManager().loadItems()
 
-                return .none
+                return .send(.loadList(items))
             case .refresh:
                 state.isLoading = true
                 let items = UserDefaultsManager().loadItems()
 
                 return .send(.loadList(items))
             case .addButtonTapped:
-                state.addItem = AddItemFeature.State(item: .init(id: UUID(), name: "test", date: "2024-08-18", profitRage: 30.0, price: 82000000, quantity: 1))
+                state.addItem = AddItemFeature.State(item: .init(id: UUID(), name: "test", date: "2024-11-22", firstPrice: 100, firstQuantity: 10, secondPrice: 90, secondQuantity: 8))
                 return .none
             case .listElementTapped:
                 return .none
@@ -95,6 +95,9 @@ struct DisplayListView: View {
                         ProgressView()
                     }
                 }
+                .onAppear {
+                    store.send(.onAppear)
+                }
                 .sheet(
                     item: $store.scope(state:\.addItem, action: \.addItem)
                 ) { addItemStore in
@@ -111,7 +114,7 @@ struct DisplayListView: View {
 
 #Preview {
     DisplayListView(store: Store(initialState: DisplayListFeature.State(items: [
-        .init(id: UUID(), name: "Bitcoin", date: "2024-08-17", profitRage: 30.0, price: 82000000, quantity: 1)])) {
+        .init(id: UUID(), name: "test", date: "2024-11-22", firstPrice: 100, firstQuantity: 10, secondPrice: 90, secondQuantity: 8)])) {
         DisplayListFeature()
     }
     )
@@ -136,9 +139,6 @@ struct ItemView: View {
                 Text(item.date)
                     .foregroundStyle(.gray)
                 Spacer()
-                Text("profit: ")
-                Text(item.profitRage.displayDecimalPlace(by: 2) + "%")
-                    .bold()
             }
         }
         .padding(.horizontal)
