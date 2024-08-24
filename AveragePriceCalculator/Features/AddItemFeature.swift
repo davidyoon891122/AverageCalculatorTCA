@@ -20,14 +20,41 @@ struct AddItemFeature {
         var firstQuantiy: String = ""
         var secondPrice: String = ""
         var secondQuantity: String = ""
-        var totalAmount: String = ""
-        var averagePrice: String = ""
+        var totalAmount: String {
+            String(totalAmountDouble)
+        }
+        var averagePrice: String {
+            String(self.averagePriceDouble)
+        }
+        var profit: String {
+            self.profitDouble.isNaN ? "" : "\(self.profitDouble.displayDecimalPlace(by: 2)) %"
+        }
 
         var firstPriceDouble: Double = 0
         var firstQuantiyDouble: Double = 0
         var secondPriceDouble: Double = 0
         var secondQuantityDouble: Double = 0
-        var averagePriceDouble: Double = 0
+        var averagePriceDouble: Double {
+            let totalAmount = firstQuantiyDouble + secondQuantityDouble
+            if totalAmount > 0 {
+                 return ((firstPriceDouble * firstQuantiyDouble) + (secondPriceDouble * secondQuantityDouble)) / totalAmount
+            } else {
+                return 0
+            }
+
+        }
+        var totalAmountDouble: Double {
+            firstQuantiyDouble + secondQuantityDouble
+        }
+        var profitDouble: Double {
+            let firstPrice = firstPriceDouble * firstQuantiyDouble // 1
+            let secondPrice = secondPriceDouble * secondQuantityDouble // 20
+
+            let totalPrice = firstPrice + secondPrice
+            let currentPriceValue = secondPriceDouble * (firstQuantiyDouble + secondQuantityDouble)
+
+            return ((currentPriceValue - totalPrice) / totalPrice) * 100
+        }
 
         var isSaveButtonEnabled: Bool {
             !name.isEmpty &&
@@ -51,19 +78,6 @@ struct AddItemFeature {
         case saveButtonTapped
     }
 
-    func calculateTotalAmount(_ state: inout State) {
-        state.totalAmount = String(Int(state.firstQuantiyDouble + state.secondQuantityDouble))
-    }
-
-    func calculateAveragePrice(_ state: inout State) {
-        let totalAmount = state.firstQuantiyDouble + state.secondQuantityDouble
-        if totalAmount > 0 {
-            state.averagePrice = String(((state.firstPriceDouble * state.firstQuantiyDouble) + (state.secondPriceDouble * state.secondQuantityDouble)) / totalAmount)
-        } else {
-            state.averagePrice = "0"
-        }
-    }
-
     func saveItem(_ state: State) {
         let userDefaultsManager = UserDefaultsManager()
         var savedItems = userDefaultsManager.loadItems()
@@ -84,27 +98,21 @@ struct AddItemFeature {
             case let .setFirstPrice(firstPrice):
                 state.firstPrice = firstPrice
                 state.firstPriceDouble = Double(state.firstPrice) ?? 0
-                calculateAveragePrice(&state)
 
                 return .none
             case let .setFirstQuantity(firstQuantity):
                 state.firstQuantiy = firstQuantity
                 state.firstQuantiyDouble = Double(state.firstQuantiy) ?? 0
-                calculateTotalAmount(&state)
-                calculateAveragePrice(&state)
 
                 return .none
             case let .setSecondPrice(secondPrice):
                 state.secondPrice = secondPrice
                 state.secondPriceDouble = Double(state.secondPrice) ?? 0
-                calculateAveragePrice(&state)
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
                 state.secondQuantity = secondQuantity
                 state.secondQuantityDouble = Double(state.secondQuantity) ?? 0
-                calculateTotalAmount(&state)
-                calculateAveragePrice(&state)
 
                 return .none
             case .saveButtonTapped:
@@ -184,6 +192,11 @@ struct AddItemView: View {
                             Text("average price: ")
                             Spacer()
                             Text(store.averagePrice)
+                        }
+                        HStack {
+                            Text("profit: ")
+                            Spacer()
+                            Text(store.profit)
                         }
                     }
                     .padding()

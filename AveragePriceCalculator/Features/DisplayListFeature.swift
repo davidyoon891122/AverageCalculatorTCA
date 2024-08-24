@@ -41,7 +41,7 @@ struct DisplayListFeature {
 
                 return .send(.loadList(items))
             case .addButtonTapped:
-                state.addItem = AddItemFeature.State(item: .init(id: UUID(), name: "test", date: "2024-11-22", firstPrice: 100, firstQuantity: 10, secondPrice: 90, secondQuantity: 8))
+                state.addItem = AddItemFeature.State()
                 return .none
             case .listElementTapped:
                 return .none
@@ -50,7 +50,8 @@ struct DisplayListFeature {
                 state.isLoading = false
                 return .none
             case .addItem:
-                return .none
+                let items = UserDefaultsManager().loadItems()
+                return .send(.loadList(items))
             }
         }
         .ifLet(\.$addItem, action: \.addItem) {
@@ -140,7 +141,11 @@ struct ItemView: View {
                     .foregroundStyle(.gray)
                 Spacer()
             }
+
+            Divider()
         }
         .padding(.horizontal)
+        .padding(.vertical)
+
     }
 }
