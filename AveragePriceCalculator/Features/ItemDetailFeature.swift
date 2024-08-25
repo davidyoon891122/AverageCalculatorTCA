@@ -116,7 +116,18 @@ struct ItemDetailFeature {
         case setFirstQuantity(String)
         case setSecondPrice(String)
         case setSecondQuantity(String)
-        case saveButtonTapped
+        case modifyButtonTapped
+    }
+    
+    func modify(state: State) {
+        let userDefaults = UserDefaultsManager()
+        var savedData = userDefaults.loadItems()
+        
+        guard let index = savedData.firstIndex(where: { $0.id == state.item.id }) else { return }
+        
+        savedData[index] = state.item
+        
+        userDefaults.saveItems(items: savedData)
     }
 
     var body: some ReducerOf<Self> {
@@ -153,8 +164,8 @@ struct ItemDetailFeature {
                 state.secondQuantityDouble = Double(state.secondQuantity) ?? 0
 
                 return .none
-            case .saveButtonTapped:
-                // saveItem(state)
+            case .modifyButtonTapped:
+                modify(state: state)
                 return .none
             }
         }
@@ -241,9 +252,9 @@ struct ItemDetailView: View {
                     .padding()
 
                     Button(action: {
-                        store.send(.saveButtonTapped)
+                        store.send(.modifyButtonTapped)
                     }, label: {
-                        Text("Save")
+                        Text("Modify")
                             .frame(maxWidth: .infinity, minHeight: 50)
                             .background(store.isSaveButtonEnabled ? .gray : .gray.opacity(0.7))
                             .foregroundStyle(store.isSaveButtonEnabled ? .white : .white.opacity(0.7))
