@@ -13,6 +13,7 @@ struct DisplayListFeature {
     @ObservableState
     struct State: Equatable {
         @Presents var addItem: AddItemFeature.State?
+        var path = StackState<ItemDetailFeature.State>()
         var items: [ItemModel] = []
         var isLoading = false
         let navigationTitle = "Average Calculator"
@@ -25,6 +26,7 @@ struct DisplayListFeature {
         case addItem(PresentationAction<AddItemFeature.Action>)
         case listElementTapped
         case loadList([ItemModel])
+        case path(StackAction<ItemDetailFeature.State, ItemDetailFeature.Action>)
     }
 
     var body: some ReducerOf<Self> {
@@ -41,7 +43,7 @@ struct DisplayListFeature {
 
                 return .send(.loadList(items))
             case .addButtonTapped:
-                state.addItem = AddItemFeature.State(item: .init(id: UUID(), name: "test", date: "2024-11-22", firstPrice: 100, firstQuantity: 10, secondPrice: 90, secondQuantity: 8))
+                state.addItem = AddItemFeature.State()
                 return .none
             case .listElementTapped:
                 return .none
@@ -50,11 +52,17 @@ struct DisplayListFeature {
                 state.isLoading = false
                 return .none
             case .addItem:
+                let items = UserDefaultsManager().loadItems()
+                return .send(.loadList(items))
+            case .path(_):
                 return .none
             }
         }
         .ifLet(\.$addItem, action: \.addItem) {
             AddItemFeature()
+        }
+        .forEach(\.path, action: \.path) {
+            ItemDetailFeature()
         }
     }
 
@@ -68,13 +76,16 @@ struct DisplayListView: View {
 
     var body: some View {
         WithPerceptionTracking {
-            NavigationStack {
+            NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
                 ZStack {
                     ScrollView {
                         VStack {
                             LazyVStack {
                                 ForEach(store.items) { item in
-                                    ItemView(item: item)
+                                    NavigationLink(state: ItemDetailFeature.State(item: item)) {
+                                        ItemView(item: item)
+                                    }
+                                    .buttonStyle(.borderless)
                                 }
                             }
                         }
@@ -106,6 +117,8 @@ struct DisplayListView: View {
                     }
                 }
                 .navigationTitle(store.navigationTitle)
+            } destination: { store in
+                ItemDetailView(store: store)
             }
         }
     }
@@ -140,7 +153,11 @@ struct ItemView: View {
                     .foregroundStyle(.gray)
                 Spacer()
             }
+
+            Divider()
         }
         .padding(.horizontal)
+        .padding(.vertical)
+
     }
 }
