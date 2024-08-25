@@ -1,31 +1,71 @@
 //
-//  AddItemFeature.swift
+//  ItemDetailFeature.swift
 //  AveragePriceCalculator
 //
-//  Created by Jiwon Yoon on 8/18/24.
+//  Created by Jiwon Yoon on 8/24/24.
 //
 
 import Foundation
 import ComposableArchitecture
 
 @Reducer
-struct AddItemFeature {
+struct ItemDetailFeature {
 
     @ObservableState
     struct State: Equatable {
-        let navigationTitle = "Add Item View"
-        var item: ItemModel? = nil
-        var name: String = ""
-        var firstPrice: String = ""
-        var firstQuantity: String = ""
-        var secondPrice: String = ""
-        var secondQuantity: String = ""
-        var totalAmount: String {
-            String(totalAmountDouble)
+        var item: ItemModel
+        var navigationTitle: String {
+            self.item.name
+        }
+
+        var name: String {
+            get {
+                self.item.name
+            }
+            set {
+                self.item.name = newValue
+            }
+        }
+        var firstPrice: String {
+            get {
+                String(self.item.firstPrice)
+            }
+            set {
+                self.item.firstPrice = Double(newValue) ?? 0
+            }
+        }
+        var firstQuantity: String {
+            get {
+                String(self.item.firstQuantity)
+            }
+            set {
+                self.item.firstQuantity = Double(newValue) ?? 0
+            }
+        }
+        var secondPrice: String {
+            get {
+                String(self.item.secondPrice)
+            }
+            set {
+                self.item.secondPrice = Double(newValue) ?? 0
+            }
+        }
+        var secondQuantity: String {
+            get {
+                String(self.item.secondQuantity)
+            }
+            set {
+                self.item.secondQuantity = Double(newValue) ?? 0
+            }
         }
         var averagePrice: String {
             String(self.averagePriceDouble)
         }
+
+        var totalAmount: String {
+            String(self.item.firstQuantity + self.item.secondQuantity)
+        }
+
         var profit: String {
             self.profitDouble.isNaN ? "" : "\(self.profitDouble.displayDecimalPlace(by: 2)) %"
         }
@@ -34,6 +74,7 @@ struct AddItemFeature {
         var firstQuantityDouble: Double = 0
         var secondPriceDouble: Double = 0
         var secondQuantityDouble: Double = 0
+
         var averagePriceDouble: Double {
             let totalAmount = firstQuantityDouble + secondQuantityDouble
             if totalAmount > 0 {
@@ -43,9 +84,7 @@ struct AddItemFeature {
             }
 
         }
-        var totalAmountDouble: Double {
-            firstQuantityDouble + secondQuantityDouble
-        }
+
         var profitDouble: Double {
             let firstPrice = firstPriceDouble * firstQuantityDouble // 1
             let secondPrice = secondPriceDouble * secondQuantityDouble // 20
@@ -67,9 +106,11 @@ struct AddItemFeature {
             secondPriceDouble > 0 &&
             secondQuantityDouble > 0
         }
+
     }
 
     enum Action {
+        case onAppear
         case setName(String)
         case setFirstPrice(String)
         case setFirstQuantity(String)
@@ -78,20 +119,16 @@ struct AddItemFeature {
         case saveButtonTapped
     }
 
-
-    func saveItem(_ state: State) {
-        let userDefaultsManager = UserDefaultsManager()
-        var savedItems = userDefaultsManager.loadItems()
-
-        let item: ItemModel = .init(id: UUID(), name: state.name, date: Date().getStringDateByFormat(), firstPrice: state.firstPriceDouble, firstQuantity: state.firstQuantityDouble, secondPrice: state.secondPriceDouble, secondQuantity: state.secondQuantityDouble)
-        savedItems.append(item)
-        
-        userDefaultsManager.saveItems(items: savedItems)
-    }
-
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+            case .onAppear:
+                state.firstPriceDouble = state.item.firstPrice
+                state.firstQuantityDouble = state.item.firstQuantity
+                state.secondPriceDouble = state.item.secondPrice
+                state.secondQuantityDouble = state.item.secondQuantity
+
+                return .none
             case let .setName(name):
                 state.name = name
 
@@ -117,7 +154,7 @@ struct AddItemFeature {
 
                 return .none
             case .saveButtonTapped:
-                saveItem(state)
+                // saveItem(state)
                 return .none
             }
         }
@@ -126,11 +163,12 @@ struct AddItemFeature {
 
 import SwiftUI
 
-struct AddItemView: View {
+struct ItemDetailView: View {
 
-    @Perception.Bindable var store: StoreOf<AddItemFeature>
+    @Perception.Bindable var store: StoreOf<ItemDetailFeature>
 
     var body: some View {
+        
         WithPerceptionTracking {
             ScrollView {
                 VStack {
@@ -214,17 +252,19 @@ struct AddItemView: View {
                     .padding()
                 }
             }
+            .onAppear {
+                store.send(.onAppear)
+            }
             .navigationTitle(store.navigationTitle)
         }
     }
 
 }
 
-
 #Preview {
     NavigationStack {
-        AddItemView(store: Store(initialState: AddItemFeature.State(item: .init(id: UUID(), name: "test", date: "2024-11-22", firstPrice: 100, firstQuantity: 10, secondPrice: 90, secondQuantity: 8))) {
-            AddItemFeature()
+        ItemDetailView(store: Store(initialState: ItemDetailFeature.State(item: .preview)) {
+            ItemDetailFeature()
         })
     }
 }
