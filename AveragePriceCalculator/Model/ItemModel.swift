@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct ItemModel: Codable, Identifiable, Equatable {
 
@@ -24,6 +25,21 @@ extension ItemModel {
 
     var averagePrice: Double {
         ((self.firstPrice * self.firstQuantity) + (self.secondPrice * self.secondQuantity)) / (self.firstQuantity + self.secondQuantity)
+    }
+    
+    var profit: Double {
+        let firstValuePrice = firstPrice * firstQuantity
+        let secondValuePrice = secondPrice * secondQuantity
+        
+        let totalPrice = firstValuePrice + secondValuePrice
+        
+        let currentPriceValue = secondPrice * (firstQuantity + secondQuantity)
+
+        return ((currentPriceValue - totalPrice) / totalPrice) * 100
+    }
+    
+    var profitColor: Color {
+        self.profit > 0 ? .red : .blue
     }
 
 }

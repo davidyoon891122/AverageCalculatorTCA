@@ -152,6 +152,9 @@ struct ItemView: View {
                 Text(item.date)
                     .foregroundStyle(.gray)
                 Spacer()
+                Text("\(item.profit.displayDecimalPlace(by: 2))%")
+                    .bold()
+                    .foregroundStyle(item.profitColor)
             }
 
             Divider()
