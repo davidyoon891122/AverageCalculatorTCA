@@ -181,87 +181,90 @@ struct ItemDetailView: View {
     var body: some View {
         
         WithPerceptionTracking {
-            ScrollView {
-                VStack {
-                    TextField("Name", text: $store.name.sending(\.setName))
-                        .padding()
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 4.0)
-                                .stroke(.gray)
-                        }
-                        .padding()
-                    VStack(alignment: .leading) {
-                        Text("First Purchase")
-                            .bold()
-                            .font(.system(size: 22.0))
-
-                        TextField("First Price", text: $store.firstPrice.sending(\.setFirstPrice))
-                            .padding()
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 4.0)
-                                    .stroke(.gray)
-                            }
-
-                        TextField("First Quantity", text: $store.firstQuantity.sending(\.setFirstQuantity))
-                            .padding()
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 4.0)
-                                    .stroke(.gray)
-                            }
-                    }
-                    .padding()
-                    VStack(alignment: .leading) {
-                        Text("Second Purchase")
-                            .bold()
-                            .font(.system(size: 22.0))
-
-                        TextField("Second Price", text: $store.secondPrice.sending(\.setSecondPrice))
-                            .padding()
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 4.0)
-                                    .stroke(.gray)
-                            }
-
-                        TextField("Second Quantity", text: $store.secondQuantity.sending(\.setSecondQuantity))
-                            .padding()
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 4.0)
-                                    .stroke(.gray)
-                            }
-                    }
-                    .padding()
-
+            VStack {
+                ScrollView {
                     VStack {
-                        HStack {
-                            Text("total amount: ")
-                            Spacer()
-                            Text(store.totalAmount)
-
+                        TextField("Name", text: $store.name.sending(\.setName))
+                            .padding()
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 4.0)
+                                    .stroke(.gray)
+                            }
+                            .padding()
+                        VStack(alignment: .leading) {
+                            Text("First Purchase")
+                                .bold()
+                                .font(.system(size: 22.0))
+                            
+                            TextField("First Price", text: $store.firstPrice.sending(\.setFirstPrice))
+                                .padding()
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 4.0)
+                                        .stroke(.gray)
+                                }
+                            
+                            TextField("First Quantity", text: $store.firstQuantity.sending(\.setFirstQuantity))
+                                .padding()
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 4.0)
+                                        .stroke(.gray)
+                                }
                         }
-                        HStack {
-                            Text("average price: ")
-                            Spacer()
-                            Text(store.averagePrice)
+                        .padding()
+                        VStack(alignment: .leading) {
+                            Text("Second Purchase")
+                                .bold()
+                                .font(.system(size: 22.0))
+                            
+                            TextField("Second Price", text: $store.secondPrice.sending(\.setSecondPrice))
+                                .padding()
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 4.0)
+                                        .stroke(.gray)
+                                }
+                            
+                            TextField("Second Quantity", text: $store.secondQuantity.sending(\.setSecondQuantity))
+                                .padding()
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 4.0)
+                                        .stroke(.gray)
+                                }
                         }
-                        HStack {
-                            Text("profit: ")
-                            Spacer()
-                            Text(store.profit)
+                        .padding()
+                        
+                        VStack {
+                            HStack {
+                                Text("total amount: ")
+                                Spacer()
+                                Text(store.totalAmount)
+                                
+                            }
+                            HStack {
+                                Text("average price: ")
+                                Spacer()
+                                Text(store.averagePrice)
+                            }
+                            HStack {
+                                Text("profit: ")
+                                Spacer()
+                                Text(store.profit)
+                            }
                         }
+                        .padding()
+                        
                     }
-                    .padding()
-
-                    Button(action: {
-                        store.send(.modifyButtonTapped)
-                    }, label: {
-                        Text("Modify")
-                            .frame(maxWidth: .infinity, minHeight: 50)
-                            .background(store.isSaveButtonEnabled ? .gray : .gray.opacity(0.7))
-                            .foregroundStyle(store.isSaveButtonEnabled ? .white : .white.opacity(0.7))
-                    })
-                    .disabled(!store.isSaveButtonEnabled)
-                    .padding()
                 }
+                
+                Button(action: {
+                    store.send(.modifyButtonTapped)
+                }, label: {
+                    Text("Modify")
+                        .frame(maxWidth: .infinity, minHeight: 50)
+                        .background(store.isSaveButtonEnabled ? .gray : .gray.opacity(0.7))
+                        .foregroundStyle(store.isSaveButtonEnabled ? .white : .white.opacity(0.7))
+                })
+                .disabled(!store.isSaveButtonEnabled)
+                .padding()
             }
             .onAppear {
                 store.send(.onAppear)
