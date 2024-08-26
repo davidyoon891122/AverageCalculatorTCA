@@ -43,7 +43,7 @@ struct DisplayListFeature {
 
                 return .send(.loadList(items))
             case .addButtonTapped:
-                state.addItem = AddItemFeature.State()
+                state.addItem = AddItemFeature.State(item: .init(id: UUID(), name: "", date: "", firstPrice: 0, firstQuantity: 0, secondPrice: 0, secondQuantity: 0))
                 return .none
             case .listElementTapped:
                 return .none
@@ -51,9 +51,15 @@ struct DisplayListFeature {
                 state.items = items
                 state.isLoading = false
                 return .none
+            case .addItem(.presented(.delegate(.cancel))):
+                state.addItem = nil
+                return .none
+            case let .addItem(.presented(.delegate(.saveItem(itemModel)))):
+                state.items.append(itemModel)
+                return .none
+                
             case .addItem:
-                let items = UserDefaultsManager().loadItems()
-                return .send(.loadList(items))
+                return .none
             case .path(_):
                 return .none
             }

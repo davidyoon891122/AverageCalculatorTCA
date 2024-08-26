@@ -14,7 +14,7 @@ struct AddItemFeature {
     @ObservableState
     struct State: Equatable {
         let navigationTitle = "Add Item View"
-        var item: ItemModel? = nil
+        var item: ItemModel
         var name: String = ""
         var firstPrice: String = ""
         var firstQuantity: String = ""
@@ -76,14 +76,20 @@ struct AddItemFeature {
         case setSecondPrice(String)
         case setSecondQuantity(String)
         case saveButtonTapped
+        case cancelButtonTapped
+        case delegate(Delegate)
+        enum Delegate: Equatable {
+            case cancel
+            case saveItem(ItemModel)
+        }
     }
+    
+    @Dependency(\.dismiss) var dismiss
 
 
-    func saveItem(_ state: State) {
+    func saveItem(_ item: ItemModel) {
         let userDefaultsManager = UserDefaultsManager()
         var savedItems = userDefaultsManager.loadItems()
-
-        let item: ItemModel = .init(id: UUID(), name: state.name, date: Date().getStringDateByFormat(), firstPrice: state.firstPriceDouble, firstQuantity: state.firstQuantityDouble, secondPrice: state.secondPriceDouble, secondQuantity: state.secondQuantityDouble)
         savedItems.append(item)
         
         userDefaultsManager.saveItems(items: savedItems)
@@ -94,30 +100,41 @@ struct AddItemFeature {
             switch action {
             case let .setName(name):
                 state.name = name
+                state.item.name = name
 
                 return .none
             case let .setFirstPrice(firstPrice):
                 state.firstPrice = firstPrice
                 state.firstPriceDouble = Double(state.firstPrice) ?? 0
-
+                state.item.firstPrice = Double(state.firstPrice) ?? 0
                 return .none
             case let .setFirstQuantity(firstQuantity):
                 state.firstQuantity = firstQuantity
                 state.firstQuantityDouble = Double(state.firstQuantity) ?? 0
-
+                state.item.firstQuantity = Double(state.firstQuantity) ?? 0
                 return .none
             case let .setSecondPrice(secondPrice):
                 state.secondPrice = secondPrice
                 state.secondPriceDouble = Double(state.secondPrice) ?? 0
+                state.item.secondPrice = Double(state.secondPrice) ?? 0
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
                 state.secondQuantity = secondQuantity
                 state.secondQuantityDouble = Double(state.secondQuantity) ?? 0
+                state.item.secondQuantity = Double(state.secondQuantity) ?? 0
 
                 return .none
             case .saveButtonTapped:
-                saveItem(state)
+                state.item.date = Date().getStringDateByFormat()
+                return .run { [item = state.item] send in
+                    saveItem(item)
+                    await send(.delegate(.saveItem(item)))
+                    await self.dismiss()
+                }
+            case .cancelButtonTapped:
+                return .run { _ in await self.dismiss() }
+            case .delegate:
                 return .none
             }
         }
@@ -212,6 +229,16 @@ struct AddItemView: View {
                     })
                     .disabled(!store.isSaveButtonEnabled)
                     .padding()
+                }
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            store.send(.cancelButtonTapped)
+                        }, label: {
+                            Image(systemName: "xmark")
+                                .tint(.black)
+                        })
+                    }
                 }
             }
             .navigationTitle(store.navigationTitle)
