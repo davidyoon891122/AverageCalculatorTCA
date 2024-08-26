@@ -230,6 +230,16 @@ struct AddItemView: View {
                     .disabled(!store.isSaveButtonEnabled)
                     .padding()
                 }
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            store.send(.cancelButtonTapped)
+                        }, label: {
+                            Image(systemName: "xmark")
+                                .tint(.black)
+                        })
+                    }
+                }
             }
             .navigationTitle(store.navigationTitle)
         }
