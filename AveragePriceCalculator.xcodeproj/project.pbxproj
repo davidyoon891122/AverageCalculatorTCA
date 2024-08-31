@@ -22,6 +22,12 @@
 		492546DA2C71C41A00B86971 /* AverageCalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D92C71C41A00B86971 /* AverageCalculatorModel.swift */; };
 		4946AAF92C797A0A008A86C4 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AAF82C797A0A008A86C4 /* Extension+Date.swift */; };
 		4946AAFB2C79DD89008A86C4 /* ItemDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AAFA2C79DD89008A86C4 /* ItemDetailFeature.swift */; };
+		4946AAFD2C82A6ED008A86C4 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AAFC2C82A6ED008A86C4 /* ToastView.swift */; };
+		4946AB002C82A731008A86C4 /* ToastStyleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AAFF2C82A731008A86C4 /* ToastStyleType.swift */; };
+		4946AB062C82A92D008A86C4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4946AB052C82A92D008A86C4 /* Colors.xcassets */; };
+		4946AB082C82AC76008A86C4 /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AB072C82AC76008A86C4 /* Extension+View.swift */; };
+		4946AB0A2C82AC8A008A86C4 /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AB092C82AC8A008A86C4 /* ToastModifier.swift */; };
+		4946AB0D2C82ACDE008A86C4 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +46,12 @@
 		492546D92C71C41A00B86971 /* AverageCalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageCalculatorModel.swift; sourceTree = "<group>"; };
 		4946AAF82C797A0A008A86C4 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		4946AAFA2C79DD89008A86C4 /* ItemDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailFeature.swift; sourceTree = "<group>"; };
+		4946AAFC2C82A6ED008A86C4 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		4946AAFF2C82A731008A86C4 /* ToastStyleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStyleType.swift; sourceTree = "<group>"; };
+		4946AB052C82A92D008A86C4 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		4946AB072C82AC76008A86C4 /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
+		4946AB092C82AC8A008A86C4 /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
+		4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,10 +88,12 @@
 				492546B62C7030F100B86971 /* AveragePriceCalculatorApp.swift */,
 				492546B82C7030F100B86971 /* ContentView.swift */,
 				492546BA2C7030F300B86971 /* Assets.xcassets */,
+				4946AB052C82A92D008A86C4 /* Colors.xcassets */,
 				492546BC2C7030F300B86971 /* Preview Content */,
 				492546D22C704A6600B86971 /* Features */,
 				492546CF2C704A4E00B86971 /* Model */,
 				492546D02C704A5300B86971 /* Tools */,
+				4946AAFE2C82A720008A86C4 /* CustomView */,
 			);
 			path = AveragePriceCalculator;
 			sourceTree = "<group>";
@@ -106,6 +120,7 @@
 			children = (
 				492546D12C704A5C00B86971 /* Extension */,
 				492546CB2C70386E00B86971 /* UserDefaultsManager.swift */,
+				4946AB0B2C82AC8E008A86C4 /* Modifier */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -115,6 +130,7 @@
 			children = (
 				492546CD2C70411F00B86971 /* Extension+Double.swift */,
 				4946AAF82C797A0A008A86C4 /* Extension+Date.swift */,
+				4946AB072C82AC76008A86C4 /* Extension+View.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -129,6 +145,48 @@
 				4946AAFA2C79DD89008A86C4 /* ItemDetailFeature.swift */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		4946AAFE2C82A720008A86C4 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				4946AB042C82A846008A86C4 /* Toast */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		4946AB032C82A840008A86C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4946AAFF2C82A731008A86C4 /* ToastStyleType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4946AB042C82A846008A86C4 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				4946AB032C82A840008A86C4 /* Model */,
+				4946AAFC2C82A6ED008A86C4 /* ToastView.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		4946AB0B2C82AC8E008A86C4 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				4946AB0E2C82ACE3008A86C4 /* Model */,
+				4946AB092C82AC8A008A86C4 /* ToastModifier.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
+		4946AB0E2C82ACE3008A86C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4946AB062C82A92D008A86C4 /* Colors.xcassets in Resources */,
 				492546BE2C7030F300B86971 /* Preview Assets.xcassets in Resources */,
 				492546BB2C7030F300B86971 /* Assets.xcassets in Resources */,
 			);
@@ -214,11 +273,16 @@
 				492546D42C704C1600B86971 /* SettingsFeature.swift in Sources */,
 				4946AAF92C797A0A008A86C4 /* Extension+Date.swift in Sources */,
 				492546B72C7030F100B86971 /* AveragePriceCalculatorApp.swift in Sources */,
+				4946AB082C82AC76008A86C4 /* Extension+View.swift in Sources */,
+				4946AB0A2C82AC8A008A86C4 /* ToastModifier.swift in Sources */,
+				4946AAFD2C82A6ED008A86C4 /* ToastView.swift in Sources */,
 				492546CE2C70411F00B86971 /* Extension+Double.swift in Sources */,
+				4946AB0D2C82ACDE008A86C4 /* ToastModel.swift in Sources */,
 				4946AAFB2C79DD89008A86C4 /* ItemDetailFeature.swift in Sources */,
 				492546CA2C70342F00B86971 /* ItemModel.swift in Sources */,
 				492546C82C70332400B86971 /* DisplayListFeature.swift in Sources */,
 				492546CC2C70386E00B86971 /* UserDefaultsManager.swift in Sources */,
+				4946AB002C82A731008A86C4 /* ToastStyleType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

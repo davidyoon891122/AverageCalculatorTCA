@@ -107,6 +107,8 @@ struct ItemDetailFeature {
             secondQuantityDouble > 0
         }
 
+        var toast: ToastModel?
+
     }
 
     enum Action {
@@ -117,6 +119,7 @@ struct ItemDetailFeature {
         case setSecondPrice(String)
         case setSecondQuantity(String)
         case modifyButtonTapped
+        case setToast(ToastModel?)
     }
     
     func modify(state: State) {
@@ -166,6 +169,10 @@ struct ItemDetailFeature {
                 return .none
             case .modifyButtonTapped:
                 modify(state: state)
+                state.toast = ToastModel(style: .success, message: "Success Modify")
+                return .none
+            case let .setToast(toast):
+                state.toast = toast
                 return .none
             }
         }
@@ -266,6 +273,7 @@ struct ItemDetailView: View {
                 .disabled(!store.isSaveButtonEnabled)
                 .padding()
             }
+            .taostView(toast: $store.toast.sending(\.setToast))
             .onAppear {
                 store.send(.onAppear)
             }

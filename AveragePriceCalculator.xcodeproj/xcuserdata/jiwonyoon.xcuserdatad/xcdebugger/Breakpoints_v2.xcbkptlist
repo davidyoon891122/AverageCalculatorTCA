@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BD9B9021-54C7-4201-B983-46530BAACF67"
+            uuid = "D71E4127-A6A8-410D-9EE9-3C0C8B895F46"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AveragePriceCalculator/Tools/UserDefaultsManager.swift"
+            filePath = "AveragePriceCalculator/Tools/Modifier/ToastModifier.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "saveItems(items:)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "mainToastView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
