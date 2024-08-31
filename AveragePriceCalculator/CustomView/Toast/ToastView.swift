@@ -28,7 +28,7 @@ struct ToastView: View {
                 Spacer(minLength: 10.0)
 
                 Button(action: {
-
+                    onCancelTapped()
                 }, label: {
                     Image(systemName: "xmark")
                         .foregroundStyle(style.themeColor)

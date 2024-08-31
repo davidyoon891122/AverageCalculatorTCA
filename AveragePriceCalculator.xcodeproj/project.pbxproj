@@ -25,6 +25,9 @@
 		4946AAFD2C82A6ED008A86C4 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AAFC2C82A6ED008A86C4 /* ToastView.swift */; };
 		4946AB002C82A731008A86C4 /* ToastStyleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AAFF2C82A731008A86C4 /* ToastStyleType.swift */; };
 		4946AB062C82A92D008A86C4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4946AB052C82A92D008A86C4 /* Colors.xcassets */; };
+		4946AB082C82AC76008A86C4 /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AB072C82AC76008A86C4 /* Extension+View.swift */; };
+		4946AB0A2C82AC8A008A86C4 /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AB092C82AC8A008A86C4 /* ToastModifier.swift */; };
+		4946AB0D2C82ACDE008A86C4 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		4946AAFC2C82A6ED008A86C4 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		4946AAFF2C82A731008A86C4 /* ToastStyleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStyleType.swift; sourceTree = "<group>"; };
 		4946AB052C82A92D008A86C4 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		4946AB072C82AC76008A86C4 /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
+		4946AB092C82AC8A008A86C4 /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
+		4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,7 @@
 			children = (
 				492546D12C704A5C00B86971 /* Extension */,
 				492546CB2C70386E00B86971 /* UserDefaultsManager.swift */,
+				4946AB0B2C82AC8E008A86C4 /* Modifier */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -123,6 +130,7 @@
 			children = (
 				492546CD2C70411F00B86971 /* Extension+Double.swift */,
 				4946AAF82C797A0A008A86C4 /* Extension+Date.swift */,
+				4946AB072C82AC76008A86C4 /* Extension+View.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -162,6 +170,23 @@
 				4946AAFC2C82A6ED008A86C4 /* ToastView.swift */,
 			);
 			path = Toast;
+			sourceTree = "<group>";
+		};
+		4946AB0B2C82AC8E008A86C4 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				4946AB0E2C82ACE3008A86C4 /* Model */,
+				4946AB092C82AC8A008A86C4 /* ToastModifier.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
+		4946AB0E2C82ACE3008A86C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,8 +273,11 @@
 				492546D42C704C1600B86971 /* SettingsFeature.swift in Sources */,
 				4946AAF92C797A0A008A86C4 /* Extension+Date.swift in Sources */,
 				492546B72C7030F100B86971 /* AveragePriceCalculatorApp.swift in Sources */,
+				4946AB082C82AC76008A86C4 /* Extension+View.swift in Sources */,
+				4946AB0A2C82AC8A008A86C4 /* ToastModifier.swift in Sources */,
 				4946AAFD2C82A6ED008A86C4 /* ToastView.swift in Sources */,
 				492546CE2C70411F00B86971 /* Extension+Double.swift in Sources */,
+				4946AB0D2C82ACDE008A86C4 /* ToastModel.swift in Sources */,
 				4946AAFB2C79DD89008A86C4 /* ItemDetailFeature.swift in Sources */,
 				492546CA2C70342F00B86971 /* ItemModel.swift in Sources */,
 				492546C82C70332400B86971 /* DisplayListFeature.swift in Sources */,
