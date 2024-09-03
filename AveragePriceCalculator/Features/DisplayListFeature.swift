@@ -84,25 +84,21 @@ struct DisplayListView: View {
         WithPerceptionTracking {
             NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
                 ZStack {
-                    ScrollView {
-                        VStack {
-                            LazyVStack {
-                                ForEach(store.items) { item in
-                                    NavigationLink(state: ItemDetailFeature.State(item: item)) {
-                                        ItemView(item: item)
-                                    }
-                                    .buttonStyle(.borderless)
-                                }
-                            }
+                    List(store.items) { item in
+                        NavigationLink(state: ItemDetailFeature.State(item: item)) {
+                            ItemView(item: item)
                         }
-                        .toolbar {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                Button(action: {
-                                    store.send(.addButtonTapped)
-                                }, label: {
-                                    Image(systemName: "plus.circle")
-                                })
-                            }
+                        .buttonStyle(.borderless)
+                        .listRowSeparator(.hidden)
+                    }
+                    .listStyle(.plain)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button(action: {
+                                store.send(.addButtonTapped)
+                            }, label: {
+                                Image(systemName: "plus.circle")
+                            })
                         }
                     }
                     .refreshable {
@@ -165,8 +161,6 @@ struct ItemView: View {
 
             Divider()
         }
-        .padding(.horizontal)
         .padding(.vertical)
-
     }
 }
