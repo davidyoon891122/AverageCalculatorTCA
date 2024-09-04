@@ -108,10 +108,26 @@ struct ItemDetailFeature {
         }
 
         var toast: ToastModel?
+        
+        var focusedField: FieldType? {
+            didSet {
+                print(self.focusedField)
+            }
+        }
+        
+        enum FieldType: Hashable {
+            
+            case name
+            case firstPrice
+            case firstQuantity
+            case secondPrice
+            case secondQuantity
+
+        }
 
     }
 
-    enum Action {
+    enum Action: BindableAction {
         case onAppear
         case setName(String)
         case setFirstPrice(String)
@@ -120,6 +136,7 @@ struct ItemDetailFeature {
         case setSecondQuantity(String)
         case modifyButtonTapped
         case setToast(ToastModel?)
+        case binding(BindingAction<State>)
     }
     
     func modify(state: State) {
@@ -134,6 +151,7 @@ struct ItemDetailFeature {
     }
 
     var body: some ReducerOf<Self> {
+        BindingReducer()
         Reduce { state, action in
             switch action {
             case .onAppear:
@@ -168,11 +186,30 @@ struct ItemDetailFeature {
 
                 return .none
             case .modifyButtonTapped:
+                if state.firstPrice.isEmpty {
+                    state.focusedField = .firstPrice
+                    return .none
+                } else if state.firstQuantity.isEmpty {
+                    state.focusedField = .firstQuantity
+                    return .none
+                } else if state.secondPrice.isEmpty {
+                    state.focusedField = .secondPrice
+                    return .none
+                } else if state.secondQuantity.isEmpty {
+                    state.focusedField = .secondQuantity
+                    return .none
+                } else if state.name.isEmpty {
+                    state.focusedField = .name
+                    return .none
+                }
+                
                 modify(state: state)
                 state.toast = ToastModel(style: .success, message: "Success Modify")
                 return .none
             case let .setToast(toast):
                 state.toast = toast
+                return .none
+            case .binding:
                 return .none
             }
         }
@@ -184,6 +221,7 @@ import SwiftUI
 struct ItemDetailView: View {
 
     @Perception.Bindable var store: StoreOf<ItemDetailFeature>
+    @FocusState var focusedField: ItemDetailFeature.State.FieldType?
 
     var body: some View {
         
@@ -192,6 +230,7 @@ struct ItemDetailView: View {
                 ScrollView {
                     VStack {
                         TextField("Name", text: $store.name.sending(\.setName))
+                            .focused($focusedField, equals: .name)
                             .padding()
                             .overlay {
                                 RoundedRectangle(cornerRadius: 4.0)
@@ -204,6 +243,7 @@ struct ItemDetailView: View {
                                 .font(.system(size: 22.0))
                             
                             TextField("First Price", text: $store.firstPrice.sending(\.setFirstPrice))
+                                .focused($focusedField, equals: .firstPrice)
                                 .padding()
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -211,6 +251,7 @@ struct ItemDetailView: View {
                                 }
                             
                             TextField("First Quantity", text: $store.firstQuantity.sending(\.setFirstQuantity))
+                                .focused($focusedField, equals: .firstQuantity)
                                 .padding()
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -224,6 +265,7 @@ struct ItemDetailView: View {
                                 .font(.system(size: 22.0))
                             
                             TextField("Second Price", text: $store.secondPrice.sending(\.setSecondPrice))
+                                .focused($focusedField, equals: .secondPrice)
                                 .padding()
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -231,6 +273,7 @@ struct ItemDetailView: View {
                                 }
                             
                             TextField("Second Quantity", text: $store.secondQuantity.sending(\.setSecondQuantity))
+                                .focused($focusedField, equals: .secondQuantity)
                                 .padding()
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -261,6 +304,7 @@ struct ItemDetailView: View {
                         
                     }
                 }
+                .bind($store.focusedField, to: $focusedField)
                 
                 Button(action: {
                     store.send(.modifyButtonTapped)

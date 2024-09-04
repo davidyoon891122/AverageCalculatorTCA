@@ -67,9 +67,22 @@ struct AddItemFeature {
             secondPriceDouble > 0 &&
             secondQuantityDouble > 0
         }
+        
+        var focusedField: FieldType?
+        
+        enum FieldType: Hashable {
+            
+            case name
+            case firstPrice
+            case firstQuantity
+            case secondPrice
+            case secondQuantity
+
+        }
     }
 
-    enum Action {
+    enum Action: BindableAction {
+        case onAppear
         case setName(String)
         case setFirstPrice(String)
         case setFirstQuantity(String)
@@ -78,6 +91,8 @@ struct AddItemFeature {
         case saveButtonTapped
         case cancelButtonTapped
         case delegate(Delegate)
+        case binding(BindingAction<State>)
+        
         enum Delegate: Equatable {
             case cancel
             case saveItem(ItemModel)
@@ -96,8 +111,12 @@ struct AddItemFeature {
     }
 
     var body: some ReducerOf<Self> {
+        BindingReducer()
         Reduce { state, action in
             switch action {
+            case .onAppear:
+                state.focusedField = .name
+                return .none
             case let .setName(name):
                 state.name = name
                 state.item.name = name
@@ -126,6 +145,23 @@ struct AddItemFeature {
 
                 return .none
             case .saveButtonTapped:
+                if state.firstPrice.isEmpty {
+                    state.focusedField = .firstPrice
+                    return .none
+                } else if state.firstQuantity.isEmpty {
+                    state.focusedField = .firstQuantity
+                    return .none
+                } else if state.secondPrice.isEmpty {
+                    state.focusedField = .secondPrice
+                    return .none
+                } else if state.secondQuantity.isEmpty {
+                    state.focusedField = .secondQuantity
+                    return .none
+                } else if state.name.isEmpty {
+                    state.focusedField = .name
+                    return .none
+                }
+                
                 state.item.date = Date().getStringDateByFormat()
                 return .run { [item = state.item] send in
                     saveItem(item)
@@ -135,6 +171,8 @@ struct AddItemFeature {
             case .cancelButtonTapped:
                 return .run { _ in await self.dismiss() }
             case .delegate:
+                return .none
+            case .binding:
                 return .none
             }
         }
@@ -146,6 +184,7 @@ import SwiftUI
 struct AddItemView: View {
 
     @Perception.Bindable var store: StoreOf<AddItemFeature>
+    @FocusState var focusedField: AddItemFeature.State.FieldType?
 
     var body: some View {
         WithPerceptionTracking {
@@ -153,6 +192,7 @@ struct AddItemView: View {
                 ScrollView {
                     VStack {
                         TextField("Name", text: $store.name.sending(\.setName))
+                            .focused($focusedField, equals: .name)
                             .padding()
                             .overlay {
                                 RoundedRectangle(cornerRadius: 4.0)
@@ -165,6 +205,7 @@ struct AddItemView: View {
                                 .font(.system(size: 22.0))
                             
                             TextField("First Price", text: $store.firstPrice.sending(\.setFirstPrice))
+                                .focused($focusedField, equals: .firstPrice)
                                 .padding()
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -172,6 +213,7 @@ struct AddItemView: View {
                                 }
                             
                             TextField("First Quantity", text: $store.firstQuantity.sending(\.setFirstQuantity))
+                                .focused($focusedField, equals: .firstQuantity)
                                 .padding()
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -185,6 +227,7 @@ struct AddItemView: View {
                                 .font(.system(size: 22.0))
                             
                             TextField("Second Price", text: $store.secondPrice.sending(\.setSecondPrice))
+                                .focused($focusedField, equals: .secondPrice)
                                 .padding()
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -192,6 +235,7 @@ struct AddItemView: View {
                                 }
                             
                             TextField("Second Quantity", text: $store.secondQuantity.sending(\.setSecondQuantity))
+                                .focused($focusedField, equals: .secondQuantity)
                                 .padding()
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -221,6 +265,8 @@ struct AddItemView: View {
                         .padding()
                     }
                 }
+                .bind($store.focusedField, to: $focusedField)
+                
                 Button(action: {
                     store.send(.saveButtonTapped)
                 }, label: {
@@ -231,6 +277,9 @@ struct AddItemView: View {
                 })
                 .disabled(!store.isSaveButtonEnabled)
                 .padding()
+            }
+            .onAppear {
+                store.send(.onAppear)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
