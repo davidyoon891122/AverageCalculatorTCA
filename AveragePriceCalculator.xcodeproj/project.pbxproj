@@ -138,11 +138,8 @@
 		492546D22C704A6600B86971 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				492546C72C70332400B86971 /* DisplayListFeature.swift */,
-				492546D32C704C1600B86971 /* SettingsFeature.swift */,
-				492546D52C704DFB00B86971 /* AppFeature.swift */,
-				492546D72C71BFC100B86971 /* AddItemFeature.swift */,
-				4946AAFA2C79DD89008A86C4 /* ItemDetailFeature.swift */,
+				AD20E24D2C89A884007BF1E9 /* Calculator */,
+				AD20E24E2C89A890007BF1E9 /* Settings */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -187,6 +184,25 @@
 				4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		AD20E24D2C89A884007BF1E9 /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				492546C72C70332400B86971 /* DisplayListFeature.swift */,
+				4946AAFA2C79DD89008A86C4 /* ItemDetailFeature.swift */,
+				492546D52C704DFB00B86971 /* AppFeature.swift */,
+				492546D72C71BFC100B86971 /* AddItemFeature.swift */,
+			);
+			path = Calculator;
+			sourceTree = "<group>";
+		};
+		AD20E24E2C89A890007BF1E9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				492546D32C704C1600B86971 /* SettingsFeature.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
