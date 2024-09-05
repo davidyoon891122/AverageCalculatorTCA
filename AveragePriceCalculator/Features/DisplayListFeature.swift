@@ -177,6 +177,5 @@ struct ItemView: View {
 
             Divider()
         }
-        .padding(.vertical)
     }
 }
