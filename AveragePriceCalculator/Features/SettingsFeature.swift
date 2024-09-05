@@ -13,16 +13,18 @@ struct SettingsFeature {
     @ObservableState
     struct State: Equatable {
         let navigationTitle = "Settings"
+        let menus: [String] = ["Theme", "Help", "Report"]
     }
 
     enum Action {
-
+        case onAppear
     }
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-
+            case .onAppear:
+                return .none
             }
         }
     }
@@ -37,8 +39,13 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
-                Text("Welcome to the Settings")
+            List {
+                ForEach(store.menus, id: \.self) { menu in
+                    Text("\(menu)")
+                }
+            }
+            .onAppear {
+                store.send(.onAppear)
             }
             .navigationTitle(store.navigationTitle)
         }
@@ -46,3 +53,8 @@ struct SettingsView: View {
 
 }
 
+#Preview {
+    SettingsView(store: Store(initialState: SettingsFeature.State()) {
+        SettingsFeature()
+    })
+}
