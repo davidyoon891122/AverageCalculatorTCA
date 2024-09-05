@@ -119,3 +119,6 @@ DerivedData/
 
 # End of https://www.toptal.com/developers/gitignore/api/swiftpackagemanager
 
+
+### MAC FS ###
+.DS_Store

@@ -27,6 +27,7 @@ struct DisplayListFeature {
         case listElementTapped
         case loadList([ItemModel])
         case path(StackAction<ItemDetailFeature.State, ItemDetailFeature.Action>)
+        case onDelete(IndexSet)
     }
 
     var body: some ReducerOf<Self> {
@@ -62,6 +63,12 @@ struct DisplayListFeature {
                 return .none
             case .path(_):
                 return .none
+            case let .onDelete(indexSet):
+                var items = UserDefaultsManager().loadItems()
+                items.remove(atOffsets: indexSet)
+                UserDefaultsManager().saveItems(items: items)
+                
+                return .none
             }
         }
         .ifLet(\.$addItem, action: \.addItem) {
@@ -84,12 +91,17 @@ struct DisplayListView: View {
         WithPerceptionTracking {
             NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
                 ZStack {
-                    List(store.items) { item in
-                        NavigationLink(state: ItemDetailFeature.State(item: item)) {
-                            ItemView(item: item)
+                    List {
+                        ForEach(store.items) { item in
+                            NavigationLink(state: ItemDetailFeature.State(item: item)) {
+                                ItemView(item: item)
+                            }
+                            .buttonStyle(.borderless)
+                            .listRowSeparator(.hidden)
                         }
-                        .buttonStyle(.borderless)
-                        .listRowSeparator(.hidden)
+                        .onDelete { indexSet in
+                            store.send(.onDelete(indexSet))
+                        }
                     }
                     .listStyle(.plain)
                     .toolbar {
@@ -123,6 +135,10 @@ struct DisplayListView: View {
                 ItemDetailView(store: store)
             }
         }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        print("Delete")
     }
 
 }
