@@ -36,7 +36,7 @@ struct DisplayListFeature {
             case .onAppear:
                 state.isLoading = true
                 let items = UserDefaultsManager().loadItems()
-
+                
                 return .send(.loadList(items))
             case .refresh:
                 state.isLoading = true
@@ -135,10 +135,6 @@ struct DisplayListView: View {
                 ItemDetailView(store: store)
             }
         }
-    }
-    
-    func delete(at offsets: IndexSet) {
-        print("Delete")
     }
 
 }

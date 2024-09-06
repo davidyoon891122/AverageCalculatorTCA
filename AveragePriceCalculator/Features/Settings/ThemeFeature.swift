@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-enum ThemeType: String, CaseIterable, Identifiable, Equatable {
+enum ThemeType: String, CaseIterable, Identifiable, Equatable, Codable {
     
     case dark
     case light
@@ -42,6 +42,28 @@ enum ThemeType: String, CaseIterable, Identifiable, Equatable {
         }
     }
     
+    func color(_ scheme: ColorScheme) -> Color {
+        switch self {
+        case .dark:
+            .black
+        case .light:
+            .white
+        case .system:
+            scheme == .dark ? .black : .white
+        }
+    }
+    
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .dark:
+            .dark
+        case .light:
+            .light
+        case .system:
+            nil
+        }
+    }
+    
 }
 
 @Reducer
@@ -50,12 +72,13 @@ struct ThemeFeature {
     @ObservableState
     struct State: Equatable {
         let navigationTitle: String = "Theme Settings"
-        var currentTheme: ThemeType = .system
+        @Shared var theme: ThemeType
     }
     
-    enum Action {
+    enum Action: BindableAction {
         case onAppear
         case setTheme(ThemeType)
+        case binding(BindingAction<State>)
     }
     
     var body: some ReducerOf<Self> {
@@ -64,7 +87,10 @@ struct ThemeFeature {
             case .onAppear:
                 return .none
             case let .setTheme(theme):
-                state.currentTheme = theme
+                state.theme = theme
+                print(state.theme)
+                return .none
+            case .binding:
                 return .none
             }
         }
@@ -77,31 +103,33 @@ import SwiftUI
 struct ThemeSettingView: View {
     
     @Perception.Bindable var store: StoreOf<ThemeFeature>
-    @State private var selectedTheme: ThemeType = .system
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Current Theme: \(store.currentTheme.name)")
-                        .bold()
-                        .font(.system(size: 20))
-                    Spacer()
+        WithPerceptionTracking {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Current Theme: \(store.theme.name)")
+                            .bold()
+                            .font(.system(size: 20))
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    ThemePicker(selection: $store.theme.sending(\.setTheme))
                 }
-                .padding(.horizontal)
-                ThemePicker(selection: $store.currentTheme.sending(\.setTheme))
             }
+            .preferredColorScheme(store.theme.colorScheme)
+            .onAppear {
+                store.send(.onAppear)
+            }
+            .navigationTitle(store.navigationTitle)
         }
-        .onAppear {
-            store.send(.onAppear)
-        }
-        .navigationTitle(store.navigationTitle)
     }
     
 }
 
 #Preview {
-    ThemeSettingView(store: Store(initialState: ThemeFeature.State()) {
+    ThemeSettingView(store: Store(initialState: ThemeFeature.State(theme: Shared(.system))) {
         ThemeFeature()
     })
 }
