@@ -13,7 +13,7 @@ struct SettingsFeature {
     @ObservableState
     struct State: Equatable {
         let navigationTitle = "Settings"
-        let menus: [String] = ["Theme", "Help", "Report"]
+        let menus: [SettingsMenuType] = SettingsMenuType.allCases
     }
 
     enum Action {
@@ -39,9 +39,19 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(store.menus, id: \.self) { menu in
-                    Text("\(menu)")
+            ScrollView {
+                LazyVStack {
+                    ForEach(store.menus, id: \.self) { menu in
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Text("\(menu.title)")
+                                    .bold()
+                            }
+                            Divider()
+                        }
+                        .padding(.vertical, 8)
+                        .padding(.horizontal)
+                    }
                 }
             }
             .onAppear {
