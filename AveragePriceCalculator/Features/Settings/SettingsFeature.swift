@@ -57,11 +57,14 @@ struct SettingsView: View {
                                     HStack {
                                         Text("\(menu.title)")
                                             .bold()
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
                                     }
                                     Divider()
                                 }
                                 .padding(.vertical, 8)
                                 .padding(.horizontal)
+                                .tint(.gray)
                             }
                         }
                     }
