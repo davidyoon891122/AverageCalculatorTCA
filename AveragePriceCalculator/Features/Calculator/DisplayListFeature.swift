@@ -158,7 +158,7 @@ struct ItemView: View {
                     .bold()
                     .font(.system(size: 22.0))
                 Spacer()
-                Text(item.averagePrice.displayDecimalPlace(by: 2))
+                Text(item.averagePrice.displayFormattedStringByPrice())
                     .bold()
                     .font(.system(size: 28.0))
             }
