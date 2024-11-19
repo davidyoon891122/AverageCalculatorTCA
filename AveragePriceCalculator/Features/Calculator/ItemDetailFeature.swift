@@ -114,7 +114,7 @@ struct ItemDetailFeature {
                 print(self.focusedField)
             }
         }
-        
+                
         enum FieldType: Hashable {
             
             case name
