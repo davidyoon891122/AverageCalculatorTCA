@@ -26,6 +26,7 @@ struct ContentView: View {
                     Text("Settings")
                 }
         }
+        .preferredColorScheme(store.theme.colorScheme)
     }
 }
 

@@ -52,7 +52,7 @@ struct SettingsView: View {
                 ScrollView {
                     LazyVStack {
                         ForEach(store.menus, id: \.self) { menu in
-                            NavigationLink(state: ThemeFeature.State(theme: store.$theme)) {
+                            NavigationLink(state: ThemeFeature.State()) {
                                 VStack(alignment: .leading) {
                                     HStack {
                                         Text("\(menu.title)")

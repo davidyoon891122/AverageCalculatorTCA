@@ -90,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				492546B62C7030F100B86971 /* AveragePriceCalculatorApp.swift */,
+				492546D52C704DFB00B86971 /* AppFeature.swift */,
 				492546B82C7030F100B86971 /* ContentView.swift */,
 				492546BA2C7030F300B86971 /* Assets.xcassets */,
 				4946AB052C82A92D008A86C4 /* Colors.xcassets */,
@@ -196,7 +197,6 @@
 			children = (
 				492546C72C70332400B86971 /* DisplayListFeature.swift */,
 				4946AAFA2C79DD89008A86C4 /* ItemDetailFeature.swift */,
-				492546D52C704DFB00B86971 /* AppFeature.swift */,
 				492546D72C71BFC100B86971 /* AddItemFeature.swift */,
 			);
 			path = Calculator;

@@ -72,7 +72,7 @@ struct ThemeFeature {
     @ObservableState
     struct State: Equatable {
         let navigationTitle: String = "Theme Settings"
-        @Shared var theme: ThemeType
+        @Shared(.appStorage("theme")) var theme: ThemeType = .system
     }
     
     enum Action: BindableAction {
@@ -129,7 +129,7 @@ struct ThemeSettingView: View {
 }
 
 #Preview {
-    ThemeSettingView(store: Store(initialState: ThemeFeature.State(theme: Shared(.system))) {
+    ThemeSettingView(store: Store(initialState: ThemeFeature.State()) {
         ThemeFeature()
     })
 }
