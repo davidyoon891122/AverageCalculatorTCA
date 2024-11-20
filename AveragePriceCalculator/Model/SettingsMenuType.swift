@@ -16,7 +16,7 @@ enum SettingsMenuType: CaseIterable {
     var title: String {
         switch self {
         case .theme:
-            "Theme"
+            "Theme".localized()
         }
     }
     

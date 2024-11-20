@@ -17,7 +17,14 @@ enum ThemeType: String, CaseIterable, Identifiable, Equatable, Codable {
     var id: Self { self }
     
     var name: String {
-        rawValue.capitalized
+        switch self {
+        case .dark:
+            "Dark".localized()
+        case .light:
+            "Light".localized()
+        case .system:
+            "System".localized()
+        }
     }
     
     var color: Color {
@@ -71,7 +78,7 @@ struct ThemeFeature {
     
     @ObservableState
     struct State: Equatable {
-        let navigationTitle: String = "Theme Settings"
+        let navigationTitle: String = "Theme Settings".localized()
         @Shared(.appStorage("theme")) var theme: ThemeType = .system
     }
     

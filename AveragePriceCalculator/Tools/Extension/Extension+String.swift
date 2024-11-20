@@ -29,3 +29,12 @@ extension String {
     }
     
 }
+
+// MARK: - Localized
+extension String {
+
+    func localized() -> String {
+        return NSLocalizedString(self, value: self, comment: "")
+    }
+
+}

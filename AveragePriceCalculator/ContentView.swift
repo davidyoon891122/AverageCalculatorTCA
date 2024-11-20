@@ -18,7 +18,7 @@ struct ContentView: View {
                 DisplayListView(store: store.scope(state: \.tab1, action: \.tab1))
                     .tabItem {
                         Image(systemName: "list.bullet")
-                        Text("Display")
+                        Text("List")
                     }
                 
                 SettingsView(store: store.scope(state: \.tab2, action: \.tab2))

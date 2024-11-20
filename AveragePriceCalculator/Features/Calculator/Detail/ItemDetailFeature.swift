@@ -1,31 +1,71 @@
 //
-//  AddItemFeature.swift
+//  ItemDetailFeature.swift
 //  AveragePriceCalculator
 //
-//  Created by Jiwon Yoon on 8/18/24.
+//  Created by Jiwon Yoon on 8/24/24.
 //
 
 import Foundation
 import ComposableArchitecture
 
 @Reducer
-struct AddItemFeature {
+struct ItemDetailFeature {
 
     @ObservableState
     struct State: Equatable {
-        let navigationTitle = "Add Item View"
         var item: ItemModel
-        var name: String = ""
-        var firstPrice: String = ""
-        var firstQuantity: String = ""
-        var secondPrice: String = ""
-        var secondQuantity: String = ""
-        var totalAmount: String {
-            String(totalAmountDouble)
+        var navigationTitle: String {
+            self.item.name
+        }
+
+        var name: String {
+            get {
+                self.item.name
+            }
+            set {
+                self.item.name = newValue
+            }
+        }
+        var firstPrice: String {
+            get {
+                self.item.firstPrice.commaFormat
+            }
+            set {
+                self.item.firstPrice = newValue.commaStringtoDouble
+            }
+        }
+        var firstQuantity: String {
+            get {
+                self.item.firstQuantity.commaFormat
+            }
+            set {
+                self.item.firstQuantity = newValue.commaStringtoDouble
+            }
+        }
+        var secondPrice: String {
+            get {
+                self.item.secondPrice.commaFormat
+            }
+            set {
+                self.item.secondPrice = newValue.commaStringtoDouble
+            }
+        }
+        var secondQuantity: String {
+            get {
+                self.item.secondQuantity.commaFormat
+            }
+            set {
+                self.item.secondQuantity = newValue.commaStringtoDouble
+            }
         }
         var averagePrice: String {
-            String(self.averagePriceDouble)
+            self.averagePriceDouble.commaFormat
         }
+
+        var totalAmount: String {
+            (self.item.firstQuantity + self.item.secondQuantity).commaFormat
+        }
+
         var profit: String {
             self.profitDouble.isNaN ? "" : "\(self.profitDouble.displayDecimalPlace(by: 2)) %"
         }
@@ -34,6 +74,7 @@ struct AddItemFeature {
         var firstQuantityDouble: Double = 0
         var secondPriceDouble: Double = 0
         var secondQuantityDouble: Double = 0
+
         var averagePriceDouble: Double {
             let totalAmount = firstQuantityDouble + secondQuantityDouble
             if totalAmount > 0 {
@@ -43,9 +84,7 @@ struct AddItemFeature {
             }
 
         }
-        var totalAmountDouble: Double {
-            firstQuantityDouble + secondQuantityDouble
-        }
+
         var profitDouble: Double {
             let firstPrice = firstPriceDouble * firstQuantityDouble // 1
             let secondPrice = secondPriceDouble * secondQuantityDouble // 20
@@ -67,9 +106,15 @@ struct AddItemFeature {
             secondPriceDouble > 0 &&
             secondQuantityDouble > 0
         }
+
+        var toast: ToastModel?
         
-        var focusedField: FieldType?
-        
+        var focusedField: FieldType? {
+            didSet {
+                print(self.focusedField)
+            }
+        }
+                
         enum FieldType: Hashable {
             
             case name
@@ -79,6 +124,7 @@ struct AddItemFeature {
             case secondQuantity
 
         }
+
     }
 
     enum Action: BindableAction {
@@ -88,26 +134,21 @@ struct AddItemFeature {
         case setFirstQuantity(String)
         case setSecondPrice(String)
         case setSecondQuantity(String)
-        case saveButtonTapped
-        case cancelButtonTapped
-        case delegate(Delegate)
+        case modifyButtonTapped
+        case setToast(ToastModel?)
         case binding(BindingAction<State>)
-        
-        enum Delegate: Equatable {
-            case cancel
-            case saveItem(ItemModel)
-        }
     }
     
-    @Dependency(\.dismiss) var dismiss
     @Dependency(\.userDefaultsClient) var userDefaultsClient
-
-
-    func saveItem(_ item: ItemModel) {
-        var savedItems = userDefaultsClient.loadItems()
-        savedItems.append(item)
+    
+    func modify(state: State) {
+        var savedData = userDefaultsClient.loadItems()
         
-        userDefaultsClient.saveItems(savedItems)
+        guard let index = savedData.firstIndex(where: { $0.id == state.item.id }) else { return }
+        
+        savedData[index] = state.item
+        
+        userDefaultsClient.saveItems(savedData)
     }
 
     var body: some ReducerOf<Self> {
@@ -115,36 +156,37 @@ struct AddItemFeature {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                state.focusedField = .name
+                state.firstPriceDouble = state.item.firstPrice
+                state.firstQuantityDouble = state.item.firstQuantity
+                state.secondPriceDouble = state.item.secondPrice
+                state.secondQuantityDouble = state.item.secondQuantity
+
                 return .none
             case let .setName(name):
                 state.name = name
-                state.item.name = name
 
                 return .none
             case let .setFirstPrice(firstPrice):
                 state.firstPrice = firstPrice
-                state.firstPriceDouble = Double(state.firstPrice) ?? 0
-                state.item.firstPrice = Double(state.firstPrice) ?? 0
+                state.firstPriceDouble = state.firstPrice.commaStringtoDouble
+
                 return .none
             case let .setFirstQuantity(firstQuantity):
                 state.firstQuantity = firstQuantity
-                state.firstQuantityDouble = Double(state.firstQuantity) ?? 0
-                state.item.firstQuantity = Double(state.firstQuantity) ?? 0
+                state.firstQuantityDouble = state.firstQuantity.commaStringtoDouble
+
                 return .none
             case let .setSecondPrice(secondPrice):
                 state.secondPrice = secondPrice
-                state.secondPriceDouble = Double(state.secondPrice) ?? 0
-                state.item.secondPrice = Double(state.secondPrice) ?? 0
+                state.secondPriceDouble = state.secondPrice.commaStringtoDouble
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
                 state.secondQuantity = secondQuantity
-                state.secondQuantityDouble = Double(state.secondQuantity) ?? 0
-                state.item.secondQuantity = Double(state.secondQuantity) ?? 0
+                state.secondQuantityDouble = state.secondQuantity.commaStringtoDouble
 
                 return .none
-            case .saveButtonTapped:
+            case .modifyButtonTapped:
                 if state.firstPrice.isEmpty {
                     state.focusedField = .firstPrice
                     return .none
@@ -162,15 +204,11 @@ struct AddItemFeature {
                     return .none
                 }
                 
-                state.item.date = Date().getStringDateByFormat()
-                return .run { [item = state.item] send in
-                    saveItem(item)
-                    await send(.delegate(.saveItem(item)))
-                    await self.dismiss()
-                }
-            case .cancelButtonTapped:
-                return .run { _ in await self.dismiss() }
-            case .delegate:
+                modify(state: state)
+                state.toast = ToastModel(style: .success, message: "Successfully Modify".localized())
+                return .none
+            case let .setToast(toast):
+                state.toast = toast
                 return .none
             case .binding:
                 return .none
@@ -181,10 +219,10 @@ struct AddItemFeature {
 
 import SwiftUI
 
-struct AddItemView: View {
+struct ItemDetailView: View {
 
-    @Perception.Bindable var store: StoreOf<AddItemFeature>
-    @FocusState var focusedField: AddItemFeature.State.FieldType?
+    @Perception.Bindable var store: StoreOf<ItemDetailFeature>
+    @FocusState var focusedField: ItemDetailFeature.State.FieldType?
 
     var body: some View {
         WithPerceptionTracking {
@@ -247,30 +285,37 @@ struct AddItemView: View {
                         VStack {
                             HStack {
                                 Text("total amount: ")
+                                    .bold()
                                 Spacer()
                                 Text(store.totalAmount)
+                                    .bold()
                                 
                             }
                             HStack {
                                 Text("average price: ")
+                                    .bold()
                                 Spacer()
                                 Text(store.averagePrice)
+                                    .bold()
                             }
                             HStack {
                                 Text("profit: ")
+                                    .bold()
                                 Spacer()
                                 Text(store.profit)
+                                    .bold()
                             }
                         }
                         .padding()
+                        
                     }
                 }
                 .bind($store.focusedField, to: $focusedField)
                 
                 Button(action: {
-                    store.send(.saveButtonTapped)
+                    store.send(.modifyButtonTapped)
                 }, label: {
-                    Text("Save")
+                    Text("Modify")
                         .frame(maxWidth: .infinity, minHeight: 50)
                         .background(store.isSaveButtonEnabled ? .gray : .gray.opacity(0.7))
                         .foregroundStyle(store.isSaveButtonEnabled ? .white : .white.opacity(0.7))
@@ -278,18 +323,10 @@ struct AddItemView: View {
                 .disabled(!store.isSaveButtonEnabled)
                 .padding()
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .taostView(toast: $store.toast.sending(\.setToast))
             .onAppear {
                 store.send(.onAppear)
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {
-                        store.send(.cancelButtonTapped)
-                    }, label: {
-                        Image(systemName: "xmark")
-                            .tint(.black)
-                    })
-                }
             }
             .navigationTitle(store.navigationTitle)
         }
@@ -297,11 +334,10 @@ struct AddItemView: View {
 
 }
 
-
 #Preview {
     NavigationStack {
-        AddItemView(store: Store(initialState: AddItemFeature.State(item: .init(id: UUID(), name: "test", date: "2024-11-22", firstPrice: 100, firstQuantity: 10, secondPrice: 90, secondQuantity: 8))) {
-            AddItemFeature()
+        ItemDetailView(store: Store(initialState: ItemDetailFeature.State(item: .preview)) {
+            ItemDetailFeature()
         })
     }
 }

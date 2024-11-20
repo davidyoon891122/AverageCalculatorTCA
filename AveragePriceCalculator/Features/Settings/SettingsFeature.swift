@@ -17,7 +17,7 @@ struct SettingsFeature {
 
     @ObservableState
     struct State: Equatable {
-        let navigationTitle = "Settings"
+        let navigationTitle = "Settings".localized()
         let menus: [SettingsMenuType] = SettingsMenuType.allCases
         var path = StackState<Path.State>()
         

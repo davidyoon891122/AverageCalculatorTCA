@@ -16,7 +16,7 @@ struct DisplayListFeature {
         var path = StackState<ItemDetailFeature.State>()
         var items: [ItemModel] = []
         var isLoading = false
-        let navigationTitle = "Average Calculator"
+        let navigationTitle = "Average Calculator".localized()
     }
 
     enum Action {
