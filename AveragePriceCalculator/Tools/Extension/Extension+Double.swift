@@ -26,8 +26,8 @@ extension Double {
                 return "\(self)"
             }
         } else {
-            formatter.minimumFractionDigits = 6
-            formatter.maximumFractionDigits = 6
+            formatter.minimumFractionDigits = 8
+            formatter.maximumFractionDigits = 8
             if let formattedNumber = formatter.string(from: NSNumber(floatLiteral: self)) {
                 return formattedNumber
             } else {
