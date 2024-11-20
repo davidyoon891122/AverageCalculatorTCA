@@ -30,6 +30,7 @@
 		4946AB0D2C82ACDE008A86C4 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */; };
 		AD20E2502C89A96A007BF1E9 /* SettingsMenuType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */; };
 		AD20E2522C8A7300007BF1E9 /* ThemeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */; };
+		ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C2A2CED694A0026E527 /* Extension+String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModel.swift; sourceTree = "<group>"; };
 		AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuType.swift; sourceTree = "<group>"; };
 		AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFeature.swift; sourceTree = "<group>"; };
+		ADE07C2A2CED694A0026E527 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				492546CD2C70411F00B86971 /* Extension+Double.swift */,
 				4946AAF82C797A0A008A86C4 /* Extension+Date.swift */,
 				4946AB072C82AC76008A86C4 /* Extension+View.swift */,
+				ADE07C2A2CED694A0026E527 /* Extension+String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */,
 				492546D62C704DFB00B86971 /* AppFeature.swift in Sources */,
 				492546DA2C71C41A00B86971 /* AverageCalculatorModel.swift in Sources */,
 				AD20E2522C8A7300007BF1E9 /* ThemeFeature.swift in Sources */,

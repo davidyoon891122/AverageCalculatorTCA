@@ -35,5 +35,17 @@ extension Double {
             }
         }
     }
+    
+    var commaFormat: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        
+        if let formatterValue = formatter.string(from: NSNumber(floatLiteral: self)) {
+            return formatterValue
+        } else {
+            return "\(self)"
+        }
+        
+    }
 
 }

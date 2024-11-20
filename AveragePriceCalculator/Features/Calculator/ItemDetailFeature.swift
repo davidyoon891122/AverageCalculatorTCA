@@ -28,42 +28,42 @@ struct ItemDetailFeature {
         }
         var firstPrice: String {
             get {
-                String(self.item.firstPrice)
+                self.item.firstPrice.commaFormat
             }
             set {
-                self.item.firstPrice = Double(newValue) ?? 0
+                self.item.firstPrice = newValue.commaStringtoDouble
             }
         }
         var firstQuantity: String {
             get {
-                String(self.item.firstQuantity)
+                self.item.firstQuantity.commaFormat
             }
             set {
-                self.item.firstQuantity = Double(newValue) ?? 0
+                self.item.firstQuantity = newValue.commaStringtoDouble
             }
         }
         var secondPrice: String {
             get {
-                String(self.item.secondPrice)
+                self.item.secondPrice.commaFormat
             }
             set {
-                self.item.secondPrice = Double(newValue) ?? 0
+                self.item.secondPrice = newValue.commaStringtoDouble
             }
         }
         var secondQuantity: String {
             get {
-                String(self.item.secondQuantity)
+                self.item.secondQuantity.commaFormat
             }
             set {
-                self.item.secondQuantity = Double(newValue) ?? 0
+                self.item.secondQuantity = newValue.commaStringtoDouble
             }
         }
         var averagePrice: String {
-            String(self.averagePriceDouble)
+            self.averagePriceDouble.commaFormat
         }
 
         var totalAmount: String {
-            String(self.item.firstQuantity + self.item.secondQuantity)
+            (self.item.firstQuantity + self.item.secondQuantity).commaFormat
         }
 
         var profit: String {
@@ -167,22 +167,22 @@ struct ItemDetailFeature {
                 return .none
             case let .setFirstPrice(firstPrice):
                 state.firstPrice = firstPrice
-                state.firstPriceDouble = Double(state.firstPrice) ?? 0
+                state.firstPriceDouble = state.firstPrice.commaStringtoDouble
 
                 return .none
             case let .setFirstQuantity(firstQuantity):
                 state.firstQuantity = firstQuantity
-                state.firstQuantityDouble = Double(state.firstQuantity) ?? 0
+                state.firstQuantityDouble = state.firstQuantity.commaStringtoDouble
 
                 return .none
             case let .setSecondPrice(secondPrice):
                 state.secondPrice = secondPrice
-                state.secondPriceDouble = Double(state.secondPrice) ?? 0
+                state.secondPriceDouble = state.secondPrice.commaStringtoDouble
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
                 state.secondQuantity = secondQuantity
-                state.secondQuantityDouble = Double(state.secondQuantity) ?? 0
+                state.secondQuantityDouble = state.secondQuantity.commaStringtoDouble
 
                 return .none
             case .modifyButtonTapped:
@@ -224,7 +224,6 @@ struct ItemDetailView: View {
     @FocusState var focusedField: ItemDetailFeature.State.FieldType?
 
     var body: some View {
-        
         WithPerceptionTracking {
             VStack {
                 ScrollView {
