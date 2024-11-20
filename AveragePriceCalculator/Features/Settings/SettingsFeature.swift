@@ -9,18 +9,25 @@ import ComposableArchitecture
 
 @Reducer
 struct SettingsFeature {
+    
+    @Reducer(state: .equatable)
+    enum Path {
+        case theme(ThemeFeature)
+    }
 
     @ObservableState
     struct State: Equatable {
         let navigationTitle = "Settings"
         let menus: [SettingsMenuType] = SettingsMenuType.allCases
-        var path = StackState<ThemeFeature.State>()
+        var path = StackState<Path.State>()
+        
         @Shared(.appStorage("theme")) var theme: ThemeType = .system
     }
 
     enum Action {
         case onAppear
-        case path(StackAction<ThemeFeature.State, ThemeFeature.Action>)
+        case didTapMenu(SettingsMenuType)
+        case path(StackActionOf<Path>)
     }
 
     var body: some ReducerOf<Self> {
@@ -29,13 +36,17 @@ struct SettingsFeature {
             case .onAppear:
                 print(state.theme)
                 return .none
+            case .didTapMenu(let menu):
+                switch menu {
+                case .theme:
+                    state.path.append(.theme(ThemeFeature.State()))
+                }
+                return .none
             case .path(_):
                 return .none
             }
         }
-        .forEach(\.path, action: \.path) {
-            ThemeFeature()
-        }
+        .forEach(\.path, action: \.path)
     }
 
 }
@@ -52,20 +63,11 @@ struct SettingsView: View {
                 ScrollView {
                     LazyVStack {
                         ForEach(store.menus, id: \.self) { menu in
-                            NavigationLink(state: ThemeFeature.State()) {
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        Text("\(menu.title)")
-                                            .bold()
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-                                    }
-                                    Divider()
+                            MenuView(title: menu.title)
+                                .onTapGesture {
+                                    store.send(.didTapMenu(menu))
                                 }
-                                .padding(.vertical, 8)
-                                .padding(.horizontal)
-                                .tint(.gray)
-                            }
+                            
                         }
                     }
                 }
@@ -75,7 +77,10 @@ struct SettingsView: View {
                 .preferredColorScheme(store.theme.colorScheme)
                 .navigationTitle(store.navigationTitle)
             } destination: { store in
-                ThemeSettingView(store: store)
+                switch store.case {
+                case let .theme(store):
+                    ThemeSettingView(store: store)
+                }
             }
         }
     }
@@ -88,4 +93,26 @@ struct SettingsView: View {
             SettingsFeature()
         })
     }
+}
+
+struct MenuView: View {
+    
+    let title: String
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text("\(title)")
+                    .bold()
+                Spacer()
+                Image(systemName: "chevron.right")
+            }
+            Divider()
+        }
+        .contentShape(Rectangle())
+        .padding(.vertical, 8)
+        .padding(.horizontal)
+        .tint(.gray)
+    }
+    
 }
