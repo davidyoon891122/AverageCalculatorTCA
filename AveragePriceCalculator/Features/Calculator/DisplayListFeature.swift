@@ -29,18 +29,20 @@ struct DisplayListFeature {
         case path(StackAction<ItemDetailFeature.State, ItemDetailFeature.Action>)
         case onDelete(IndexSet)
     }
+    
+    @Dependency(\.userDefaultsClient) var userDefaultsClient
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onAppear:
                 state.isLoading = true
-                let items = UserDefaultsManager().loadItems()
+                let items = userDefaultsClient.loadItems()
                 
                 return .send(.loadList(items))
             case .refresh:
                 state.isLoading = true
-                let items = UserDefaultsManager().loadItems()
+                let items = userDefaultsClient.loadItems()
 
                 return .send(.loadList(items))
             case .addButtonTapped:
@@ -64,9 +66,9 @@ struct DisplayListFeature {
             case .path(_):
                 return .none
             case let .onDelete(indexSet):
-                var items = UserDefaultsManager().loadItems()
+                var items = userDefaultsClient.loadItems()
                 items.remove(atOffsets: indexSet)
-                UserDefaultsManager().saveItems(items: items)
+                userDefaultsClient.saveItems(items)
                 
                 return .none
             }

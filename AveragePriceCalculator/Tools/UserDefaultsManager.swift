@@ -11,8 +11,6 @@ protocol UserDefaultsManagerProtocol {
 
     func loadItems() -> [ItemModel]
     func saveItems(items: [ItemModel])
-    func loadTheme() -> ThemeType?
-    func saveTheme(item: ThemeType)
 
 }
 
@@ -36,20 +34,6 @@ extension UserDefaultsManager: UserDefaultsManagerProtocol {
     func saveItems(items: [ItemModel]) {
         let encodedData = try? PropertyListEncoder().encode(items)
         self.userDefauls.set(encodedData, forKey: Constant.items)
-    }
-    
-    func loadTheme() -> ThemeType? {
-        guard let data = self.userDefauls.object(forKey: Constant.theme) as? Data,
-              let themeItem = try? PropertyListDecoder().decode(ThemeType.self, from: data) else {
-            return nil
-        }
-        
-        return themeItem
-    }
-    
-    func saveTheme(item: ThemeType) {
-        let encodedData = try? PropertyListEncoder().encode(item)
-        self.userDefauls.set(encodedData, forKey: Constant.theme)
     }
 
 }

@@ -31,6 +31,7 @@
 		AD20E2502C89A96A007BF1E9 /* SettingsMenuType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */; };
 		AD20E2522C8A7300007BF1E9 /* ThemeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */; };
 		ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C2A2CED694A0026E527 /* Extension+String.swift */; };
+		ADE07C472CED9F920026E527 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C462CED9F920026E527 /* UserDefaultsClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuType.swift; sourceTree = "<group>"; };
 		AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFeature.swift; sourceTree = "<group>"; };
 		ADE07C2A2CED694A0026E527 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		ADE07C462CED9F920026E527 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				492546D12C704A5C00B86971 /* Extension */,
 				492546CB2C70386E00B86971 /* UserDefaultsManager.swift */,
 				4946AB0B2C82AC8E008A86C4 /* Modifier */,
+				ADE07C462CED9F920026E527 /* UserDefaultsClient.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */,
+				ADE07C472CED9F920026E527 /* UserDefaultsClient.swift in Sources */,
 				492546D62C704DFB00B86971 /* AppFeature.swift in Sources */,
 				492546DA2C71C41A00B86971 /* AverageCalculatorModel.swift in Sources */,
 				AD20E2522C8A7300007BF1E9 /* ThemeFeature.swift in Sources */,

@@ -100,14 +100,14 @@ struct AddItemFeature {
     }
     
     @Dependency(\.dismiss) var dismiss
+    @Dependency(\.userDefaultsClient) var userDefaultsClient
 
 
     func saveItem(_ item: ItemModel) {
-        let userDefaultsManager = UserDefaultsManager()
-        var savedItems = userDefaultsManager.loadItems()
+        var savedItems = userDefaultsClient.loadItems()
         savedItems.append(item)
         
-        userDefaultsManager.saveItems(items: savedItems)
+        userDefaultsClient.saveItems(savedItems)
     }
 
     var body: some ReducerOf<Self> {

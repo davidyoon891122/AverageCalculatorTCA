@@ -139,15 +139,16 @@ struct ItemDetailFeature {
         case binding(BindingAction<State>)
     }
     
+    @Dependency(\.userDefaultsClient) var userDefaultsClient
+    
     func modify(state: State) {
-        let userDefaults = UserDefaultsManager()
-        var savedData = userDefaults.loadItems()
+        var savedData = userDefaultsClient.loadItems()
         
         guard let index = savedData.firstIndex(where: { $0.id == state.item.id }) else { return }
         
         savedData[index] = state.item
         
-        userDefaults.saveItems(items: savedData)
+        userDefaultsClient.saveItems(savedData)
     }
 
     var body: some ReducerOf<Self> {
