@@ -79,6 +79,8 @@ struct AddItemFeature {
             case secondQuantity
 
         }
+        
+        @Shared(.appStorage("theme")) var theme: ThemeType = .system
     }
 
     enum Action: BindableAction {
@@ -287,12 +289,13 @@ struct AddItemView: View {
                         store.send(.cancelButtonTapped)
                     }, label: {
                         Image(systemName: "xmark")
-                            .tint(.black)
+                            .tint(store.theme == .dark ? .white : .black)
                     })
+                    
                 }
             }
             .navigationTitle(store.navigationTitle)
-            .background(.secondary)
+            .background(store.theme == .dark ? .black : .white)
         }
     }
 
