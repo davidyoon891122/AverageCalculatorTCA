@@ -104,6 +104,7 @@
 				492546D22C704A6600B86971 /* Features */,
 				492546CF2C704A4E00B86971 /* Model */,
 				492546D02C704A5300B86971 /* Tools */,
+				ADE07C4F2CEDC8F50026E527 /* InternalStorage */,
 				4946AAFE2C82A720008A86C4 /* CustomView */,
 				ADE07C482CEDA4B50026E527 /* Localizable.xcstrings */,
 			);
@@ -132,9 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				492546D12C704A5C00B86971 /* Extension */,
-				492546CB2C70386E00B86971 /* UserDefaultsManager.swift */,
 				4946AB0B2C82AC8E008A86C4 /* Modifier */,
-				ADE07C462CED9F920026E527 /* UserDefaultsClient.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -234,6 +233,15 @@
 				492546D72C71BFC100B86971 /* AddItemFeature.swift */,
 			);
 			path = Add;
+			sourceTree = "<group>";
+		};
+		ADE07C4F2CEDC8F50026E527 /* InternalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				ADE07C462CED9F920026E527 /* UserDefaultsClient.swift */,
+				492546CB2C70386E00B86971 /* UserDefaultsManager.swift */,
+			);
+			path = InternalStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
