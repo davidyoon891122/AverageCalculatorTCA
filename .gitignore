@@ -122,3 +122,7 @@ DerivedData/
 
 ### MAC FS ###
 .DS_Store
+
+
+### GoogleService ###
+GoogleService-Info.plist

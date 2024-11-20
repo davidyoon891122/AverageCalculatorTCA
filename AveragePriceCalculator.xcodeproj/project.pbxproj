@@ -33,6 +33,11 @@
 		ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C2A2CED694A0026E527 /* Extension+String.swift */; };
 		ADE07C472CED9F920026E527 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C462CED9F920026E527 /* UserDefaultsClient.swift */; };
 		ADE07C492CEDA4B50026E527 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = ADE07C482CEDA4B50026E527 /* Localizable.xcstrings */; };
+		ADE07C522CEEA5DA0026E527 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE07C512CEEA5DA0026E527 /* GoogleService-Info.plist */; };
+		ADE07C552CEEA6F30026E527 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = ADE07C542CEEA6F30026E527 /* FirebaseAnalytics */; };
+		ADE07C572CEEA6F30026E527 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = ADE07C562CEEA6F30026E527 /* FirebaseCore */; };
+		ADE07C592CEEA6F30026E527 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = ADE07C582CEEA6F30026E527 /* FirebaseMessaging */; };
+		ADE07C5B2CEEA7150026E527 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C5A2CEEA7150026E527 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +67,8 @@
 		ADE07C2A2CED694A0026E527 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		ADE07C462CED9F920026E527 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
 		ADE07C482CEDA4B50026E527 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		ADE07C512CEEA5DA0026E527 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ADE07C5A2CEEA7150026E527 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +76,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADE07C592CEEA6F30026E527 /* FirebaseMessaging in Frameworks */,
+				ADE07C552CEEA6F30026E527 /* FirebaseAnalytics in Frameworks */,
+				ADE07C572CEEA6F30026E527 /* FirebaseCore in Frameworks */,
 				492546C62C70316900B86971 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +115,8 @@
 				ADE07C4F2CEDC8F50026E527 /* InternalStorage */,
 				4946AAFE2C82A720008A86C4 /* CustomView */,
 				ADE07C482CEDA4B50026E527 /* Localizable.xcstrings */,
+				ADE07C512CEEA5DA0026E527 /* GoogleService-Info.plist */,
+				ADE07C5A2CEEA7150026E527 /* AppDelegate.swift */,
 			);
 			path = AveragePriceCalculator;
 			sourceTree = "<group>";
@@ -270,6 +282,9 @@
 			name = AveragePriceCalculator;
 			packageProductDependencies = (
 				492546C52C70316900B86971 /* ComposableArchitecture */,
+				ADE07C542CEEA6F30026E527 /* FirebaseAnalytics */,
+				ADE07C562CEEA6F30026E527 /* FirebaseCore */,
+				ADE07C582CEEA6F30026E527 /* FirebaseMessaging */,
 			);
 			productName = AveragePriceCalculator;
 			productReference = 492546B32C7030F100B86971 /* AveragePriceCalculator.app */;
@@ -302,6 +317,7 @@
 			mainGroup = 492546AA2C7030F100B86971;
 			packageReferences = (
 				492546C42C70316900B86971 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				ADE07C532CEEA6F30026E527 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 492546B42C7030F100B86971 /* Products */;
 			projectDirPath = "";
@@ -319,6 +335,7 @@
 			files = (
 				4946AB062C82A92D008A86C4 /* Colors.xcassets in Resources */,
 				492546BE2C7030F300B86971 /* Preview Assets.xcassets in Resources */,
+				ADE07C522CEEA5DA0026E527 /* GoogleService-Info.plist in Resources */,
 				ADE07C492CEDA4B50026E527 /* Localizable.xcstrings in Resources */,
 				492546BB2C7030F300B86971 /* Assets.xcassets in Resources */,
 			);
@@ -331,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADE07C5B2CEEA7150026E527 /* AppDelegate.swift in Sources */,
 				ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */,
 				ADE07C472CED9F920026E527 /* UserDefaultsClient.swift in Sources */,
 				492546D62C704DFB00B86971 /* AppFeature.swift in Sources */,
@@ -575,6 +593,14 @@
 				minimumVersion = 1.13.0;
 			};
 		};
+		ADE07C532CEEA6F30026E527 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -582,6 +608,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 492546C42C70316900B86971 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		ADE07C542CEEA6F30026E527 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ADE07C532CEEA6F30026E527 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		ADE07C562CEEA6F30026E527 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ADE07C532CEEA6F30026E527 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		ADE07C582CEEA6F30026E527 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ADE07C532CEEA6F30026E527 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

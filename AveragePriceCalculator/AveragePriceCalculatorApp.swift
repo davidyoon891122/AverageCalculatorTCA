@@ -10,6 +10,8 @@ import ComposableArchitecture
 
 @main
 struct AveragePriceCalculatorApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     static let store = Store(initialState: AppFeature.State()) {
         AppFeature()
