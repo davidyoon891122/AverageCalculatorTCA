@@ -96,8 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				492546B62C7030F100B86971 /* AveragePriceCalculatorApp.swift */,
-				492546D52C704DFB00B86971 /* AppFeature.swift */,
-				492546B82C7030F100B86971 /* ContentView.swift */,
 				492546BA2C7030F300B86971 /* Assets.xcassets */,
 				4946AB052C82A92D008A86C4 /* Colors.xcassets */,
 				492546BC2C7030F300B86971 /* Preview Content */,
@@ -152,6 +150,7 @@
 		492546D22C704A6600B86971 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				ADE07C502CEDC9F20026E527 /* Root */,
 				AD20E24D2C89A884007BF1E9 /* Calculator */,
 				AD20E24E2C89A890007BF1E9 /* Settings */,
 			);
@@ -242,6 +241,15 @@
 				492546CB2C70386E00B86971 /* UserDefaultsManager.swift */,
 			);
 			path = InternalStorage;
+			sourceTree = "<group>";
+		};
+		ADE07C502CEDC9F20026E527 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				492546D52C704DFB00B86971 /* AppFeature.swift */,
+				492546B82C7030F100B86971 /* ContentView.swift */,
+			);
+			path = Root;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
