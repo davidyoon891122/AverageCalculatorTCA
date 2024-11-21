@@ -20,7 +20,9 @@ extension String {
     }
     
     var commaFormat: String {
-        if let doubleValue = Double(self) {
+        let replacedString = self.replacingOccurrences(of: ",", with: "")
+        
+        if let doubleValue = Double(replacedString) {
             return doubleValue.commaFormat
         } else {
             return self
