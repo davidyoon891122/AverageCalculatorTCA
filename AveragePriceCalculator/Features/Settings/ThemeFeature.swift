@@ -119,7 +119,7 @@ struct ThemeSettingView: View {
                         HStack {
                             Text("Current Theme: \(store.theme.name)")
                                 .bold()
-                                .font(.system(size: 20))
+                                .font(.system(size: 20.0))
                             Spacer()
                         }
                         .padding(.horizontal)
@@ -132,7 +132,7 @@ struct ThemeSettingView: View {
                 }
                 .navigationTitle(store.navigationTitle)
                 AdmobBannerView()
-                    .frame(height: 90)
+                    .frame(height: 90.0)
             }
         }
     }

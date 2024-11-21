@@ -95,7 +95,7 @@ struct DisplayListView: View {
                 ZStack {
                     VStack {
                         AdmobBannerView()
-                            .frame(height: 90)
+                            .frame(height: 90.0)
                         List {
                             ForEach(store.items) { item in
                                 NavigationLink(state: ItemDetailFeature.State(item: item)) {
@@ -162,19 +162,21 @@ struct ItemView: View {
             HStack {
                 Text(item.name)
                     .bold()
-                    .font(.system(size: 22.0))
+                    .font(.system(size: 18.0))
                 Spacer()
                 Text(item.averagePrice.displayFormattedStringByPrice())
                     .bold()
-                    .font(.system(size: 28.0))
+                    .font(.system(size: 22.0))
             }
             HStack {
                 Text(item.date)
                     .foregroundStyle(.gray)
+                    .font(.system(size: 14.0))
                 Spacer()
                 Text("\(item.profit.displayDecimalPlace(by: 2))%")
                     .bold()
                     .foregroundStyle(item.profitColor)
+                    .font(.system(size: 16.0))
             }
 
             Divider()

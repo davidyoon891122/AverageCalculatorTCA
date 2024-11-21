@@ -78,7 +78,7 @@ struct SettingsView: View {
                     .preferredColorScheme(store.theme.colorScheme)
                     .navigationTitle(store.navigationTitle)
                     AdmobBannerView()
-                        .frame(height: 90)
+                        .frame(height: 90.0)
                 }
             } destination: { store in
                 switch store.case {

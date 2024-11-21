@@ -316,7 +316,7 @@ struct ItemDetailView: View {
                     store.send(.modifyButtonTapped)
                 }, label: {
                     Text("Modify")
-                        .frame(maxWidth: .infinity, minHeight: 50)
+                        .frame(maxWidth: .infinity, minHeight: 50.0)
                         .background(store.isSaveButtonEnabled ? .gray : .gray.opacity(0.7))
                         .foregroundStyle(store.isSaveButtonEnabled ? .white : .white.opacity(0.7))
                 })
