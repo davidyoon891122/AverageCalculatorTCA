@@ -31,6 +31,10 @@
 		AD056EAE2CEEB42B00F213E6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = AD056EAD2CEEB42B00F213E6 /* GoogleMobileAds */; };
 		AD056EB02CEEB47100F213E6 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056EAF2CEEB47100F213E6 /* BannerView.swift */; };
 		AD056EB22CEEB63D00F213E6 /* AdmobBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056EB12CEEB63D00F213E6 /* AdmobBannerView.swift */; };
+		AD056EB72CEEBADC00F213E6 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = AD056EB62CEEBADC00F213E6 /* Lottie */; };
+		AD056EB92CEEBB2C00F213E6 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056EB82CEEBB2C00F213E6 /* LottieView.swift */; };
+		AD056EBC2CEEBB4000F213E6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AD056EBB2CEEBB4000F213E6 /* SnapKit */; };
+		AD056EBF2CEECBD400F213E6 /* admob-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = AD056EBE2CEECBD400F213E6 /* admob-loading.json */; };
 		AD20E2502C89A96A007BF1E9 /* SettingsMenuType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */; };
 		AD20E2522C8A7300007BF1E9 /* ThemeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */; };
 		ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C2A2CED694A0026E527 /* Extension+String.swift */; };
@@ -68,6 +72,8 @@
 		AD056EAB2CEEB34A00F213E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AD056EAF2CEEB47100F213E6 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		AD056EB12CEEB63D00F213E6 /* AdmobBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmobBannerView.swift; sourceTree = "<group>"; };
+		AD056EB82CEEBB2C00F213E6 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		AD056EBE2CEECBD400F213E6 /* admob-loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "admob-loading.json"; sourceTree = "<group>"; };
 		AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuType.swift; sourceTree = "<group>"; };
 		AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFeature.swift; sourceTree = "<group>"; };
 		ADE07C2A2CED694A0026E527 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
@@ -85,8 +91,10 @@
 				ADE07C592CEEA6F30026E527 /* FirebaseMessaging in Frameworks */,
 				ADE07C552CEEA6F30026E527 /* FirebaseAnalytics in Frameworks */,
 				AD056EAE2CEEB42B00F213E6 /* GoogleMobileAds in Frameworks */,
+				AD056EBC2CEEBB4000F213E6 /* SnapKit in Frameworks */,
 				ADE07C572CEEA6F30026E527 /* FirebaseCore in Frameworks */,
 				492546C62C70316900B86971 /* ComposableArchitecture in Frameworks */,
+				AD056EB72CEEBADC00F213E6 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,8 +122,7 @@
 			children = (
 				AD056EAB2CEEB34A00F213E6 /* Info.plist */,
 				492546B62C7030F100B86971 /* AveragePriceCalculatorApp.swift */,
-				492546BA2C7030F300B86971 /* Assets.xcassets */,
-				4946AB052C82A92D008A86C4 /* Colors.xcassets */,
+				AD056EBD2CEECBCC00F213E6 /* Resources */,
 				492546BC2C7030F300B86971 /* Preview Content */,
 				492546D22C704A6600B86971 /* Features */,
 				492546CF2C704A4E00B86971 /* Model */,
@@ -224,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				AD056EB42CEEB81A00F213E6 /* Admob */,
+				AD056EB82CEEBB2C00F213E6 /* LottieView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -235,6 +243,24 @@
 				AD056EB12CEEB63D00F213E6 /* AdmobBannerView.swift */,
 			);
 			path = Admob;
+			sourceTree = "<group>";
+		};
+		AD056EBD2CEECBCC00F213E6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AD056EC02CEECBDA00F213E6 /* Lottie */,
+				492546BA2C7030F300B86971 /* Assets.xcassets */,
+				4946AB052C82A92D008A86C4 /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AD056EC02CEECBDA00F213E6 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				AD056EBE2CEECBD400F213E6 /* admob-loading.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 		AD20E24D2C89A884007BF1E9 /* Calculator */ = {
@@ -312,6 +338,8 @@
 				ADE07C562CEEA6F30026E527 /* FirebaseCore */,
 				ADE07C582CEEA6F30026E527 /* FirebaseMessaging */,
 				AD056EAD2CEEB42B00F213E6 /* GoogleMobileAds */,
+				AD056EB62CEEBADC00F213E6 /* Lottie */,
+				AD056EBB2CEEBB4000F213E6 /* SnapKit */,
 			);
 			productName = AveragePriceCalculator;
 			productReference = 492546B32C7030F100B86971 /* AveragePriceCalculator.app */;
@@ -346,6 +374,8 @@
 				492546C42C70316900B86971 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				ADE07C532CEEA6F30026E527 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				AD056EAC2CEEB42B00F213E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				AD056EB52CEEBADC00F213E6 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				AD056EBA2CEEBB4000F213E6 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 492546B42C7030F100B86971 /* Products */;
 			projectDirPath = "";
@@ -361,6 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD056EBF2CEECBD400F213E6 /* admob-loading.json in Resources */,
 				4946AB062C82A92D008A86C4 /* Colors.xcassets in Resources */,
 				492546BE2C7030F300B86971 /* Preview Assets.xcassets in Resources */,
 				ADE07C522CEEA5DA0026E527 /* GoogleService-Info.plist in Resources */,
@@ -378,6 +409,7 @@
 			files = (
 				ADE07C5B2CEEA7150026E527 /* AppDelegate.swift in Sources */,
 				ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */,
+				AD056EB92CEEBB2C00F213E6 /* LottieView.swift in Sources */,
 				ADE07C472CED9F920026E527 /* UserDefaultsClient.swift in Sources */,
 				492546D62C704DFB00B86971 /* AppFeature.swift in Sources */,
 				492546DA2C71C41A00B86971 /* AverageCalculatorModel.swift in Sources */,
@@ -633,6 +665,22 @@
 				minimumVersion = 11.12.0;
 			};
 		};
+		AD056EB52CEEBADC00F213E6 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+		AD056EBA2CEEBB4000F213E6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
 		ADE07C532CEEA6F30026E527 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -653,6 +701,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AD056EAC2CEEB42B00F213E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
+		};
+		AD056EB62CEEBADC00F213E6 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD056EB52CEEBADC00F213E6 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+		AD056EBB2CEEBB4000F213E6 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD056EBA2CEEBB4000F213E6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		ADE07C542CEEA6F30026E527 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
