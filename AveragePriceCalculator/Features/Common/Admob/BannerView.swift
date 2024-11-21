@@ -45,7 +45,7 @@ class BannerCoordinator: NSObject, GADBannerViewDelegate {
     
     private(set) lazy var bannerView: GADBannerView = {
         let banner = GADBannerView(adSize: parent.adSize)
-        banner.adUnitID = "ca-app-pub-3940256099942544/2435281174"
+        banner.adUnitID = PlistReader().getValueFromPlist(plistName: .admobInfo, key: AdmobConstants.admobId)
         banner.load(GADRequest())
         banner.delegate = self
         return banner

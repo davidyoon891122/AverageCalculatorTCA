@@ -35,6 +35,8 @@
 		AD056EB92CEEBB2C00F213E6 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056EB82CEEBB2C00F213E6 /* LottieView.swift */; };
 		AD056EBC2CEEBB4000F213E6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AD056EBB2CEEBB4000F213E6 /* SnapKit */; };
 		AD056EBF2CEECBD400F213E6 /* admob-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = AD056EBE2CEECBD400F213E6 /* admob-loading.json */; };
+		AD056EC22CEEEB6A00F213E6 /* PlistReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056EC12CEEEB6A00F213E6 /* PlistReader.swift */; };
+		AD056ECA2CEEEE1D00F213E6 /* AdmobBanner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD056EC92CEEEE1D00F213E6 /* AdmobBanner-Info.plist */; };
 		AD20E2502C89A96A007BF1E9 /* SettingsMenuType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */; };
 		AD20E2522C8A7300007BF1E9 /* ThemeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */; };
 		ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C2A2CED694A0026E527 /* Extension+String.swift */; };
@@ -69,11 +71,13 @@
 		4946AB072C82AC76008A86C4 /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
 		4946AB092C82AC8A008A86C4 /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModel.swift; sourceTree = "<group>"; };
-		AD056EAB2CEEB34A00F213E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AD056EAB2CEEB34A00F213E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD056EAF2CEEB47100F213E6 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		AD056EB12CEEB63D00F213E6 /* AdmobBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmobBannerView.swift; sourceTree = "<group>"; };
 		AD056EB82CEEBB2C00F213E6 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		AD056EBE2CEECBD400F213E6 /* admob-loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "admob-loading.json"; sourceTree = "<group>"; };
+		AD056EC12CEEEB6A00F213E6 /* PlistReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistReader.swift; sourceTree = "<group>"; };
+		AD056EC92CEEEE1D00F213E6 /* AdmobBanner-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AdmobBanner-Info.plist"; sourceTree = "<group>"; };
 		AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuType.swift; sourceTree = "<group>"; };
 		AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFeature.swift; sourceTree = "<group>"; };
 		ADE07C2A2CED694A0026E527 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
@@ -120,8 +124,8 @@
 		492546B52C7030F100B86971 /* AveragePriceCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				AD056EAB2CEEB34A00F213E6 /* Info.plist */,
 				492546B62C7030F100B86971 /* AveragePriceCalculatorApp.swift */,
+				AD056ECB2CEEF21800F213E6 /* Delegate */,
 				AD056EBD2CEECBCC00F213E6 /* Resources */,
 				492546BC2C7030F300B86971 /* Preview Content */,
 				492546D22C704A6600B86971 /* Features */,
@@ -130,8 +134,9 @@
 				ADE07C4F2CEDC8F50026E527 /* InternalStorage */,
 				4946AAFE2C82A720008A86C4 /* CustomView */,
 				ADE07C482CEDA4B50026E527 /* Localizable.xcstrings */,
+				AD056EAB2CEEB34A00F213E6 /* Info.plist */,
 				ADE07C512CEEA5DA0026E527 /* GoogleService-Info.plist */,
-				ADE07C5A2CEEA7150026E527 /* AppDelegate.swift */,
+				AD056EC92CEEEE1D00F213E6 /* AdmobBanner-Info.plist */,
 			);
 			path = AveragePriceCalculator;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 			children = (
 				492546D12C704A5C00B86971 /* Extension */,
 				4946AB0B2C82AC8E008A86C4 /* Modifier */,
+				AD056EC12CEEEB6A00F213E6 /* PlistReader.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -261,6 +267,14 @@
 				AD056EBE2CEECBD400F213E6 /* admob-loading.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		AD056ECB2CEEF21800F213E6 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				ADE07C5A2CEEA7150026E527 /* AppDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		AD20E24D2C89A884007BF1E9 /* Calculator */ = {
@@ -393,6 +407,7 @@
 			files = (
 				AD056EBF2CEECBD400F213E6 /* admob-loading.json in Resources */,
 				4946AB062C82A92D008A86C4 /* Colors.xcassets in Resources */,
+				AD056ECA2CEEEE1D00F213E6 /* AdmobBanner-Info.plist in Resources */,
 				492546BE2C7030F300B86971 /* Preview Assets.xcassets in Resources */,
 				ADE07C522CEEA5DA0026E527 /* GoogleService-Info.plist in Resources */,
 				ADE07C492CEDA4B50026E527 /* Localizable.xcstrings in Resources */,
@@ -428,6 +443,7 @@
 				4946AB0D2C82ACDE008A86C4 /* ToastModel.swift in Sources */,
 				4946AAFB2C79DD89008A86C4 /* ItemDetailFeature.swift in Sources */,
 				492546CA2C70342F00B86971 /* ItemModel.swift in Sources */,
+				AD056EC22CEEEB6A00F213E6 /* PlistReader.swift in Sources */,
 				AD056EB22CEEB63D00F213E6 /* AdmobBannerView.swift in Sources */,
 				492546C82C70332400B86971 /* DisplayListFeature.swift in Sources */,
 				492546CC2C70386E00B86971 /* UserDefaultsManager.swift in Sources */,
