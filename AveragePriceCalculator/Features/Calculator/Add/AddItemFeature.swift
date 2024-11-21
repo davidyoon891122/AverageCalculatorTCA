@@ -216,7 +216,13 @@ struct AddItemView: View {
                                 .bold()
                                 .font(.system(size: 22.0))
                             
-                            TextField("First Price", text: $store.firstPrice.sending(\.setFirstPrice))
+                            TextField("First Price", text: Binding(
+                                get: { store.firstPrice },
+                                set: { newValue in
+                                    let filtered = newValue.filter { "0123456789".contains($0) }
+                                    store.send(.setFirstPrice(filtered))
+                                }
+                            ))
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .firstPrice)
                                 .padding()
@@ -225,7 +231,13 @@ struct AddItemView: View {
                                         .stroke(.gray)
                                 }
                             
-                            TextField("First Quantity", text: $store.firstQuantity.sending(\.setFirstQuantity))
+                            TextField("First Quantity", text: Binding(
+                                get: { store.firstQuantity },
+                                set: { newValue in
+                                    let filtered = newValue.filter { "0123456789".contains($0) }
+                                    store.send(.setFirstQuantity(filtered))
+                                }
+                            ))
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .firstQuantity)
                                 .padding()
@@ -240,7 +252,13 @@ struct AddItemView: View {
                                 .bold()
                                 .font(.system(size: 22.0))
                             
-                            TextField("Second Price", text: $store.secondPrice.sending(\.setSecondPrice))
+                            TextField("Second Price", text: Binding(
+                                get: { store.secondPrice },
+                                set: { newValue in
+                                    let filtered = newValue.filter { "0123456789".contains($0) }
+                                    store.send(.setSecondPrice(filtered))
+                                }
+                            ))
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .secondPrice)
                                 .padding()
@@ -249,7 +267,13 @@ struct AddItemView: View {
                                         .stroke(.gray)
                                 }
                             
-                            TextField("Second Quantity", text: $store.secondQuantity.sending(\.setSecondQuantity))
+                            TextField("Second Quantity", text: Binding(
+                                get: { store.secondQuantity },
+                                set: { newValue in
+                                    let filtered = newValue.filter { "0123456789".contains($0) }
+                                    store.send(.setSecondQuantity(filtered))
+                                }
+                            ))
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .secondQuantity)
                                 .padding()
