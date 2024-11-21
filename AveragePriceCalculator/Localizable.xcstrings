@@ -60,6 +60,9 @@
         }
       }
     },
+    "Email functionality is not available on this device.\nPlease check your email configuration and try again." : {
+
+    },
     "First Price" : {
       "localizations" : {
         "ko" : {
@@ -137,6 +140,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "수익률:"
+          }
+        }
+      }
+    },
+    "Report" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버그 신고 및 개선 요청"
           }
         }
       }

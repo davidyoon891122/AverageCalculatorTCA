@@ -10,13 +10,14 @@ import Foundation
 enum SettingsMenuType: CaseIterable {
     
     case theme
-//    case help
-//    case report
+    case report
     
     var title: String {
         switch self {
         case .theme:
             "Theme".localized()
+        case .report:
+            "Report".localized()
         }
     }
     

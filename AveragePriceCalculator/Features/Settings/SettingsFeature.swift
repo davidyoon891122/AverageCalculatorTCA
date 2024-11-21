@@ -21,6 +21,8 @@ struct SettingsFeature {
         let menus: [SettingsMenuType] = SettingsMenuType.allCases
         var path = StackState<Path.State>()
         
+        @Presents var reportFeatureState: ReportFeature.State?
+        
         @Shared(.appStorage("theme")) var theme: ThemeType = .system
     }
 
@@ -28,6 +30,7 @@ struct SettingsFeature {
         case onAppear
         case didTapMenu(SettingsMenuType)
         case path(StackActionOf<Path>)
+        case reportAction(PresentationAction<ReportFeature.Action>)
     }
 
     var body: some ReducerOf<Self> {
@@ -40,13 +43,20 @@ struct SettingsFeature {
                 switch menu {
                 case .theme:
                     state.path.append(.theme(ThemeFeature.State()))
+                case .report:
+                    state.reportFeatureState = ReportFeature.State()
                 }
                 return .none
-            case .path(_):
+            case .path:
+                return .none
+            case .reportAction:
                 return .none
             }
         }
         .forEach(\.path, action: \.path)
+        .ifLet(\.$reportFeatureState, action: \.reportAction) {
+            ReportFeature()
+        }
     }
 
 }
@@ -79,6 +89,9 @@ struct SettingsView: View {
                     .navigationTitle(store.navigationTitle)
                     AdmobBannerView()
                         .frame(height: 90.0)
+                }
+                .sheet(item: $store.scope(state: \.reportFeatureState, action: \.reportAction)) { reportStore in
+                    ReportView()
                 }
             } destination: { store in
                 switch store.case {

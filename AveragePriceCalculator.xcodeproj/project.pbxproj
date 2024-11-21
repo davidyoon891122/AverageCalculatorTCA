@@ -37,6 +37,8 @@
 		AD056EBF2CEECBD400F213E6 /* admob-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = AD056EBE2CEECBD400F213E6 /* admob-loading.json */; };
 		AD056EC22CEEEB6A00F213E6 /* PlistReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056EC12CEEEB6A00F213E6 /* PlistReader.swift */; };
 		AD056ECA2CEEEE1D00F213E6 /* AdmobBanner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD056EC92CEEEE1D00F213E6 /* AdmobBanner-Info.plist */; };
+		AD056ECE2CEEF54D00F213E6 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056ECD2CEEF54D00F213E6 /* EmailView.swift */; };
+		AD056ED02CEEF6E000F213E6 /* ReportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056ECF2CEEF6E000F213E6 /* ReportFeature.swift */; };
 		AD20E2502C89A96A007BF1E9 /* SettingsMenuType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */; };
 		AD20E2522C8A7300007BF1E9 /* ThemeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */; };
 		ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C2A2CED694A0026E527 /* Extension+String.swift */; };
@@ -78,6 +80,8 @@
 		AD056EBE2CEECBD400F213E6 /* admob-loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "admob-loading.json"; sourceTree = "<group>"; };
 		AD056EC12CEEEB6A00F213E6 /* PlistReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistReader.swift; sourceTree = "<group>"; };
 		AD056EC92CEEEE1D00F213E6 /* AdmobBanner-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AdmobBanner-Info.plist"; sourceTree = "<group>"; };
+		AD056ECD2CEEF54D00F213E6 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
+		AD056ECF2CEEF6E000F213E6 /* ReportFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFeature.swift; sourceTree = "<group>"; };
 		AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuType.swift; sourceTree = "<group>"; };
 		AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeFeature.swift; sourceTree = "<group>"; };
 		ADE07C2A2CED694A0026E527 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
@@ -132,7 +136,6 @@
 				492546CF2C704A4E00B86971 /* Model */,
 				492546D02C704A5300B86971 /* Tools */,
 				ADE07C4F2CEDC8F50026E527 /* InternalStorage */,
-				4946AAFE2C82A720008A86C4 /* CustomView */,
 				ADE07C482CEDA4B50026E527 /* Localizable.xcstrings */,
 				AD056EAB2CEEB34A00F213E6 /* Info.plist */,
 				ADE07C512CEEA5DA0026E527 /* GoogleService-Info.plist */,
@@ -154,7 +157,6 @@
 			children = (
 				492546C92C70342F00B86971 /* ItemModel.swift */,
 				492546D92C71C41A00B86971 /* AverageCalculatorModel.swift */,
-				AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,14 +191,6 @@
 				AD20E24E2C89A890007BF1E9 /* Settings */,
 			);
 			path = Features;
-			sourceTree = "<group>";
-		};
-		4946AAFE2C82A720008A86C4 /* CustomView */ = {
-			isa = PBXGroup;
-			children = (
-				4946AB042C82A846008A86C4 /* Toast */,
-			);
-			path = CustomView;
 			sourceTree = "<group>";
 		};
 		4946AB032C82A840008A86C4 /* Model */ = {
@@ -236,8 +230,10 @@
 		AD056EB32CEEB81200F213E6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4946AB042C82A846008A86C4 /* Toast */,
 				AD056EB42CEEB81A00F213E6 /* Admob */,
 				AD056EB82CEEBB2C00F213E6 /* LottieView.swift */,
+				AD056ECD2CEEF54D00F213E6 /* EmailView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -277,6 +273,14 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
+		AD056ECC2CEEF50500F213E6 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		AD20E24D2C89A884007BF1E9 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,8 +294,10 @@
 		AD20E24E2C89A890007BF1E9 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */,
 				492546D32C704C1600B86971 /* SettingsFeature.swift */,
-				AD20E2512C8A7300007BF1E9 /* ThemeFeature.swift */,
+				AD056ECC2CEEF50500F213E6 /* Theme */,
+				AD056ECF2CEEF6E000F213E6 /* ReportFeature.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -424,6 +430,8 @@
 			files = (
 				ADE07C5B2CEEA7150026E527 /* AppDelegate.swift in Sources */,
 				ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */,
+				AD056ED02CEEF6E000F213E6 /* ReportFeature.swift in Sources */,
+				AD056ECE2CEEF54D00F213E6 /* EmailView.swift in Sources */,
 				AD056EB92CEEBB2C00F213E6 /* LottieView.swift in Sources */,
 				ADE07C472CED9F920026E527 /* UserDefaultsClient.swift in Sources */,
 				492546D62C704DFB00B86971 /* AppFeature.swift in Sources */,
@@ -583,7 +591,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AveragePriceCalculator/Preview Content\"";
-				DEVELOPMENT_TEAM = HDFLLXK789;
+				DEVELOPMENT_TEAM = R6V3UCSNG3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AveragePriceCalculator/Info.plist;
@@ -616,7 +624,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AveragePriceCalculator/Preview Content\"";
-				DEVELOPMENT_TEAM = HDFLLXK789;
+				DEVELOPMENT_TEAM = R6V3UCSNG3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AveragePriceCalculator/Info.plist;
