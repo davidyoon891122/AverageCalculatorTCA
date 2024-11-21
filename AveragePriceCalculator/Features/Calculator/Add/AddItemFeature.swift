@@ -151,7 +151,7 @@ struct AddItemFeature {
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
-                state.secondQuantity = secondQuantity
+                state.secondQuantity = secondQuantity.commaFormat
                 state.secondQuantityDouble = state.secondQuantity.commaStringtoDouble
                 state.item.secondQuantity = state.secondQuantity.commaStringtoDouble
 
@@ -175,11 +175,12 @@ struct AddItemFeature {
                 }
                 
                 state.item.date = Date().getStringDateByFormat()
-                return .run { [item = state.item] send in
-                    saveItem(item)
-                    await send(.delegate(.saveItem(item)))
-                    await self.dismiss()
-                }
+                saveItem(state.item)
+                
+                return .concatenate(
+                    .send(.delegate(.saveItem(state.item))),
+                    .send(.cancelButtonTapped)
+                )
             case .cancelButtonTapped:
                 return .run { _ in await self.dismiss() }
             case .delegate:

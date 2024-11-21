@@ -60,7 +60,6 @@ struct DisplayListFeature {
             case let .addItem(.presented(.delegate(.saveItem(itemModel)))):
                 state.items.append(itemModel)
                 return .none
-                
             case .addItem:
                 return .none
             case .path(_):
@@ -69,7 +68,7 @@ struct DisplayListFeature {
                 var items = userDefaultsClient.loadItems()
                 items.remove(atOffsets: indexSet)
                 userDefaultsClient.saveItems(items)
-                
+                state.items = items
                 return .none
             }
         }
