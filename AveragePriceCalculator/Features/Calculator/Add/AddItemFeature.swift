@@ -15,18 +15,27 @@ struct AddItemFeature {
     struct State: Equatable {
         let navigationTitle = "Add Item View".localized()
         var item: ItemModel
-        var name: String = ""
+        var name: String {
+            get {
+                self.item.name
+            }
+            set {
+                self.item.name = newValue
+            }
+        }
         var firstPrice: String = ""
         var firstQuantity: String = ""
         var secondPrice: String = ""
         var secondQuantity: String = ""
         
-        var totalAmount: String {
-            totalAmountDouble.commaFormat
-        }
         var averagePrice: String {
             self.averagePriceDouble.commaFormat
         }
+        
+        var totalAmount: String {
+            self.totalAmountDouble.commaFormat
+        }
+        
         var profit: String {
             self.profitDouble.isNaN ? "" : "\(self.profitDouble.displayDecimalPlace(by: 2)) %"
         }

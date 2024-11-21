@@ -109,11 +109,7 @@ struct ItemDetailFeature {
 
         var toast: ToastModel?
         
-        var focusedField: FieldType? {
-            didSet {
-                print(self.focusedField)
-            }
-        }
+        var focusedField: FieldType?
                 
         enum FieldType: Hashable {
             
