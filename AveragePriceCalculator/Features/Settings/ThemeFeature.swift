@@ -113,23 +113,27 @@ struct ThemeSettingView: View {
     
     var body: some View {
         WithPerceptionTracking {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Current Theme: \(store.theme.name)")
-                            .bold()
-                            .font(.system(size: 20))
-                        Spacer()
+            VStack {
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("Current Theme: \(store.theme.name)")
+                                .bold()
+                                .font(.system(size: 20))
+                            Spacer()
+                        }
+                        .padding(.horizontal)
+                        ThemePicker(selection: $store.theme.sending(\.setTheme))
                     }
-                    .padding(.horizontal)
-                    ThemePicker(selection: $store.theme.sending(\.setTheme))
                 }
+                .preferredColorScheme(store.theme.colorScheme)
+                .onAppear {
+                    store.send(.onAppear)
+                }
+                .navigationTitle(store.navigationTitle)
+                AdmobBannerView()
+                    .frame(height: 90)
             }
-            .preferredColorScheme(store.theme.colorScheme)
-            .onAppear {
-                store.send(.onAppear)
-            }
-            .navigationTitle(store.navigationTitle)
         }
     }
     

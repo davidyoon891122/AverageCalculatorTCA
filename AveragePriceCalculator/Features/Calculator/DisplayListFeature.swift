@@ -93,30 +93,34 @@ struct DisplayListView: View {
         WithPerceptionTracking {
             NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
                 ZStack {
-                    List {
-                        ForEach(store.items) { item in
-                            NavigationLink(state: ItemDetailFeature.State(item: item)) {
-                                ItemView(item: item)
+                    VStack {
+                        AdmobBannerView()
+                            .frame(height: 90)
+                        List {
+                            ForEach(store.items) { item in
+                                NavigationLink(state: ItemDetailFeature.State(item: item)) {
+                                    ItemView(item: item)
+                                }
+                                .buttonStyle(.borderless)
+                                .listRowSeparator(.hidden)
                             }
-                            .buttonStyle(.borderless)
-                            .listRowSeparator(.hidden)
+                            .onDelete { indexSet in
+                                store.send(.onDelete(indexSet))
+                            }
                         }
-                        .onDelete { indexSet in
-                            store.send(.onDelete(indexSet))
+                        .listStyle(.plain)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button(action: {
+                                    store.send(.addButtonTapped)
+                                }, label: {
+                                    Image(systemName: "plus.circle")
+                                })
+                            }
                         }
-                    }
-                    .listStyle(.plain)
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button(action: {
-                                store.send(.addButtonTapped)
-                            }, label: {
-                                Image(systemName: "plus.circle")
-                            })
+                        .refreshable {
+                            store.send(.refresh)
                         }
-                    }
-                    .refreshable {
-                        store.send(.refresh)
                     }
                     if store.isLoading {
                         ProgressView()

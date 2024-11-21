@@ -60,22 +60,26 @@ struct SettingsView: View {
     var body: some View {
         WithPerceptionTracking {
             NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
-                ScrollView {
-                    LazyVStack {
-                        ForEach(store.menus, id: \.self) { menu in
-                            MenuView(title: menu.title)
-                                .onTapGesture {
-                                    store.send(.didTapMenu(menu))
-                                }
-                            
+                VStack {
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(store.menus, id: \.self) { menu in
+                                MenuView(title: menu.title)
+                                    .onTapGesture {
+                                        store.send(.didTapMenu(menu))
+                                    }
+                                
+                            }
                         }
                     }
+                    .onAppear {
+                        store.send(.onAppear)
+                    }
+                    .preferredColorScheme(store.theme.colorScheme)
+                    .navigationTitle(store.navigationTitle)
+                    AdmobBannerView()
+                        .frame(height: 90)
                 }
-                .onAppear {
-                    store.send(.onAppear)
-                }
-                .preferredColorScheme(store.theme.colorScheme)
-                .navigationTitle(store.navigationTitle)
             } destination: { store in
                 switch store.case {
                 case let .theme(store):
