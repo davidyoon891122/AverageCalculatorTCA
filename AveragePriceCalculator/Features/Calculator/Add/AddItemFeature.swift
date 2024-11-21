@@ -208,6 +208,7 @@ struct AddItemView: View {
                                 .font(.system(size: 22.0))
                             
                             TextField("First Price", text: $store.firstPrice.sending(\.setFirstPrice))
+                                .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .firstPrice)
                                 .padding()
                                 .overlay {
@@ -216,6 +217,7 @@ struct AddItemView: View {
                                 }
                             
                             TextField("First Quantity", text: $store.firstQuantity.sending(\.setFirstQuantity))
+                                .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .firstQuantity)
                                 .padding()
                                 .overlay {
@@ -230,6 +232,7 @@ struct AddItemView: View {
                                 .font(.system(size: 22.0))
                             
                             TextField("Second Price", text: $store.secondPrice.sending(\.setSecondPrice))
+                                .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .secondPrice)
                                 .padding()
                                 .overlay {
@@ -238,6 +241,7 @@ struct AddItemView: View {
                                 }
                             
                             TextField("Second Quantity", text: $store.secondQuantity.sending(\.setSecondQuantity))
+                                .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .secondQuantity)
                                 .padding()
                                 .overlay {
