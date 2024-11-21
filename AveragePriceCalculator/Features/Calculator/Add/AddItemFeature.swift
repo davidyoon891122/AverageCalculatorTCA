@@ -20,11 +20,12 @@ struct AddItemFeature {
         var firstQuantity: String = ""
         var secondPrice: String = ""
         var secondQuantity: String = ""
+        
         var totalAmount: String {
-            String(totalAmountDouble)
+            totalAmountDouble.commaFormat
         }
         var averagePrice: String {
-            String(self.averagePriceDouble)
+            self.averagePriceDouble.commaFormat
         }
         var profit: String {
             self.profitDouble.isNaN ? "" : "\(self.profitDouble.displayDecimalPlace(by: 2)) %"
@@ -125,25 +126,25 @@ struct AddItemFeature {
 
                 return .none
             case let .setFirstPrice(firstPrice):
-                state.firstPrice = firstPrice
-                state.firstPriceDouble = Double(state.firstPrice) ?? 0
-                state.item.firstPrice = Double(state.firstPrice) ?? 0
+                state.firstPrice = firstPrice.commaFormat
+                state.firstPriceDouble = state.firstPrice.commaStringtoDouble
+                state.item.firstPrice = state.firstPrice.commaStringtoDouble
                 return .none
             case let .setFirstQuantity(firstQuantity):
-                state.firstQuantity = firstQuantity
-                state.firstQuantityDouble = Double(state.firstQuantity) ?? 0
-                state.item.firstQuantity = Double(state.firstQuantity) ?? 0
+                state.firstQuantity = firstQuantity.commaFormat
+                state.firstQuantityDouble = state.firstQuantity.commaStringtoDouble
+                state.item.firstQuantity = state.firstQuantity.commaStringtoDouble
                 return .none
             case let .setSecondPrice(secondPrice):
-                state.secondPrice = secondPrice
-                state.secondPriceDouble = Double(state.secondPrice) ?? 0
-                state.item.secondPrice = Double(state.secondPrice) ?? 0
+                state.secondPrice = secondPrice.commaFormat
+                state.secondPriceDouble = state.secondPrice.commaStringtoDouble
+                state.item.secondPrice = state.secondPrice.commaStringtoDouble
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
                 state.secondQuantity = secondQuantity
-                state.secondQuantityDouble = Double(state.secondQuantity) ?? 0
-                state.item.secondQuantity = Double(state.secondQuantity) ?? 0
+                state.secondQuantityDouble = state.secondQuantity.commaStringtoDouble
+                state.item.secondQuantity = state.secondQuantity.commaStringtoDouble
 
                 return .none
             case .saveButtonTapped:

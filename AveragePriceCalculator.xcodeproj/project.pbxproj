@@ -281,6 +281,14 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
+		AD056ED12CEEFBBF00F213E6 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				AD056ECF2CEEF6E000F213E6 /* ReportFeature.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
 		AD20E24D2C89A884007BF1E9 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,7 +305,7 @@
 				AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */,
 				492546D32C704C1600B86971 /* SettingsFeature.swift */,
 				AD056ECC2CEEF50500F213E6 /* Theme */,
-				AD056ECF2CEEF6E000F213E6 /* ReportFeature.swift */,
+				AD056ED12CEEFBBF00F213E6 /* Report */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
