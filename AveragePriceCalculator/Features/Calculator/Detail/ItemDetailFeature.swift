@@ -104,7 +104,6 @@ struct ItemDetailFeature {
     }
 
     enum Action: BindableAction {
-        case onAppear
         case setName(String)
         case setFirstPrice(String)
         case setFirstQuantity(String)
@@ -131,13 +130,6 @@ struct ItemDetailFeature {
         BindingReducer()
         Reduce { state, action in
             switch action {
-            case .onAppear:
-                state.firstPriceDouble = state.item.firstPrice
-                state.firstQuantityDouble = state.item.firstQuantity
-                state.secondPriceDouble = state.item.secondPrice
-                state.secondQuantityDouble = state.item.secondQuantity
-
-                return .none
             case let .setName(name):
                 state.name = name
 
@@ -326,9 +318,6 @@ struct ItemDetailView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .taostView(toast: $store.toast.sending(\.setToast))
-            .onAppear {
-                store.send(.onAppear)
-            }
             .navigationTitle(store.navigationTitle)
         }
     }
