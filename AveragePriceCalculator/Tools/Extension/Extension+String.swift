@@ -9,10 +9,10 @@ import Foundation
 
 extension String {
     
-    var commaStringtoDouble: Double {
+    var commaStringtoDouble: Decimal {
         let replacedString = self.replacingOccurrences(of: ",", with: "")
         
-        if let doubleValue = Double(replacedString) {
+        if let doubleValue = Decimal(string: replacedString) {
             return doubleValue
         } else {
             return 0

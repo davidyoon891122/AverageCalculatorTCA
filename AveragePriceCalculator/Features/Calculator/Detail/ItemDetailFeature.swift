@@ -39,7 +39,7 @@ struct ItemDetailFeature {
         var secondQuantity: String = ""
         
         var averagePrice: String {
-            self.averagePriceDouble.commaFormat
+            self.averagePriceDouble.formatted(.number)
         }
 
         var totalAmount: String {
@@ -47,27 +47,28 @@ struct ItemDetailFeature {
         }
 
         var profit: String {
-            self.profitDouble.isNaN ? "" : "\(self.profitDouble.displayDecimalPlace(by: 2)) %"
+            self.profitDouble.isNaN ? "" : String(format: "%.2f %%", NSDecimalNumber(decimal: self.profitDouble).doubleValue)
         }
 
-        var firstPriceDouble: Double = 0
-        var firstQuantityDouble: Double = 0
-        var secondPriceDouble: Double = 0
-        var secondQuantityDouble: Double = 0
+        var firstPriceDouble: Decimal = 0
+        var firstQuantityDouble: Decimal = 0
+        var secondPriceDouble: Decimal = 0
+        var secondQuantityDouble: Decimal = 0
 
-        var averagePriceDouble: Double {
+        var averagePriceDouble: Decimal {
             let totalAmount = firstQuantityDouble + secondQuantityDouble
             if totalAmount > 0 {
-                 return ((firstPriceDouble * firstQuantityDouble) + (secondPriceDouble * secondQuantityDouble)) / totalAmount
+                let result = ((firstPriceDouble * firstQuantityDouble) + (secondPriceDouble * secondQuantityDouble)) / totalAmount
+                return result
             } else {
                 return 0
             }
 
         }
 
-        var profitDouble: Double {
-            let firstPrice = firstPriceDouble * firstQuantityDouble // 1
-            let secondPrice = secondPriceDouble * secondQuantityDouble // 20
+        var profitDouble: Decimal {
+            let firstPrice = firstPriceDouble * firstQuantityDouble
+            let secondPrice = secondPriceDouble * secondQuantityDouble
 
             let totalPrice = firstPrice + secondPrice
             let currentPriceValue = secondPriceDouble * (firstQuantityDouble + secondQuantityDouble)
@@ -135,7 +136,6 @@ struct ItemDetailFeature {
 
                 return .none
             case let .setFirstPrice(firstPrice):
-                print(firstPrice)
                 state.firstPrice = firstPrice
                 state.firstPriceDouble = state.firstPrice.commaStringtoDouble
                 state.item.firstPrice = state.firstPrice.commaStringtoDouble

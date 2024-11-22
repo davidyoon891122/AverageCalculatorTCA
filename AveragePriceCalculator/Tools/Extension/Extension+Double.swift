@@ -49,3 +49,19 @@ extension Double {
     }
 
 }
+
+extension Decimal {
+    
+    var commaFormat: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        
+        if let formatterValue = formatter.string(from: NSDecimalNumber(decimal: self)) {
+            return formatterValue
+        } else {
+            return "\(self)"
+        }
+        
+    }
+    
+}

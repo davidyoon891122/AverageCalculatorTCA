@@ -163,7 +163,7 @@ struct ItemView: View {
                     .bold()
                     .font(.system(size: 18.0))
                 Spacer()
-                Text(item.averagePrice.displayFormattedStringByPrice())
+                Text(item.averagePrice)
                     .bold()
                     .font(.system(size: 22.0))
             }
@@ -172,7 +172,7 @@ struct ItemView: View {
                     .foregroundStyle(.gray)
                     .font(.system(size: 14.0))
                 Spacer()
-                Text("\(item.profit.displayDecimalPlace(by: 2))%")
+                Text("\(item.profit) %")
                     .bold()
                     .foregroundStyle(item.profitColor)
                     .font(.system(size: 16.0))

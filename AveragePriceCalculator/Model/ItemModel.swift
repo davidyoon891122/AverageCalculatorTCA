@@ -13,21 +13,26 @@ struct ItemModel: Codable, Identifiable, Equatable {
     let id: UUID
     var name: String
     var date: String
-    var firstPrice: Double
-    var firstQuantity: Double
-    var secondPrice: Double
-    var secondQuantity: Double
+    var firstPrice: Decimal
+    var firstQuantity: Decimal
+    var secondPrice: Decimal
+    var secondQuantity: Decimal
 
 }
 
 
 extension ItemModel {
 
-    var averagePrice: Double {
-        ((self.firstPrice * self.firstQuantity) + (self.secondPrice * self.secondQuantity)) / (self.firstQuantity + self.secondQuantity)
+    var averagePrice: String {
+        let result = ((self.firstPrice * self.firstQuantity) + (self.secondPrice * self.secondQuantity)) / (self.firstQuantity + self.secondQuantity)
+        if result > 1 {
+            return NSDecimalNumber(decimal: result).stringValue
+        } else {
+            return String(format: "%.8f", NSDecimalNumber(decimal: result).doubleValue)
+        }
     }
     
-    var profit: Double {
+    var profit: String {
         let firstValuePrice = firstPrice * firstQuantity
         let secondValuePrice = secondPrice * secondQuantity
         
@@ -35,11 +40,13 @@ extension ItemModel {
         
         let currentPriceValue = secondPrice * (firstQuantity + secondQuantity)
 
-        return ((currentPriceValue - totalPrice) / totalPrice) * 100
+        let result = ((currentPriceValue - totalPrice) / totalPrice) * 100
+
+        return String(format: "%.2f", NSDecimalNumber(decimal: result).doubleValue)
     }
     
     var profitColor: Color {
-        self.profit > 0 ? .red : .blue
+        Double(self.profit) ?? 0.0 > 0 ? .red : .blue
     }
 
 }

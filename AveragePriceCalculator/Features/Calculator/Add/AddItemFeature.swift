@@ -31,14 +31,15 @@ struct AddItemFeature {
         }
         
         var profit: String {
-            self.profitDouble.isNaN ? "" : "\(self.profitDouble.displayDecimalPlace(by: 2)) %"
+            self.profitDouble.isNaN ? "" : String(format: "%.2f %%", NSDecimalNumber(decimal: self.profitDouble).doubleValue)
         }
 
-        var firstPriceDouble: Double = 0
-        var firstQuantityDouble: Double = 0
-        var secondPriceDouble: Double = 0
-        var secondQuantityDouble: Double = 0
-        var averagePriceDouble: Double {
+        var firstPriceDouble: Decimal = 0
+        var firstQuantityDouble: Decimal = 0
+        var secondPriceDouble: Decimal = 0
+        var secondQuantityDouble: Decimal = 0
+        
+        var averagePriceDouble: Decimal {
             let totalAmount = firstQuantityDouble + secondQuantityDouble
             if totalAmount > 0 {
                  return ((firstPriceDouble * firstQuantityDouble) + (secondPriceDouble * secondQuantityDouble)) / totalAmount
@@ -47,10 +48,11 @@ struct AddItemFeature {
             }
 
         }
-        var totalAmountDouble: Double {
+        var totalAmountDouble: Decimal {
             firstQuantityDouble + secondQuantityDouble
         }
-        var profitDouble: Double {
+        
+        var profitDouble: Decimal {
             let firstPrice = firstPriceDouble * firstQuantityDouble // 1
             let secondPrice = secondPriceDouble * secondQuantityDouble // 20
 
