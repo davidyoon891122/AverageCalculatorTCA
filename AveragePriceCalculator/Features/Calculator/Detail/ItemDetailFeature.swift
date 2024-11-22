@@ -220,8 +220,7 @@ struct ItemDetailView: View {
                                 .focused($focusedField, equals: .firstPrice)
                                 .padding()
                                 .onChange(of: store.firstPrice) { newValue in
-                                    let filtered = newValue.filter { "0123456789.".contains($0) }
-                                    store.send(.setFirstPrice(filtered.commaFormat))
+                                    store.send(.setFirstPrice(newValue.commaFormat))
                                 }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -233,8 +232,7 @@ struct ItemDetailView: View {
                                 .focused($focusedField, equals: .firstQuantity)
                                 .padding()
                                 .onChange(of: store.firstQuantity) { newValue in
-                                    let filtered = newValue.filter { "0123456789.".contains($0) }
-                                    store.send(.setFirstQuantity(filtered.commaFormat))
+                                    store.send(.setFirstQuantity(newValue.commaFormat))
                                 }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -252,8 +250,7 @@ struct ItemDetailView: View {
                                 .focused($focusedField, equals: .secondPrice)
                                 .padding()
                                 .onChange(of: store.secondPrice) { newValue in
-                                    let filtered = newValue.filter { "0123456789.".contains($0) }
-                                    store.send(.setSecondPrice(filtered.commaFormat))
+                                    store.send(.setSecondPrice(newValue.commaFormat))
                                 }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
@@ -265,8 +262,7 @@ struct ItemDetailView: View {
                                 .focused($focusedField, equals: .secondQuantity)
                                 .padding()
                                 .onChange(of: store.secondQuantity) { newValue in
-                                    let filtered = newValue.filter { "0123456789.".contains($0) }
-                                    store.send(.setSecondQuantity(filtered.commaFormat))
+                                    store.send(.setSecondQuantity(newValue.commaFormat))
                                 }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)

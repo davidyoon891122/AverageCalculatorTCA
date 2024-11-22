@@ -20,14 +20,30 @@ extension String {
     }
     
     var commaFormat: String {
-        let replacedString = self.replacingOccurrences(of: ",", with: "")
+        let filtered = self.filter { "0123456789.".contains($0) }
+        let components = filtered.components(separatedBy: ".")
         
-        if let doubleValue = Double(replacedString) {
-            return doubleValue.commaFormat
+        if components.count > 1 {
+            let integerPart = components[0]
+            let decimalPart = components[1]
+            
+            if let integerValue = Double(integerPart) {
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                let formattedInteger = formatter.string(from: NSNumber(value: integerValue)) ?? integerPart
+                
+                return "\(formattedInteger).\(decimalPart)"
+            }
+            return filtered
+            
         } else {
-            return self
+            if let doubleValue = Double(filtered) {
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                return formatter.string(from: NSNumber(value: doubleValue)) ?? filtered
+            }
+            return filtered
         }
-        
     }
     
 }
