@@ -93,8 +93,6 @@ struct DisplayListView: View {
             NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
                 ZStack {
                     VStack {
-                        AdmobBannerView()
-                            .frame(height: 90.0)
                         List {
                             ForEach(store.items) { item in
                                 NavigationLink(state: ItemDetailFeature.State(item: item)) {
@@ -120,6 +118,8 @@ struct DisplayListView: View {
                         .refreshable {
                             store.send(.refresh)
                         }
+                        AdmobBannerView()
+                            .frame(height: 90.0)
                     }
                     if store.isLoading {
                         ProgressView()
