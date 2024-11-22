@@ -15,14 +15,8 @@ struct AddItemFeature {
     struct State: Equatable {
         let navigationTitle = "Add Item View".localized()
         var item: ItemModel
-        var name: String {
-            get {
-                self.item.name
-            }
-            set {
-                self.item.name = newValue
-            }
-        }
+        
+        var name: String = ""
         var firstPrice: String = ""
         var firstQuantity: String = ""
         var secondPrice: String = ""
@@ -135,23 +129,25 @@ struct AddItemFeature {
 
                 return .none
             case let .setFirstPrice(firstPrice):
-                state.firstPrice = firstPrice.commaFormat
+                state.firstPrice = firstPrice
                 state.firstPriceDouble = state.firstPrice.commaStringtoDouble
                 state.item.firstPrice = state.firstPrice.commaStringtoDouble
+                
                 return .none
             case let .setFirstQuantity(firstQuantity):
-                state.firstQuantity = firstQuantity.commaFormat
+                state.firstQuantity = firstQuantity
                 state.firstQuantityDouble = state.firstQuantity.commaStringtoDouble
                 state.item.firstQuantity = state.firstQuantity.commaStringtoDouble
+                
                 return .none
             case let .setSecondPrice(secondPrice):
-                state.secondPrice = secondPrice.commaFormat
+                state.secondPrice = secondPrice
                 state.secondPriceDouble = state.secondPrice.commaStringtoDouble
                 state.item.secondPrice = state.secondPrice.commaStringtoDouble
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
-                state.secondQuantity = secondQuantity.commaFormat
+                state.secondQuantity = secondQuantity
                 state.secondQuantityDouble = state.secondQuantity.commaStringtoDouble
                 state.item.secondQuantity = state.secondQuantity.commaStringtoDouble
 
@@ -217,31 +213,28 @@ struct AddItemView: View {
                                 .bold()
                                 .font(.system(size: 22.0))
                             
-                            TextField("First Price", text: Binding(
-                                get: { store.firstPrice },
-                                set: { newValue in
-                                    let filtered = newValue.filter { "0123456789".contains($0) }
-                                    store.send(.setFirstPrice(filtered))
-                                }
-                            ))
+                            TextField("First Price", text: $store.firstPrice.sending(\.setFirstPrice))
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .firstPrice)
                                 .padding()
+                                .onChange(of: store.firstPrice) { newValue in
+                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                    store.send(.setFirstPrice(filtered.commaFormat))
+                                    
+                                }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
                                         .stroke(.gray)
                                 }
                             
-                            TextField("First Quantity", text: Binding(
-                                get: { store.firstQuantity },
-                                set: { newValue in
-                                    let filtered = newValue.filter { "0123456789".contains($0) }
-                                    store.send(.setFirstQuantity(filtered))
-                                }
-                            ))
+                            TextField("First Quantity", text: $store.firstQuantity.sending(\.setFirstQuantity))
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .firstQuantity)
                                 .padding()
+                                .onChange(of: store.firstQuantity) { newValue in
+                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                    store.send(.setFirstQuantity(filtered.commaFormat))
+                                }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
                                         .stroke(.gray)
@@ -253,31 +246,27 @@ struct AddItemView: View {
                                 .bold()
                                 .font(.system(size: 22.0))
                             
-                            TextField("Second Price", text: Binding(
-                                get: { store.secondPrice },
-                                set: { newValue in
-                                    let filtered = newValue.filter { "0123456789".contains($0) }
-                                    store.send(.setSecondPrice(filtered))
-                                }
-                            ))
+                            TextField("Second Price", text: $store.secondPrice.sending(\.setSecondPrice))
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .secondPrice)
                                 .padding()
+                                .onChange(of: store.secondPrice) { newValue in
+                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                    store.send(.setSecondPrice(filtered.commaFormat))
+                                }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
                                         .stroke(.gray)
                                 }
                             
-                            TextField("Second Quantity", text: Binding(
-                                get: { store.secondQuantity },
-                                set: { newValue in
-                                    let filtered = newValue.filter { "0123456789".contains($0) }
-                                    store.send(.setSecondQuantity(filtered))
-                                }
-                            ))
+                            TextField("Second Quantity", text: $store.secondQuantity.sending(\.setSecondQuantity))
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .secondQuantity)
                                 .padding()
+                                .onChange(of: store.secondQuantity) { newValue in
+                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                    store.send(.setSecondQuantity(filtered.commaFormat))
+                                }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
                                         .stroke(.gray)

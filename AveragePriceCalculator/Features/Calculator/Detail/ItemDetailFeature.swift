@@ -17,47 +17,27 @@ struct ItemDetailFeature {
         var navigationTitle: String {
             self.item.name
         }
+        
+        init(item: ItemModel) {
+            self.item = item
+            self.name = item.name
+            self.firstPrice = item.firstPrice.commaFormat
+            self.firstQuantity = item.firstQuantity.commaFormat
+            self.secondPrice = item.secondPrice.commaFormat
+            self.secondQuantity = item.secondQuantity.commaFormat
+            
+            self.firstPriceDouble = item.firstPrice
+            self.firstQuantityDouble = item.firstQuantity
+            self.secondPriceDouble = item.secondPrice
+            self.secondQuantityDouble = item.secondQuantity
+        }
 
-        var name: String {
-            get {
-                self.item.name
-            }
-            set {
-                self.item.name = newValue
-            }
-        }
-        var firstPrice: String {
-            get {
-                self.item.firstPrice.commaFormat
-            }
-            set {
-                self.item.firstPrice = newValue.commaStringtoDouble
-            }
-        }
-        var firstQuantity: String {
-            get {
-                self.item.firstQuantity.commaFormat
-            }
-            set {
-                self.item.firstQuantity = newValue.commaStringtoDouble
-            }
-        }
-        var secondPrice: String {
-            get {
-                self.item.secondPrice.commaFormat
-            }
-            set {
-                self.item.secondPrice = newValue.commaStringtoDouble
-            }
-        }
-        var secondQuantity: String {
-            get {
-                self.item.secondQuantity.commaFormat
-            }
-            set {
-                self.item.secondQuantity = newValue.commaStringtoDouble
-            }
-        }
+        var name: String = ""
+        var firstPrice: String = ""
+        var firstQuantity: String = ""
+        var secondPrice: String = ""
+        var secondQuantity: String = ""
+        
         var averagePrice: String {
             self.averagePriceDouble.commaFormat
         }
@@ -163,23 +143,28 @@ struct ItemDetailFeature {
 
                 return .none
             case let .setFirstPrice(firstPrice):
+                print(firstPrice)
                 state.firstPrice = firstPrice
                 state.firstPriceDouble = state.firstPrice.commaStringtoDouble
+                state.item.firstPrice = state.firstPrice.commaStringtoDouble
 
                 return .none
             case let .setFirstQuantity(firstQuantity):
                 state.firstQuantity = firstQuantity
                 state.firstQuantityDouble = state.firstQuantity.commaStringtoDouble
+                state.item.firstQuantity = state.firstQuantity.commaStringtoDouble
 
                 return .none
             case let .setSecondPrice(secondPrice):
                 state.secondPrice = secondPrice
                 state.secondPriceDouble = state.secondPrice.commaStringtoDouble
+                state.item.secondPrice = state.secondPrice.commaStringtoDouble
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
                 state.secondQuantity = secondQuantity
                 state.secondQuantityDouble = state.secondQuantity.commaStringtoDouble
+                state.item.secondQuantity = state.secondQuantity.commaStringtoDouble
 
                 return .none
             case .modifyButtonTapped:
@@ -242,6 +227,10 @@ struct ItemDetailView: View {
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .firstPrice)
                                 .padding()
+                                .onChange(of: store.firstPrice) { newValue in
+                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                    store.send(.setFirstPrice(filtered.commaFormat))
+                                }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
                                         .stroke(.gray)
@@ -251,6 +240,10 @@ struct ItemDetailView: View {
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .firstQuantity)
                                 .padding()
+                                .onChange(of: store.firstQuantity) { newValue in
+                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                    store.send(.setFirstQuantity(filtered.commaFormat))
+                                }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
                                         .stroke(.gray)
@@ -266,6 +259,10 @@ struct ItemDetailView: View {
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .secondPrice)
                                 .padding()
+                                .onChange(of: store.secondPrice) { newValue in
+                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                    store.send(.setSecondPrice(filtered.commaFormat))
+                                }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
                                         .stroke(.gray)
@@ -275,6 +272,10 @@ struct ItemDetailView: View {
                                 .keyboardType(.decimalPad)
                                 .focused($focusedField, equals: .secondQuantity)
                                 .padding()
+                                .onChange(of: store.secondQuantity) { newValue in
+                                    let filtered = newValue.filter { "0123456789.".contains($0) }
+                                    store.send(.setSecondQuantity(filtered.commaFormat))
+                                }
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 4.0)
                                         .stroke(.gray)
