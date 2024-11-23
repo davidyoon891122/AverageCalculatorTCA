@@ -28,6 +28,11 @@
 		4946AB082C82AC76008A86C4 /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AB072C82AC76008A86C4 /* Extension+View.swift */; };
 		4946AB0A2C82AC8A008A86C4 /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AB092C82AC8A008A86C4 /* ToastModifier.swift */; };
 		4946AB0D2C82ACDE008A86C4 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */; };
+		4954F48F2CF0B506001704FA /* AdmobBanner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4954F48D2CF0B506001704FA /* AdmobBanner-Info.plist */; };
+		4954F4902CF0B506001704FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4954F48E2CF0B506001704FA /* GoogleService-Info.plist */; };
+		4954F4922CF0C30C001704FA /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4954F4912CF0C30C001704FA /* EmptyListView.swift */; };
+		4954F4982CF16C24001704FA /* noContent.json in Resources */ = {isa = PBXBuildFile; fileRef = 4954F4972CF16C24001704FA /* noContent.json */; };
+		4954F49A2CF16CA9001704FA /* SwiftUILottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4954F4992CF16CA9001704FA /* SwiftUILottieView.swift */; };
 		AD056EAE2CEEB42B00F213E6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = AD056EAD2CEEB42B00F213E6 /* GoogleMobileAds */; };
 		AD056EB02CEEB47100F213E6 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056EAF2CEEB47100F213E6 /* BannerView.swift */; };
 		AD056EB22CEEB63D00F213E6 /* AdmobBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056EB12CEEB63D00F213E6 /* AdmobBannerView.swift */; };
@@ -36,7 +41,6 @@
 		AD056EBC2CEEBB4000F213E6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AD056EBB2CEEBB4000F213E6 /* SnapKit */; };
 		AD056EBF2CEECBD400F213E6 /* admob-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = AD056EBE2CEECBD400F213E6 /* admob-loading.json */; };
 		AD056EC22CEEEB6A00F213E6 /* PlistReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056EC12CEEEB6A00F213E6 /* PlistReader.swift */; };
-		AD056ECA2CEEEE1D00F213E6 /* AdmobBanner-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD056EC92CEEEE1D00F213E6 /* AdmobBanner-Info.plist */; };
 		AD056ECE2CEEF54D00F213E6 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056ECD2CEEF54D00F213E6 /* EmailView.swift */; };
 		AD056ED02CEEF6E000F213E6 /* ReportFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD056ECF2CEEF6E000F213E6 /* ReportFeature.swift */; };
 		AD20E2502C89A96A007BF1E9 /* SettingsMenuType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */; };
@@ -44,7 +48,6 @@
 		ADE07C2B2CED694A0026E527 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C2A2CED694A0026E527 /* Extension+String.swift */; };
 		ADE07C472CED9F920026E527 /* UserDefaultsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE07C462CED9F920026E527 /* UserDefaultsClient.swift */; };
 		ADE07C492CEDA4B50026E527 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = ADE07C482CEDA4B50026E527 /* Localizable.xcstrings */; };
-		ADE07C522CEEA5DA0026E527 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADE07C512CEEA5DA0026E527 /* GoogleService-Info.plist */; };
 		ADE07C552CEEA6F30026E527 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = ADE07C542CEEA6F30026E527 /* FirebaseAnalytics */; };
 		ADE07C572CEEA6F30026E527 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = ADE07C562CEEA6F30026E527 /* FirebaseCore */; };
 		ADE07C592CEEA6F30026E527 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = ADE07C582CEEA6F30026E527 /* FirebaseMessaging */; };
@@ -73,13 +76,17 @@
 		4946AB072C82AC76008A86C4 /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
 		4946AB092C82AC8A008A86C4 /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		4946AB0C2C82ACDE008A86C4 /* ToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModel.swift; sourceTree = "<group>"; };
+		4954F48D2CF0B506001704FA /* AdmobBanner-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AdmobBanner-Info.plist"; sourceTree = "<group>"; };
+		4954F48E2CF0B506001704FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4954F4912CF0C30C001704FA /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
+		4954F4972CF16C24001704FA /* noContent.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = noContent.json; sourceTree = "<group>"; };
+		4954F4992CF16CA9001704FA /* SwiftUILottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUILottieView.swift; sourceTree = "<group>"; };
 		AD056EAB2CEEB34A00F213E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD056EAF2CEEB47100F213E6 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		AD056EB12CEEB63D00F213E6 /* AdmobBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmobBannerView.swift; sourceTree = "<group>"; };
 		AD056EB82CEEBB2C00F213E6 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		AD056EBE2CEECBD400F213E6 /* admob-loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "admob-loading.json"; sourceTree = "<group>"; };
 		AD056EC12CEEEB6A00F213E6 /* PlistReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistReader.swift; sourceTree = "<group>"; };
-		AD056EC92CEEEE1D00F213E6 /* AdmobBanner-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AdmobBanner-Info.plist"; sourceTree = "<group>"; };
 		AD056ECD2CEEF54D00F213E6 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		AD056ECF2CEEF6E000F213E6 /* ReportFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFeature.swift; sourceTree = "<group>"; };
 		AD20E24F2C89A96A007BF1E9 /* SettingsMenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuType.swift; sourceTree = "<group>"; };
@@ -87,7 +94,6 @@
 		ADE07C2A2CED694A0026E527 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		ADE07C462CED9F920026E527 /* UserDefaultsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsClient.swift; sourceTree = "<group>"; };
 		ADE07C482CEDA4B50026E527 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		ADE07C512CEEA5DA0026E527 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADE07C5A2CEEA7150026E527 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,8 +144,8 @@
 				ADE07C4F2CEDC8F50026E527 /* InternalStorage */,
 				ADE07C482CEDA4B50026E527 /* Localizable.xcstrings */,
 				AD056EAB2CEEB34A00F213E6 /* Info.plist */,
-				ADE07C512CEEA5DA0026E527 /* GoogleService-Info.plist */,
-				AD056EC92CEEEE1D00F213E6 /* AdmobBanner-Info.plist */,
+				4954F48D2CF0B506001704FA /* AdmobBanner-Info.plist */,
+				4954F48E2CF0B506001704FA /* GoogleService-Info.plist */,
 			);
 			path = AveragePriceCalculator;
 			sourceTree = "<group>";
@@ -227,13 +233,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4954F49C2CF16EF7001704FA /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				AD056EB82CEEBB2C00F213E6 /* LottieView.swift */,
+				4954F4992CF16CA9001704FA /* SwiftUILottieView.swift */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		AD056EB32CEEB81200F213E6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				4946AB042C82A846008A86C4 /* Toast */,
 				AD056EB42CEEB81A00F213E6 /* Admob */,
-				AD056EB82CEEBB2C00F213E6 /* LottieView.swift */,
+				4954F49C2CF16EF7001704FA /* Lottie */,
 				AD056ECD2CEEF54D00F213E6 /* EmailView.swift */,
+				4954F4912CF0C30C001704FA /* EmptyListView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -261,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				AD056EBE2CEECBD400F213E6 /* admob-loading.json */,
+				4954F4972CF16C24001704FA /* noContent.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -381,7 +398,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					492546B22C7030F100B86971 = {
 						CreatedOnToolsVersion = 15.1;
@@ -421,10 +438,11 @@
 			files = (
 				AD056EBF2CEECBD400F213E6 /* admob-loading.json in Resources */,
 				4946AB062C82A92D008A86C4 /* Colors.xcassets in Resources */,
-				AD056ECA2CEEEE1D00F213E6 /* AdmobBanner-Info.plist in Resources */,
 				492546BE2C7030F300B86971 /* Preview Assets.xcassets in Resources */,
-				ADE07C522CEEA5DA0026E527 /* GoogleService-Info.plist in Resources */,
+				4954F48F2CF0B506001704FA /* AdmobBanner-Info.plist in Resources */,
+				4954F4902CF0B506001704FA /* GoogleService-Info.plist in Resources */,
 				ADE07C492CEDA4B50026E527 /* Localizable.xcstrings in Resources */,
+				4954F4982CF16C24001704FA /* noContent.json in Resources */,
 				492546BB2C7030F300B86971 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,9 +471,11 @@
 				492546B72C7030F100B86971 /* AveragePriceCalculatorApp.swift in Sources */,
 				4946AB082C82AC76008A86C4 /* Extension+View.swift in Sources */,
 				AD056EB02CEEB47100F213E6 /* BannerView.swift in Sources */,
+				4954F49A2CF16CA9001704FA /* SwiftUILottieView.swift in Sources */,
 				4946AB0A2C82AC8A008A86C4 /* ToastModifier.swift in Sources */,
 				4946AAFD2C82A6ED008A86C4 /* ToastView.swift in Sources */,
 				492546CE2C70411F00B86971 /* Extension+Double.swift in Sources */,
+				4954F4922CF0C30C001704FA /* EmptyListView.swift in Sources */,
 				4946AB0D2C82ACDE008A86C4 /* ToastModel.swift in Sources */,
 				4946AAFB2C79DD89008A86C4 /* ItemDetailFeature.swift in Sources */,
 				492546CA2C70342F00B86971 /* ItemModel.swift in Sources */,
@@ -475,6 +495,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -539,6 +560,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

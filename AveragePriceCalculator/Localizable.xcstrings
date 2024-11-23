@@ -61,7 +61,14 @@
       }
     },
     "Email functionality is not available on this device.\nPlease check your email configuration and try again." : {
-
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재 기기에서 이메일 기능을 사용할 수 없습니다.\n이메일 설정을 확인한 후 다시 시도해주세요."
+          }
+        }
+      }
     },
     "First Price" : {
       "localizations" : {
@@ -130,6 +137,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이름"
+          }
+        }
+      }
+    },
+    "No Items" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아이템 없음"
           }
         }
       }
@@ -245,6 +263,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "테마 설장"
+          }
+        }
+      }
+    },
+    "There are no items registered.\nPlease add an item." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "등록된 아이템이 없어요.아이템을 추가해 주세요."
           }
         }
       }

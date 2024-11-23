@@ -93,37 +93,44 @@ struct DisplayListView: View {
             NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
                 ZStack {
                     VStack {
-                        List {
-                            ForEach(store.items) { item in
-                                NavigationLink(state: ItemDetailFeature.State(item: item)) {
-                                    ItemView(item: item)
+                        if (!store.items.isEmpty) {
+                            List {
+                                ForEach(store.items) { item in
+                                    NavigationLink(state: ItemDetailFeature.State(item: item)) {
+                                        ItemView(item: item)
+                                    }
+                                    .buttonStyle(.borderless)
+                                    .listRowSeparator(.hidden)
                                 }
-                                .buttonStyle(.borderless)
-                                .listRowSeparator(.hidden)
+                                .onDelete { indexSet in
+                                    store.send(.onDelete(indexSet))
+                                }
                             }
-                            .onDelete { indexSet in
-                                store.send(.onDelete(indexSet))
-                            }
+                            .listStyle(.plain)
+
+                        } else {
+                            EmptyListView()
+                                .padding()
                         }
-                        .listStyle(.plain)
-                        .toolbar {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                Button(action: {
-                                    store.send(.addButtonTapped)
-                                }, label: {
-                                    Image(systemName: "plus.circle")
-                                })
-                            }
-                        }
-                        .refreshable {
-                            store.send(.refresh)
-                        }
+
                         AdmobBannerView()
                             .frame(height: 90.0)
                     }
                     if store.isLoading {
                         ProgressView()
                     }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {
+                            store.send(.addButtonTapped)
+                        }, label: {
+                            Image(systemName: "plus.circle")
+                        })
+                    }
+                }
+                .refreshable {
+                    store.send(.refresh)
                 }
                 .onAppear {
                     store.send(.onAppear)

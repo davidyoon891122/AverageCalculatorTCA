@@ -11,11 +11,14 @@ import SnapKit
 
 enum LottieType {
     case admob
-    
+    case noContent
+
     var imageName: String {
         switch self {
         case .admob:
             "admob-loading"
+        case .noContent:
+            "noContent"
         }
     }
 }

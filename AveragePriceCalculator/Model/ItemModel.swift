@@ -26,7 +26,7 @@ extension ItemModel {
     var averagePrice: String {
         let result = ((self.firstPrice * self.firstQuantity) + (self.secondPrice * self.secondQuantity)) / (self.firstQuantity + self.secondQuantity)
         if result > 1 {
-            return NSDecimalNumber(decimal: result).stringValue
+            return String(format: "%.3f", NSDecimalNumber(decimal: result).doubleValue)
         } else {
             return String(format: "%.8f", NSDecimalNumber(decimal: result).doubleValue)
         }
