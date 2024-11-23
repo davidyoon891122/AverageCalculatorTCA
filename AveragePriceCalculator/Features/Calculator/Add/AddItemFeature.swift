@@ -196,6 +196,7 @@ struct AddItemView: View {
 
     @Perception.Bindable var store: StoreOf<AddItemFeature>
     @FocusState var focusedField: AddItemFeature.State.FieldType?
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         WithPerceptionTracking {
@@ -315,13 +316,39 @@ struct AddItemView: View {
                         store.send(.cancelButtonTapped)
                     }, label: {
                         Image(systemName: "xmark")
-                            .tint(store.theme == .dark ? .white : .black)
+                            .tint(xmarkTintColor)
                     })
                     
                 }
             }
             .navigationTitle(store.navigationTitle)
-            .background(store.theme == .dark ? .black : .white)
+            .background(backgroundColor)
+        }
+    }
+
+}
+
+extension AddItemView {
+
+    var backgroundColor: Color {
+        switch store.theme {
+        case .dark:
+            return .black
+        case .light:
+            return .white
+        case .system:
+            return colorScheme == .dark ? .black : .white
+        }
+    }
+
+    var xmarkTintColor: Color {
+        switch store.theme {
+        case .dark:
+            return .white
+        case .light:
+            return .black
+        case .system:
+            return colorScheme == .dark ? .white : .black
         }
     }
 
