@@ -125,8 +125,8 @@ DerivedData/
 
 
 ### GoogleService ###
-GoogleService-Info.plist
-AdmobBanner-Info.plist
+**/GoogleService-Info.plist
+**/AdmobBanner-Info.plist
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/fastlane
