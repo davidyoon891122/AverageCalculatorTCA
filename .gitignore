@@ -155,4 +155,11 @@ DerivedData/
 # Fastlane.swift runner binary
 **/fastlane/FastlaneRunner
 
+# Fastlane README
+**/fastlane/README.md
+
 # End of https://www.toptal.com/developers/gitignore/api/fastlane
+
+
+### AppStoreConnection API Key ###
+AppstoreConnectKey
