@@ -29,16 +29,6 @@
         }
       }
     },
-    "average price: " : {
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "평단가:"
-          }
-        }
-      }
-    },
     "Average price: " : {
       "localizations" : {
         "ko" : {
@@ -147,16 +137,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "이름"
-          }
-        }
-      }
-    },
-    "profit: " : {
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "수익률:"
           }
         }
       }
@@ -282,16 +262,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "등록된 아이템이 없어요.아이템을 추가해 주세요."
-          }
-        }
-      }
-    },
-    "total amount: " : {
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "총 수량:"
           }
         }
       }

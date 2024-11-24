@@ -23,43 +23,51 @@ struct AddItemFeature {
         var secondQuantity: String = ""
         
         var averagePrice: String {
-            self.averagePriceDouble.commaFormat
+            self.averagePriceDecimal.commaFormat
         }
         
         var totalAmount: String {
-            self.totalAmountDouble.commaFormat
+            self.totalAmountDecimal.commaFormat
         }
         
         var profit: String {
-            self.profitDouble.isNaN ? "" : String(format: "%.2f %%", NSDecimalNumber(decimal: self.profitDouble).doubleValue)
+            self.profitDecimal.isNaN ? "" : String(format: "%.2f %%", NSDecimalNumber(decimal: self.profitDecimal).doubleValue)
         }
 
-        var firstPriceDouble: Decimal = 0
-        var firstQuantityDouble: Decimal = 0
-        var secondPriceDouble: Decimal = 0
-        var secondQuantityDouble: Decimal = 0
+        var totalPurchasePrice: String {
+            totalPurchasePriceDecimal.commaFormat
+        }
+
+        var firstPriceDecimal: Decimal = 0
+        var firstQuantityDecimal: Decimal = 0
+        var secondPriceDecimal: Decimal = 0
+        var secondQuantityDecimal: Decimal = 0
         
-        var averagePriceDouble: Decimal {
-            let totalAmount = firstQuantityDouble + secondQuantityDouble
+        var averagePriceDecimal: Decimal {
+            let totalAmount = firstQuantityDecimal + secondQuantityDecimal
             if totalAmount > 0 {
-                 return ((firstPriceDouble * firstQuantityDouble) + (secondPriceDouble * secondQuantityDouble)) / totalAmount
+                 return ((firstPriceDecimal * firstQuantityDecimal) + (secondPriceDecimal * secondQuantityDecimal)) / totalAmount
             } else {
                 return 0
             }
 
         }
-        var totalAmountDouble: Decimal {
-            firstQuantityDouble + secondQuantityDouble
+        var totalAmountDecimal: Decimal {
+            firstQuantityDecimal + secondQuantityDecimal
         }
         
-        var profitDouble: Decimal {
-            let firstPrice = firstPriceDouble * firstQuantityDouble // 1
-            let secondPrice = secondPriceDouble * secondQuantityDouble // 20
+        var profitDecimal: Decimal {
+            let firstPrice = firstPriceDecimal * firstQuantityDecimal // 1
+            let secondPrice = secondPriceDecimal * secondQuantityDecimal // 20
 
             let totalPrice = firstPrice + secondPrice
-            let currentPriceValue = secondPriceDouble * (firstQuantityDouble + secondQuantityDouble)
+            let currentPriceValue = secondPriceDecimal * (firstQuantityDecimal + secondQuantityDecimal)
 
             return ((currentPriceValue - totalPrice) / totalPrice) * 100
+        }
+
+        var totalPurchasePriceDecimal: Decimal {
+            (firstPriceDecimal * firstQuantityDecimal) + (secondPriceDecimal * secondQuantityDecimal)
         }
 
         var isSaveButtonEnabled: Bool {
@@ -68,10 +76,10 @@ struct AddItemFeature {
             !firstQuantity.isEmpty &&
             !secondPrice.isEmpty &&
             !secondQuantity.isEmpty &&
-            firstPriceDouble > 0 &&
-            firstQuantityDouble > 0 &&
-            secondPriceDouble > 0 &&
-            secondQuantityDouble > 0
+            firstPriceDecimal > 0 &&
+            firstQuantityDecimal > 0 &&
+            secondPriceDecimal > 0 &&
+            secondQuantityDecimal > 0
         }
         
         var focusedField: FieldType?
@@ -132,25 +140,25 @@ struct AddItemFeature {
                 return .none
             case let .setFirstPrice(firstPrice):
                 state.firstPrice = firstPrice
-                state.firstPriceDouble = state.firstPrice.commaStringtoDouble
+                state.firstPriceDecimal = state.firstPrice.commaStringtoDouble
                 state.item.firstPrice = state.firstPrice.commaStringtoDouble
                 
                 return .none
             case let .setFirstQuantity(firstQuantity):
                 state.firstQuantity = firstQuantity
-                state.firstQuantityDouble = state.firstQuantity.commaStringtoDouble
+                state.firstQuantityDecimal = state.firstQuantity.commaStringtoDouble
                 state.item.firstQuantity = state.firstQuantity.commaStringtoDouble
                 
                 return .none
             case let .setSecondPrice(secondPrice):
                 state.secondPrice = secondPrice
-                state.secondPriceDouble = state.secondPrice.commaStringtoDouble
+                state.secondPriceDecimal = state.secondPrice.commaStringtoDouble
                 state.item.secondPrice = state.secondPrice.commaStringtoDouble
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
                 state.secondQuantity = secondQuantity
-                state.secondQuantityDouble = state.secondQuantity.commaStringtoDouble
+                state.secondQuantityDecimal = state.secondQuantity.commaStringtoDouble
                 state.item.secondQuantity = state.secondQuantity.commaStringtoDouble
 
                 return .none
@@ -275,20 +283,33 @@ struct AddItemView: View {
                         
                         VStack {
                             HStack {
-                                Text("total amount: ")
+                                Text("Total amount: ")
+                                    .bold()
                                 Spacer()
                                 Text(store.totalAmount)
-                                
+                                    .bold()
+
                             }
                             HStack {
-                                Text("average price: ")
+                                Text("Average price: ")
+                                    .bold()
                                 Spacer()
                                 Text(store.averagePrice)
+                                    .bold()
                             }
                             HStack {
-                                Text("profit: ")
+                                Text("Profit: ")
+                                    .bold()
                                 Spacer()
                                 Text(store.profit)
+                                    .bold()
+                            }
+                            HStack {
+                                Text("Total Purchase Price: ")
+                                    .bold()
+                                Spacer()
+                                Text(store.totalPurchasePrice)
+                                    .bold()
                             }
                         }
                         .padding()
