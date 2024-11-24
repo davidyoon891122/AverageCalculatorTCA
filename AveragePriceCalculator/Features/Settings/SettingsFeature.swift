@@ -87,8 +87,8 @@ struct SettingsView: View {
                     }
                     .preferredColorScheme(store.theme.colorScheme)
                     .navigationTitle(store.navigationTitle)
-                    AdmobBannerView()
-                        .frame(height: 90.0)
+//                    AdmobBannerView()
+//                        .frame(height: 90.0)
                 }
                 .sheet(item: $store.scope(state: \.reportFeatureState, action: \.reportAction)) { reportStore in
                     ReportView()
