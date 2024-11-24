@@ -185,6 +185,17 @@ struct ItemView: View {
                     .font(.system(size: 16.0))
             }
 
+            HStack {
+                Text("Total Purchase Price")
+                    .bold()
+                    .font(.system(size: 16.0))
+                Spacer()
+                Text(item.totalPurchasePrice)
+                    .bold()
+                    .font(.system(size: 16.0))
+            }
+            .padding(.vertical, 4)
+
             Divider()
         }
     }

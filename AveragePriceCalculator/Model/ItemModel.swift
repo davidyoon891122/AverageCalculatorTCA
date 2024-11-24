@@ -49,6 +49,15 @@ extension ItemModel {
         Double(self.profit) ?? 0.0 > 0 ? .red : .blue
     }
 
+    var totalPurchasePrice: String {
+        let result = (self.firstPrice * self.firstQuantity) + (self.secondPrice * self.secondQuantity)
+        if result > 1 {
+            return String(format: "%.3f", NSDecimalNumber(decimal: result).doubleValue)
+        } else {
+            return String(format: "%.8f", NSDecimalNumber(decimal: result).doubleValue)
+        }
+    }
+
 }
 
 extension ItemModel {

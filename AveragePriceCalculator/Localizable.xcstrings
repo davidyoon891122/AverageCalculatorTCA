@@ -39,6 +39,16 @@
         }
       }
     },
+    "Average price: " : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "평단가:"
+          }
+        }
+      }
+    },
     "Current Theme: %@" : {
       "localizations" : {
         "ko" : {
@@ -141,18 +151,17 @@
         }
       }
     },
-    "No Items" : {
-      "extractionState" : "stale",
+    "profit: " : {
       "localizations" : {
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "아이템 없음"
+            "value" : "수익률:"
           }
         }
       }
     },
-    "profit: " : {
+    "Profit: " : {
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -283,6 +292,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "총 수량:"
+          }
+        }
+      }
+    },
+    "Total amount: " : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "총 수량:"
+          }
+        }
+      }
+    },
+    "Total Purchase Price" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "총 매수 가격"
+          }
+        }
+      }
+    },
+    "Total Purchase Price: " : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "총 매수 가격"
           }
         }
       }
