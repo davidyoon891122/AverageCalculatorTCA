@@ -20,6 +20,7 @@
 		492546D62C704DFB00B86971 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D52C704DFB00B86971 /* AppFeature.swift */; };
 		492546D82C71BFC100B86971 /* AddItemFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D72C71BFC100B86971 /* AddItemFeature.swift */; };
 		492546DA2C71C41A00B86971 /* AverageCalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492546D92C71C41A00B86971 /* AverageCalculatorModel.swift */; };
+		4942A1C22CF496FD009741ED /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4942A1C12CF496FD009741ED /* ItemView.swift */; };
 		4946AAF92C797A0A008A86C4 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AAF82C797A0A008A86C4 /* Extension+Date.swift */; };
 		4946AAFB2C79DD89008A86C4 /* ItemDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AAFA2C79DD89008A86C4 /* ItemDetailFeature.swift */; };
 		4946AAFD2C82A6ED008A86C4 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4946AAFC2C82A6ED008A86C4 /* ToastView.swift */; };
@@ -68,6 +69,7 @@
 		492546D52C704DFB00B86971 /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
 		492546D72C71BFC100B86971 /* AddItemFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemFeature.swift; sourceTree = "<group>"; };
 		492546D92C71C41A00B86971 /* AverageCalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageCalculatorModel.swift; sourceTree = "<group>"; };
+		4942A1C12CF496FD009741ED /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		4946AAF82C797A0A008A86C4 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		4946AAFA2C79DD89008A86C4 /* ItemDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailFeature.swift; sourceTree = "<group>"; };
 		4946AAFC2C82A6ED008A86C4 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				492546C72C70332400B86971 /* DisplayListFeature.swift */,
 				ADE07C4B2CEDA7030026E527 /* Detail */,
 				ADE07C4C2CEDA70C0026E527 /* Add */,
+				4942A1C12CF496FD009741ED /* ItemView.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				4954F4922CF0C30C001704FA /* EmptyListView.swift in Sources */,
 				4946AB0D2C82ACDE008A86C4 /* ToastModel.swift in Sources */,
 				4946AAFB2C79DD89008A86C4 /* ItemDetailFeature.swift in Sources */,
+				4942A1C22CF496FD009741ED /* ItemView.swift in Sources */,
 				492546CA2C70342F00B86971 /* ItemModel.swift in Sources */,
 				AD056EC22CEEEB6A00F213E6 /* PlistReader.swift in Sources */,
 				AD056EB22CEEB63D00F213E6 /* AdmobBannerView.swift in Sources */,

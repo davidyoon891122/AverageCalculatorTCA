@@ -46,7 +46,7 @@ struct DisplayListFeature {
 
                 return .send(.loadList(items))
             case .addButtonTapped:
-                state.addItem = AddItemFeature.State(item: .init(id: UUID(), name: "", date: "", firstPrice: 0, firstQuantity: 0, secondPrice: 0, secondQuantity: 0))
+                state.addItem = AddItemFeature.State(item: .init())
                 return .none
             case .listElementTapped:
                 return .none
@@ -155,48 +155,5 @@ struct DisplayListView: View {
     DisplayListView(store: Store(initialState: DisplayListFeature.State(items: [
         .init(id: UUID(), name: "test", date: "2024-11-22", firstPrice: 100, firstQuantity: 10, secondPrice: 90, secondQuantity: 8)])) {
         DisplayListFeature()
-    }
-    )
-}
-
-struct ItemView: View {
-
-    let item: ItemModel
-
-    var body: some View {
-        VStack {
-            HStack {
-                Text(item.name)
-                    .bold()
-                    .font(.system(size: 18.0))
-                Spacer()
-                Text(item.averagePrice)
-                    .bold()
-                    .font(.system(size: 22.0))
-            }
-            HStack {
-                Text(item.date)
-                    .foregroundStyle(.gray)
-                    .font(.system(size: 14.0))
-                Spacer()
-                Text("\(item.profit) %")
-                    .bold()
-                    .foregroundStyle(item.profitColor)
-                    .font(.system(size: 16.0))
-            }
-
-            HStack {
-                Text("Total Purchase Price")
-                    .bold()
-                    .font(.system(size: 16.0))
-                Spacer()
-                Text(item.totalPurchasePrice)
-                    .bold()
-                    .font(.system(size: 16.0))
-            }
-            .padding(.vertical, 4)
-
-            Divider()
-        }
-    }
+    })
 }

@@ -18,8 +18,23 @@ struct ItemModel: Codable, Identifiable, Equatable {
     var secondPrice: Decimal
     var secondQuantity: Decimal
 
-}
+    init(id: UUID = UUID(),
+         name: String = "",
+         date: String = "",
+         firstPrice: Decimal = 0.0,
+         firstQuantity: Decimal = 0.0,
+         secondPrice: Decimal = 0.0,
+         secondQuantity: Decimal = 0.0) {
+        self.id = id
+        self.name = name
+        self.date = date
+        self.firstPrice = firstPrice
+        self.firstQuantity = firstQuantity
+        self.secondPrice = secondPrice
+        self.secondQuantity = secondQuantity
+    }
 
+}
 
 extension ItemModel {
 
