@@ -26,9 +26,9 @@ extension ItemModel {
     var averagePrice: String {
         let result = ((self.firstPrice * self.firstQuantity) + (self.secondPrice * self.secondQuantity)) / (self.firstQuantity + self.secondQuantity)
         if result > 1 {
-            return String(format: "%.3f", NSDecimalNumber(decimal: result).doubleValue)
+            return String(format: "%.3f", NSDecimalNumber(decimal: result).doubleValue).commaFormat
         } else {
-            return String(format: "%.8f", NSDecimalNumber(decimal: result).doubleValue)
+            return String(format: "%.8f", NSDecimalNumber(decimal: result).doubleValue).commaFormat
         }
     }
     
@@ -51,11 +51,7 @@ extension ItemModel {
 
     var totalPurchasePrice: String {
         let result = (self.firstPrice * self.firstQuantity) + (self.secondPrice * self.secondQuantity)
-        if result > 1 {
-            return String(format: "%.3f", NSDecimalNumber(decimal: result).doubleValue)
-        } else {
-            return String(format: "%.8f", NSDecimalNumber(decimal: result).doubleValue)
-        }
+        return result.commaFormat
     }
 
 }
