@@ -121,6 +121,7 @@ struct ItemDetailFeature {
         case modifyButtonTapped
         case setToast(ToastModel?)
         case binding(BindingAction<State>)
+        case didTapAddingButton
     }
     
     @Dependency(\.userDefaultsClient) var userDefaultsClient
@@ -192,6 +193,18 @@ struct ItemDetailFeature {
                 state.toast = toast
                 return .none
             case .binding:
+                return .none
+            case .didTapAddingButton:
+                state.firstPrice = state.averagePrice
+                state.firstPriceDecimal = state.averagePrice.commaStringtoDouble
+                state.firstQuantity = state.totalAmount
+                state.firstQuantityDecimal = state.totalAmount.commaStringtoDouble
+
+                state.secondPrice = ""
+                state.secondPriceDecimal = 0
+                state.secondQuantity = ""
+                state.secondQuantityDecimal = 0
+
                 return .none
             }
         }
@@ -330,6 +343,13 @@ struct ItemDetailView: View {
             .navigationBarTitleDisplayMode(.inline)
             .taostView(toast: $store.toast.sending(\.setToast))
             .navigationTitle(store.navigationTitle)
+            .toolbar {
+                Button(action: {
+                    store.send(.didTapAddingButton)
+                }, label: {
+                    Text("Additional purchase")
+                })
+            }
         }
     }
 

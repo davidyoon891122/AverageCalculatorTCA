@@ -18,6 +18,16 @@
         }
       }
     },
+    "Additional purchase" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "추가 매수"
+          }
+        }
+      }
+    },
     "Average Calculator" : {
       "extractionState" : "manual",
       "localizations" : {
