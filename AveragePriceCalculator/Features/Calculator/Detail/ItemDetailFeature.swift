@@ -39,11 +39,11 @@ struct ItemDetailFeature {
         var secondQuantity: String = ""
         
         var averagePrice: String {
-            self.averagePriceDecimal.formatted(.number)
+            self.averagePriceDecimal.commaFormat
         }
 
         var totalAmount: String {
-            (self.item.firstQuantity + self.item.secondQuantity).commaFormat
+            self.totalAmountDecimal.commaFormat
         }
 
         var profit: String {
@@ -79,6 +79,10 @@ struct ItemDetailFeature {
 
             return ((currentPriceValue - totalPrice) / totalPrice) * 100
         }
+        
+        var totalAmountDecimal: Decimal {
+            self.firstQuantityDecimal + self.secondQuantityDecimal
+        }
 
         var totalPurchasePriceDecimal: Decimal {
             (firstPriceDecimal * firstQuantityDecimal) + (secondPriceDecimal * secondQuantityDecimal)
@@ -89,11 +93,7 @@ struct ItemDetailFeature {
             !firstPrice.isEmpty &&
             !firstQuantity.isEmpty &&
             !secondPrice.isEmpty &&
-            !secondQuantity.isEmpty &&
-            firstPriceDecimal > 0 &&
-            firstQuantityDecimal > 0 &&
-            secondPriceDecimal > 0 &&
-            secondQuantityDecimal > 0
+            !secondQuantity.isEmpty
         }
 
         var toast: ToastModel?
