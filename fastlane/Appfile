@@ -1,0 +1,8 @@
+app_identifier("com.ycompany.AvgPriceCalculator") # The bundle identifier of your app
+apple_id("qqpo12@naver.com") # Your Apple Developer Portal username
+
+itc_team_id("123862000") # App Store Connect Team ID
+team_id("R6V3UCSNG3") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

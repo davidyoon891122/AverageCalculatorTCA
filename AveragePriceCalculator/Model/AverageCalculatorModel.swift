@@ -11,17 +11,17 @@ struct AverageCalculatorModel: Codable, Identifiable, Equatable {
 
     let id: UUID
     var name: String
-    var firstPrice: Float
+    var firstPrice: Double
     var firstQuantity: Double
-    var secondPrice: Float
+    var secondPrice: Double
     var secondQuantity: Double
 
 }
 
 extension AverageCalculatorModel {
 
-    var averagePrice: Float {
-        ((self.firstPrice * Float(self.firstQuantity)) + (self.secondPrice * Float(self.secondQuantity))) / Float((self.firstQuantity + self.secondQuantity))
+    var averagePrice: Double {
+        ((self.firstPrice * self.firstQuantity) + (self.secondPrice * self.secondQuantity)) / (self.firstQuantity + self.secondQuantity)
     }
 
 }

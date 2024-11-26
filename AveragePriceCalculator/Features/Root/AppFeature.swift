@@ -11,9 +11,12 @@ import ComposableArchitecture
 @Reducer
 struct AppFeature {
 
+    @ObservableState
     struct State: Equatable {
         var tab1 = DisplayListFeature.State()
         var tab2 = SettingsFeature.State()
+        
+        @Shared(.appStorage("theme")) var theme: ThemeType = .system
     }
 
     enum Action {

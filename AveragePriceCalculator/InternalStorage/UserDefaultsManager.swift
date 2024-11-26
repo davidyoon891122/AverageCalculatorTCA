@@ -43,6 +43,7 @@ private extension UserDefaultsManager {
 
     enum Constant {
         static let items: String = "Items"
+        static let theme: String = "Theme"
     }
 
 }
