@@ -131,8 +131,8 @@ struct ThemeSettingView: View {
                     store.send(.onAppear)
                 }
                 .navigationTitle(store.navigationTitle)
-//                AdmobBannerView()
-//                    .frame(height: 90.0)
+                AdmobBannerView()
+                    .frame(height: 90.0)
             }
         }
     }
