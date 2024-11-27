@@ -13,7 +13,7 @@ struct ReportFeature {
     
     @ObservableState
     struct State: Equatable {
-        
+        let email: String = "qqpo12@naver.com"
     }
     
     enum Action {
@@ -33,11 +33,13 @@ struct ReportFeature {
 import SwiftUI
 import MessageUI
 struct ReportView: View {
-    
+
+    let store: StoreOf<ReportFeature>
+
     var body: some View {
         VStack {
             if MFMailComposeViewController.canSendMail() {
-                EmailView(to: "test@test.com")
+                EmailView(to: store.email)
             } else {
                 VStack {
                     Image(systemName: "nosign")
@@ -57,5 +59,7 @@ struct ReportView: View {
 }
 
 #Preview {
-    ReportView()
+    ReportView(store: Store(initialState: ReportFeature.State(), reducer: {
+        ReportFeature()
+    }))
 }

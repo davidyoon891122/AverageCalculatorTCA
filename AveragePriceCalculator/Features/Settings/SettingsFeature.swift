@@ -91,7 +91,7 @@ struct SettingsView: View {
                         .frame(height: 90.0)
                 }
                 .sheet(item: $store.scope(state: \.reportFeatureState, action: \.reportAction)) { reportStore in
-                    ReportView()
+                    ReportView(store: reportStore)
                 }
             } destination: { store in
                 switch store.case {
