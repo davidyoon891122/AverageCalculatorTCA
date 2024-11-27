@@ -25,11 +25,6 @@ struct ItemDetailFeature {
             self.firstQuantity = item.firstQuantity.commaFormat
             self.secondPrice = item.secondPrice.commaFormat
             self.secondQuantity = item.secondQuantity.commaFormat
-            
-            self.firstPriceDecimal = item.firstPrice
-            self.firstQuantityDecimal = item.firstQuantity
-            self.secondPriceDecimal = item.secondPrice
-            self.secondQuantityDecimal = item.secondQuantity
         }
 
         var name: String = ""
@@ -39,11 +34,11 @@ struct ItemDetailFeature {
         var secondQuantity: String = ""
         
         var averagePrice: String {
-            self.averagePriceDecimal.formatted(.number)
+            self.averagePriceDecimal.commaFormat
         }
 
         var totalAmount: String {
-            (self.item.firstQuantity + self.item.secondQuantity).commaFormat
+            self.totalAmountDecimal.commaFormat
         }
 
         var profit: String {
@@ -54,15 +49,10 @@ struct ItemDetailFeature {
             totalPurchasePriceDecimal.commaFormat
         }
 
-        var firstPriceDecimal: Decimal = 0
-        var firstQuantityDecimal: Decimal = 0
-        var secondPriceDecimal: Decimal = 0
-        var secondQuantityDecimal: Decimal = 0
-
         var averagePriceDecimal: Decimal {
-            let totalAmount = firstQuantityDecimal + secondQuantityDecimal
+            let totalAmount = item.firstQuantity + item.secondQuantity
             if totalAmount > 0 {
-                let result = ((firstPriceDecimal * firstQuantityDecimal) + (secondPriceDecimal * secondQuantityDecimal)) / totalAmount
+                let result = ((item.firstPrice * item.firstQuantity) + (item.secondPrice * item.secondQuantity)) / totalAmount
                 return result
             } else {
                 return 0
@@ -71,17 +61,21 @@ struct ItemDetailFeature {
         }
 
         var profitDecimal: Decimal {
-            let firstPrice = firstPriceDecimal * firstQuantityDecimal
-            let secondPrice = secondPriceDecimal * secondQuantityDecimal
+            let firstPrice = item.firstPrice * item.firstQuantity
+            let secondPrice = item.secondPrice * item.secondQuantity
 
             let totalPrice = firstPrice + secondPrice
-            let currentPriceValue = secondPriceDecimal * (firstQuantityDecimal + secondQuantityDecimal)
+            let currentPriceValue = item.secondPrice * (item.firstQuantity + item.secondQuantity)
 
             return ((currentPriceValue - totalPrice) / totalPrice) * 100
         }
+        
+        var totalAmountDecimal: Decimal {
+            item.firstQuantity + item.secondQuantity
+        }
 
         var totalPurchasePriceDecimal: Decimal {
-            (firstPriceDecimal * firstQuantityDecimal) + (secondPriceDecimal * secondQuantityDecimal)
+            (item.firstPrice * item.firstQuantity) + (item.secondPrice * item.secondQuantity)
         }
 
         var isSaveButtonEnabled: Bool {
@@ -89,11 +83,7 @@ struct ItemDetailFeature {
             !firstPrice.isEmpty &&
             !firstQuantity.isEmpty &&
             !secondPrice.isEmpty &&
-            !secondQuantity.isEmpty &&
-            firstPriceDecimal > 0 &&
-            firstQuantityDecimal > 0 &&
-            secondPriceDecimal > 0 &&
-            secondQuantityDecimal > 0
+            !secondQuantity.isEmpty
         }
 
         var toast: ToastModel?
@@ -146,25 +136,21 @@ struct ItemDetailFeature {
                 return .none
             case let .setFirstPrice(firstPrice):
                 state.firstPrice = firstPrice
-                state.firstPriceDecimal = state.firstPrice.commaStringtoDouble
                 state.item.firstPrice = state.firstPrice.commaStringtoDouble
 
                 return .none
             case let .setFirstQuantity(firstQuantity):
                 state.firstQuantity = firstQuantity
-                state.firstQuantityDecimal = state.firstQuantity.commaStringtoDouble
                 state.item.firstQuantity = state.firstQuantity.commaStringtoDouble
 
                 return .none
             case let .setSecondPrice(secondPrice):
                 state.secondPrice = secondPrice
-                state.secondPriceDecimal = state.secondPrice.commaStringtoDouble
                 state.item.secondPrice = state.secondPrice.commaStringtoDouble
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
                 state.secondQuantity = secondQuantity
-                state.secondQuantityDecimal = state.secondQuantity.commaStringtoDouble
                 state.item.secondQuantity = state.secondQuantity.commaStringtoDouble
 
                 return .none
@@ -196,14 +182,14 @@ struct ItemDetailFeature {
                 return .none
             case .didTapAddingButton:
                 state.firstPrice = state.averagePrice
-                state.firstPriceDecimal = state.averagePrice.commaStringtoDouble
+                state.item.firstPrice = state.averagePrice.commaStringtoDouble
                 state.firstQuantity = state.totalAmount
-                state.firstQuantityDecimal = state.totalAmount.commaStringtoDouble
+                state.item.firstQuantity = state.totalAmount.commaStringtoDouble
 
                 state.secondPrice = ""
-                state.secondPriceDecimal = 0
+                state.item.secondPrice = 0
                 state.secondQuantity = ""
-                state.secondQuantityDecimal = 0
+                state.item.secondQuantity = 0
 
                 return .none
             }
@@ -334,7 +320,7 @@ struct ItemDetailView: View {
                 }, label: {
                     Text("Modify")
                         .frame(maxWidth: .infinity, minHeight: 50.0)
-                        .background(store.isSaveButtonEnabled ? .gray : .gray.opacity(0.7))
+                        .background(store.isSaveButtonEnabled ? .blue : .blue.opacity(0.3))
                         .foregroundStyle(store.isSaveButtonEnabled ? .white : .white.opacity(0.7))
                 })
                 .disabled(!store.isSaveButtonEnabled)

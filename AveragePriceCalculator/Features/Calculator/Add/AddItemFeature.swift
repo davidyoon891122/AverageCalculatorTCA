@@ -38,36 +38,36 @@ struct AddItemFeature {
             totalPurchasePriceDecimal.commaFormat
         }
 
-        var firstPriceDecimal: Decimal = 0
-        var firstQuantityDecimal: Decimal = 0
-        var secondPriceDecimal: Decimal = 0
-        var secondQuantityDecimal: Decimal = 0
+//        var firstPriceDecimal: Decimal = 0
+//        var firstQuantityDecimal: Decimal = 0
+//        var secondPriceDecimal: Decimal = 0
+//        var secondQuantityDecimal: Decimal = 0
         
         var averagePriceDecimal: Decimal {
-            let totalAmount = firstQuantityDecimal + secondQuantityDecimal
+            let totalAmount = item.firstQuantity + item.secondQuantity
             if totalAmount > 0 {
-                 return ((firstPriceDecimal * firstQuantityDecimal) + (secondPriceDecimal * secondQuantityDecimal)) / totalAmount
+                return ((item.firstPrice * item.firstQuantity) + (item.secondPrice * item.secondQuantity)) / totalAmount
             } else {
                 return 0
             }
 
         }
         var totalAmountDecimal: Decimal {
-            firstQuantityDecimal + secondQuantityDecimal
+            item.firstQuantity + item.secondQuantity
         }
         
         var profitDecimal: Decimal {
-            let firstPrice = firstPriceDecimal * firstQuantityDecimal // 1
-            let secondPrice = secondPriceDecimal * secondQuantityDecimal // 20
+            let firstPrice = item.firstPrice * item.firstQuantity
+            let secondPrice = item.secondPrice * item.secondQuantity
 
             let totalPrice = firstPrice + secondPrice
-            let currentPriceValue = secondPriceDecimal * (firstQuantityDecimal + secondQuantityDecimal)
+            let currentPriceValue = item.secondPrice * (item.firstQuantity + item.secondQuantity)
 
             return ((currentPriceValue - totalPrice) / totalPrice) * 100
         }
 
         var totalPurchasePriceDecimal: Decimal {
-            (firstPriceDecimal * firstQuantityDecimal) + (secondPriceDecimal * secondQuantityDecimal)
+            (item.firstPrice * item.firstQuantity) + (item.secondPrice * item.secondQuantity)
         }
 
         var isSaveButtonEnabled: Bool {
@@ -75,11 +75,7 @@ struct AddItemFeature {
             !firstPrice.isEmpty &&
             !firstQuantity.isEmpty &&
             !secondPrice.isEmpty &&
-            !secondQuantity.isEmpty &&
-            firstPriceDecimal > 0 &&
-            firstQuantityDecimal > 0 &&
-            secondPriceDecimal > 0 &&
-            secondQuantityDecimal > 0
+            !secondQuantity.isEmpty
         }
         
         var focusedField: FieldType?
@@ -140,25 +136,21 @@ struct AddItemFeature {
                 return .none
             case let .setFirstPrice(firstPrice):
                 state.firstPrice = firstPrice
-                state.firstPriceDecimal = state.firstPrice.commaStringtoDouble
                 state.item.firstPrice = state.firstPrice.commaStringtoDouble
                 
                 return .none
             case let .setFirstQuantity(firstQuantity):
                 state.firstQuantity = firstQuantity
-                state.firstQuantityDecimal = state.firstQuantity.commaStringtoDouble
                 state.item.firstQuantity = state.firstQuantity.commaStringtoDouble
                 
                 return .none
             case let .setSecondPrice(secondPrice):
                 state.secondPrice = secondPrice
-                state.secondPriceDecimal = state.secondPrice.commaStringtoDouble
                 state.item.secondPrice = state.secondPrice.commaStringtoDouble
 
                 return .none
             case let .setSecondQuantity(secondQuantity):
                 state.secondQuantity = secondQuantity
-                state.secondQuantityDecimal = state.secondQuantity.commaStringtoDouble
                 state.item.secondQuantity = state.secondQuantity.commaStringtoDouble
 
                 return .none
@@ -321,8 +313,9 @@ struct AddItemView: View {
                     store.send(.saveButtonTapped)
                 }, label: {
                     Text("Save")
+                        .bold()
                         .frame(maxWidth: .infinity, minHeight: 50)
-                        .background(store.isSaveButtonEnabled ? .gray : .gray.opacity(0.7))
+                        .background(store.isSaveButtonEnabled ? .blue : .blue.opacity(0.3))
                         .foregroundStyle(store.isSaveButtonEnabled ? .white : .white.opacity(0.7))
                 })
                 .disabled(!store.isSaveButtonEnabled)

@@ -17,9 +17,9 @@ enum PlistType: String {
 
 enum AdmobConstants {
     #if DEBUG
-    static let admobId: String = "AdUnitID"
-    #else
     static let admobId: String = "AdUnitIDDev"
+    #else
+    static let admobId: String = "AdUnitID"
     #endif
 }
 
