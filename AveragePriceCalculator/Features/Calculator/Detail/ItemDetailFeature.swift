@@ -320,7 +320,7 @@ struct ItemDetailView: View {
                 }, label: {
                     Text("Modify")
                         .frame(maxWidth: .infinity, minHeight: 50.0)
-                        .background(store.isSaveButtonEnabled ? .gray : .gray.opacity(0.7))
+                        .background(store.isSaveButtonEnabled ? .blue : .blue.opacity(0.3))
                         .foregroundStyle(store.isSaveButtonEnabled ? .white : .white.opacity(0.7))
                 })
                 .disabled(!store.isSaveButtonEnabled)
