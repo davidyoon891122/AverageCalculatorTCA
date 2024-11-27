@@ -113,8 +113,8 @@ struct DisplayListView: View {
                                 .padding()
                         }
 
-//                        AdmobBannerView()
-//                            .frame(height: 90.0)
+                        AdmobBannerView()
+                            .frame(height: 90.0)
                     }
                     if store.isLoading {
                         ProgressView()
