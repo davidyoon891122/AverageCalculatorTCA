@@ -132,6 +132,7 @@ struct ItemDetailFeature {
             switch action {
             case let .setName(name):
                 state.name = name
+                state.item.name = state.name
 
                 return .none
             case let .setFirstPrice(firstPrice):
